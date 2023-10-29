@@ -1,0 +1,59 @@
+<script       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- remember to add Cash Over Valuation for Purchase Payment Calculator -->
+<style>
+input[type="range"] {
+  width:300px;
+}
+</style>
+
+<div id="text01"> Sales Proceeds Calculator (Residential)</div>
+<br>
+<div id="text11"> <p style="font-size: 26px">Transacted Value $<span id="textpropprice"> 1,000,000</span></p></div>
+<input type="range" id="js-amount-range" value="1000000" min="0" max="10000000" step="100000"></input>
+<input type="number" id="js-amount-input" value="1000000" min="0" max="10000000" step="10000"></input>
+<br>
+<br>
+<div id="text12"> Outstanding Loan $<span id="textol"> 200,000</span></div>
+<input type="range" id="js-ol-range" value="200000" min="0" max="1000000" step="10000"></input>
+<input type="number" id="js-ol-input" value="200000" min="0" max="1000000" step="1000"></input>
+<br>
+<br>
+<div id="text13"> CPF Owing $<span id="textcpf"> 200,000</span></div>
+<input type="range" id="js-cpf-range" value="200000" min="0" max="1000000" step="10000"></input>
+<input type="number" id="js-cpf-input" value="200000" min="0" max="1000000" step="1000"></input>
+<br>
+<br>
+<div id="text14"> Resale Levy (if applicable) $<span id="textrl"> 0</span></div>
+<input type="range" id="js-rl-range" value="0" min="0" max="100000" step="1000"></input>
+<input type="number" id="js-rl-input" value="0" min="0" max="100000" step="1000"></input>
+<br>
+<br>
+<br>  <!--//this is a break tab -->
+<div id="text15"> Cash Proceeds $ <span id="textcashproceeds"> 0</span></div>
+<br>
+<br>
+<div id="text16"> Seller Stamp Duty (if applicable) $<span id="textssd"> 0</span></div>
+<div id="text16A"> Enter No. Years #<span id="textnumyears"> >3</span></div>
+<input type="range" id="js-numyears-range" value="4" min="1" max="4" step="1"></input>
+<br>
+<br>
+<div id="text17">Legal and Application Fee $<span id="textlegal"> 5,000</span></div>
+<input type="range" id="js-legal-range" value="5000" min="0" max="10000" step="100"></input>
+<input type="number" id="js-legal-input" value="5000" min="0" max="10000" step="100"></input>
+<br>
+<br>
+<div id="text18">Agent Fee $<span id="textagentamount"> 20,000</span></div>
+<div id="text19">Agent Fee % <span id="textagentpercent"> 2</span></div>
+<input type="range" id="js-agentpercent-range" value="2" min="0" max="5" step="0.1"></input>
+<input type="number" id="js-agentpercent-input" value="2" min="0" max="5" step="0.1"></input>
+
+<br>
+<br>
+<div id="text20"> Cash Payment = $ <span id="textcashpayment"> </span></div>
+<br>
+<br>
+<div id="text21"> Final Cash Position = $ <span id="textfinalcashposition"> </span></div>
+
+<script src="./salesproceeds.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>

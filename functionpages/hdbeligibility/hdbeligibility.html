@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="hdbeligibility.css" />
+
+<head>
+  <title>HDB Eligibility</title>
+
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+    <h3>Core Applicants / Core Occupiers</h3>
+    <table style="font-size: 0.4em;">
+      <thead>
+        <tr>
+          <th style="width: 10%;">Person</th>
+          <th style="width: 12%;">Timer</th>
+          <th style="width: 12%;">Citizen</th>
+          <th style="width: 13%;">Age</55></th>
+          <th style="width: 18%;">Proximity</th>
+          <th style="width: 15%;">Income</th>
+        </tr>
+      </thead>
+      <button style="font-family:Arial, Helvetica, sans-serif; font-size: x-small;"  onclick="checkInputs()">Check Inputs</button>
+      <button style="font-family:Arial, Helvetica, sans-serif; font-size: x-small;"  onclick="resetCellColors()">Reset Cell Color</button>
+      <button style="font-family:Arial, Helvetica, sans-serif; font-size: x-small;"  onclick="evaluateOptionsAvailable()">Refresh Options Available</button>
+      <br>
+      <br>
+     <tbody>
+        <tr>
+          <td style="border-top-width: 3px">Wife
+            <input type="button" value="Clear" id="clearWifeDataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <!-- this is an example on how to check by default <input type="radio" name="timer-wife" id="timer-wife1", value="1" checked style="width: 15%;" class="radio-button"> -->
+            <input type="radio" name="timer-wife" id="timer-wife1", value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-wife1" >1st</label><br>
+            <input type="radio" name="timer-wife" id="timer-wife2" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-wife2">2nd</label><br>
+            <input type="radio" name="timer-wife" id="timer-wife3" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-wife3">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="citizenship-wife" id="citizenship-wife1" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-wife1" >SC</label><br>
+            <input type="radio" name="citizenship-wife" id="citizenship-wife2" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-wife2">SPR</label><br>
+            <input type="radio" name="citizenship-wife" id="citizenship-wife3" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-wife3">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="age-wife" id="age-wife1" value="1" style="width: 15%;" class="radio-button">
+            <label for="age-wife1"><55yo</label><br>
+            <input type="radio" name="age-wife" id="age-wife2" value="2" style="width: 15%;" class="radio-button">
+            <label for="age-wife2">>=55</label>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+          </td>
+          <td style="border-top-width: 3px">
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-wifeincome-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>Hubby
+            <input type="button" value="Clear" id="clearHubbyDataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="timer-hubby" id="timer-hubby1" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-hubby1" >1st</label><br>
+            <input type="radio" name="timer-hubby" id="timer-hubby2" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-hubby2">2nd</label><br>
+            <input type="radio" name="timer-hubby" id="timer-hubby3" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-hubby3">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="citizenship-hubby" id="citizenship-hubby1" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-hubby1" >SC</label><br>
+            <input type="radio" name="citizenship-hubby" id="citizenship-hubby2" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-hubby2">SPR</label><br>
+            <input type="radio" name="citizenship-hubby" id="citizenship-hubby3" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-hubby3">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="age-hubby" id="age-hubby1" value="1" style="width: 15%;" class="radio-button">
+            <label for="age-hubby1"><55yo</label><br>
+            <input type="radio" name="age-hubby" id="age-hubby2" value="2" style="width: 15%;" class="radio-button">
+            <label for="age-hubby2">>=55</label>
+          </td>
+          <td class="small-text" style="text-align: left;">
+          </td>
+          <td>
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-hubbyincome-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top-width: 3px">Fiancee
+            <input type="button" value="Clear" id="clearFianceeDataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="timer-fiancee" id="timer-fiancee1" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-fiancee1" >1st</label><br>
+            <input type="radio" name="timer-fiancee" id="timer-fiancee2" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-fiancee2">2nd</label><br>
+            <input type="radio" name="timer-fiancee" id="timer-fiancee3" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-fiancee3">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="citizenship-fiancee" id="citizenship-fiancee1" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-fiancee1" >SC</label><br>
+            <input type="radio" name="citizenship-fiancee" id="citizenship-fiancee2" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-fiancee2">SPR</label><br>
+            <input type="radio" name="citizenship-fiancee" id="citizenship-fiancee3" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-fiancee3">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+          </td>
+          <td style="border-top-width: 3px">
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-fianceeincome-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>Fiance
+            <input type="button" value="Clear" id="clearFianceDataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="timer-fiance" id="timer-fiance1" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-fiance1" >1st</label><br>
+            <input type="radio" name="timer-fiance" id="timer-fiance2" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-fiance2">2nd</label><br>
+            <input type="radio" name="timer-fiance" id="timer-fiance3" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-fiance3">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="citizenship-fiance" id="citizenship-fiance1" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-fiance1" >SC</label><br>
+            <input type="radio" name="citizenship-fiance" id="citizenship-fiance2" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-fiance2">SPR</label><br>
+            <input type="radio" name="citizenship-fiance" id="citizenship-fiance3" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-fiance3">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+          </td>
+          <td class="small-text" style="text-align: left;">
+          </td>
+          <td>
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-fianceincome-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top-width: 3px">Single 1
+            <input type="button" value="Clear" id="clearSingle1DataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="timer-single1" id="timer-single11" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-single11" >1st</label><br>
+            <input type="radio" name="timer-single1" id="timer-single12" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-single12">2nd</label><br>
+            <input type="radio" name="timer-single1" id="timer-single13" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-single13">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="citizenship-single1" id="citizenship-single11" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single11" >SC</label><br>
+            <input type="radio" name="citizenship-single1" id="citizenship-single12" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single12">SPR</label><br>
+            <input type="radio" name="citizenship-single1" id="citizenship-single13" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single13">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="age-single1" id="age-single11" value="1" style="width: 15%;" class="radio-button">
+            <label for="age-single11"><55yo</label><br>
+            <input type="radio" name="age-single1" id="age-single12" value="2" style="width: 15%;" class="radio-button">
+            <label for="age-single12">>=55</label>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+          </td>
+          <td style="border-top-width: 3px">
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-single1income-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>Single 2
+            <input type="button" value="Clear" id="clearSingle2DataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="timer-single2" id="timer-single21" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-single21" >1st</label><br>
+            <input type="radio" name="timer-single2" id="timer-single22" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-single22">2nd</label><br>
+            <input type="radio" name="timer-single2" id="timer-single23" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-single23">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="citizenship-single2" id="citizenship-single21" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single21" >SC</label><br>
+            <input type="radio" name="citizenship-single2" id="citizenship-single22" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single22">SPR</label><br>
+            <input type="radio" name="citizenship-single2" id="citizenship-single23" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single23">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="age-single2" id="age-single21" value="1" style="width: 15%;" class="radio-button">
+            <label for="age-single21"><55yo</label><br>
+            <input type="radio" name="age-single2" id="age-single22" value="2" style="width: 15%;" class="radio-button">
+            <label for="age-single22">>=55</label>
+          </td>
+          <td class="small-text" style="text-align: left;">
+          </td>
+          <td>
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-single2income-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>Single 3
+            <input type="button" value="Clear" id="clearSingle3DataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="timer-single3" id="timer-single31" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-single31" >1st</label><br>
+            <input type="radio" name="timer-single3" id="timer-single32" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-single32">2nd</label><br>
+            <input type="radio" name="timer-single3" id="timer-single33" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-single33">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="citizenship-single3" id="citizenship-single31" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single31" >SC</label><br>
+            <input type="radio" name="citizenship-single3" id="citizenship-single32" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single32">SPR</label><br>
+            <input type="radio" name="citizenship-single3" id="citizenship-single33" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single33">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="age-single3" id="age-single31" value="1" style="width: 15%;" class="radio-button">
+            <label for="age-single31"><55yo</label><br>
+            <input type="radio" name="age-single3" id="age-single32" value="2" style="width: 15%;" class="radio-button">
+            <label for="age-single32">>=55</label>
+          </td>
+          <td class="small-text" style="text-align: left;">
+          </td>
+          <td>
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-single3income-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>Single 4
+            <input type="button" value="Clear" id="clearSingle4DataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="timer-single4" id="timer-single41" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-single41" >1st</label><br>
+            <input type="radio" name="timer-single4" id="timer-single42" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-single42">2nd</label><br>
+            <input type="radio" name="timer-single4" id="timer-single43" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-single43">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="citizenship-single4" id="citizenship-single41" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single41" >SC</label><br>
+            <input type="radio" name="citizenship-single4" id="citizenship-single42" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single42">SPR</label><br>
+            <input type="radio" name="citizenship-single4" id="citizenship-single43" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-single43">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;">
+            <input type="radio" name="age-single4" id="age-single41" value="1" style="width: 15%;" class="radio-button">
+            <label for="age-single41"><55yo</label><br>
+            <input type="radio" name="age-single4" id="age-single42" value="2" style="width: 15%;" class="radio-button">
+            <label for="age-single42">>=55</label>
+          </td>
+          <td class="small-text" style="text-align: left;">
+          </td>
+          <td>
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-single4income-input" value="4000" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top-width: 3px">Kids
+            <input type="button" value="Clear" id="clearKidsDataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="timer-kids" id="timer-kids1" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-kids1" >1st</label><br>
+            <input type="radio" name="timer-kids" id="timer-kids2" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-kids2">2nd</label><br>
+            <input type="radio" name="timer-kids" id="timer-kids3" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-kids3">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="citizenship-kids" id="citizenship-kids1" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-kids1" >SC</label><br>
+            <input type="radio" name="citizenship-kids" id="citizenship-kids2" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-kids2">SPR</label><br>
+            <input type="radio" name="citizenship-kids" id="citizenship-kids3" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-kids3">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="status-kids" id="status-kids1" value="1" style="width: 15%;" class="radio-button">
+            <label for="status-kids1">SSC35</label><br>
+            <input type="radio" name="status-kids" id="status-kids2" value="2" style="width: 15%;" class="radio-button">
+            <label for="status-kids2">Marrid</label>
+          </td>
+          <td class="small-text" style="text-align: left;border-top-width: 3px">
+            <input type="radio" name="proximity-kids" id="proximity-kids1" value="1" style="width: 10%;" class="radio-button">
+            <label for="proximity-kids1">Together</label><br>
+            <input type="radio" name="proximity-kids" id="proximity-kids2" value="2" style="width: 10%;" class="radio-button">
+            <label for="proximity-kids2">Near</label><br>
+            <input type="radio" name="proximity-kids" id="proximity-kids3" value="3" style="width: 10%;" class="radio-button">
+            <label for="proximity-kids3">Far</label>
+          </td>
+          <td style="border-top-width: 3px">
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-kidsincome-input" value="0" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-bottom-width: 3px">Parents
+            <input type="button" value="Clear" id="clearParentsDataButton" style="font-family:Arial, Helvetica, sans-serif; font-size:xx-small;">
+          </td>
+          <td class="small-text" style="text-align: left;border-bottom-width: 3px">
+            <input type="radio" name="timer-parents" id="timer-parents1" value="1" style="width: 15%;" class="radio-button">
+            <label for="timer-parents1" >1st</label><br>
+            <input type="radio" name="timer-parents" id="timer-parents2" value="2" style="width: 15%;" class="radio-button">
+            <label for="timer-parents2">2nd</label><br>
+            <input type="radio" name="timer-parents" id="timer-parents3" value="3" style="width: 15%;" class="radio-button">
+            <label for="timer-parents3">N/A</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-bottom-width: 3px">
+            <input type="radio" name="citizenship-parents" id="citizenship-parents1" value="1" style="width: 15%;" class="radio-button">
+            <label for="citizenship-parents1" >SC</label><br>
+            <input type="radio" name="citizenship-parents" id="citizenship-parents2" value="2" style="width: 15%;" class="radio-button">
+            <label for="citizenship-parents2">SPR</label><br>
+            <input type="radio" name="citizenship-parents" id="citizenship-parents3" value="3" style="width: 15%;" class="radio-button">
+            <label for="citizenship-parents3">FOR</label><br>
+          </td>
+          <td class="small-text" style="text-align: left;border-bottom-width: 3px">
+          </td>
+          <td class="small-text" style="text-align: left;border-bottom-width: 3px">
+            <input type="radio" name="proximity-parents" id="proximity-parents1" value="1" style="width: 10%;" class="radio-button">
+            <label for="proximity-parents1">Together</label><br>
+            <input type="radio" name="proximity-parents" id="proximity-parents2" value="2" style="width: 10%;" class="radio-button">
+            <label for="proximity-parents2">Near</label><br>
+            <input type="radio" name="proximity-parents" id="proximity-parents3" value="3" style="width: 10%;" class="radio-button">
+            <label for="proximity-parents3">Far</label>
+          </td>
+          <td style="border-bottom-width: 3px">
+            <input class = "slidernum" type="number" style="width:60px; font-size: 0.4em;" id="js-parentsincome-input" value="0" min="0" max="25000" step="1000"></input>
+          </td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <table style="width: 100%;">
+      <tr>
+        <td><p1 style="font-size: 14px; font-weight: bold; text-align: left">Possible Nucleus</td>
+      </tr>
+      <tr>
+        <td style="text-align: left; vertical-align: top;"><p1 id="checkInputOutcome" style="font-size: 0.2em">Populate the above to start.</td>
+      </tr>
+      <tr>
+        <td style="text-align: left; vertical-align: top;"><p1 id="inputBasis" style="font-size: 0.2em">Populate the above to start.</td>
+      </tr>
+    </table>
+
+    <br>
+    <br>
+    <p style="font-size: 0.5em;">Assumptions: 
+    <p style="font-size: 0.5em;">Assume no private and no other hdb, otherwise must dispose. Assume no multiple non-resident, otherwise must dispose (need to maintain 30mth period holding just 1 non-residential).
+    <p style="font-size: 0.5em;">Assume age qualifies - 21 for normal (including Fiance/Fiancee and Orphans, note: Divorced with child custody. Also possible for Widowed, Unwed but to be assessed by HDB), 35 for singles. 
+    <p style="font-size: 0.5em;">Above will not look at Orphans Scheme as that is relatively straightforward.
+    <p style="font-size: 0.5em;">If you’re buying as an SPR household, all SPR occupiers (family or co-owners) must have had SPR status for at least three years.
+    <p style="font-size: 0.5em;">question: if kids are already above 21yo and parents bought a flat, can parents apply for proximity grant?
+    <p style="font-size: 0.5em;">question: Is SC+FOR only eligible for proximity grant or can at least get Singles housing grant?
+
+
+    </div>
+    <div class="right-panel">
+      <div class="section">
+        <p style="margin-top: 0px; font-size: 12px;">Click on one of the Schemes available to you (green) to determine the rest of your options.</p>
+        <!-- Content for Section 1 -->
+        <br>
+        <table id="outputTable" class="equal-columns">
+          <tr style="background-color: azure;">
+            <td class="column1" data-info="Cell0"><p1 style="font-size: 16px; font-weight: bold;">Eligibility Scheme</td>
+            <td class="column2" data-info="Cell10"><p1 style="font-size: 16px; font-weight: bold;">Priority Scheme</td>
+            <td class="column3" data-info="Cell20"><p1 style="font-size: 16px; font-weight: bold">Types of CPF Grant</td>
+            <td class="column4" data-info="Cell30"><p1 style="font-size: 16px; font-weight: bold">Types of Flat</td>
+            <td class="column5" data-info="Cell40"><p1 style="font-size: 16px; font-weight: bold">Area</td>
+            <td class="column6" data-info="Cell50"><p1 style="font-size: 16px; font-weight: bold">Mode of Purchase</td>
+            <td class="column7" data-info="Cell60"><p1 style="font-size: 16px; font-weight: bold">Financing Option</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell1"><p1 style="font-size: 12px">Public</td>
+            <td class="column2" data-info="Cell11"><p1 style="font-size: 12px">FT(PMC)</td>
+            <td class="column3" data-info="Cell21"><p1 style="font-size: 12px">Proximity Grant</td>
+            <td class="column4" data-info="Cell31"><p1 style="font-size: 12px">2-rm Flexi, 7k</td>
+            <td class="column5" data-info="Cell41"><p1 style="font-size: 12px">Matured_STD</td>
+            <td class="column6" data-info="Cell51"><p1 style="font-size: 12px">Resale</td>
+            <td class="column7" data-info="Cell61"><p1 style="font-size: 12px">HDB Loan</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell2"><p1 style="font-size: 12px">Fiance / Fiancee</td>
+            <td class="column2" data-info="Cell12"><p1 style="font-size: 12px">FPPS</td>
+            <td class="column3" data-info="Cell22"><p1 style="font-size: 12px">Housing Grant (Family), 14k</td>
+            <td class="column4" data-info="Cell32"><p1 style="font-size: 12px">2-rm Flexi <div>(Short Lease), 14k</td>
+            <td class="column5" data-info="Cell42"><p1 style="font-size: 12px">Matured_PLUS</td>
+            <td class="column6" data-info="Cell52"><p1 style="font-size: 12px">BTO</td>
+            <td class="column7" data-info="Cell62"><p1 style="font-size: 12px">Bank Loan</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell3"><p1 style="font-size: 12px">Single Singaporean Citizen</td>
+            <td class="column2" data-info="Cell13"><p1 style="font-size: 12px">MGPS</td>
+            <td class="column3" data-info="Cell23"><p1 style="font-size: 12px">Housing Grant (Single), 7k / 14k</td>
+            <td class="column4" data-info="Cell33"><p1 style="font-size: 12px">3-rm, 7k / 14k_project</td>
+            <td class="column5" data-info="Cell43"><p1 style="font-size: 12px">Matured_PRIME</td>
+            <td class="column6" data-info="Cell53"><p1 style="font-size: 12px">SOB</td>
+            <td class="column7" data-info="Cell63"><p1 style="font-size: 12px">CPF Savings</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell4"><p1 style="font-size: 12px">Joint Singles</td>
+            <td class="column2" data-info="Cell14"><p1 style="font-size: 12px">MCPS</td>
+            <td class="column3" data-info="Cell24"><p1 style="font-size: 12px">Enhanced Housing Grant (Family), 9k / 4.5k</td>
+            <td class="column4" data-info="Cell34"><p1 style="font-size: 12px">4-rm, 14k / 21k_ext</td>
+            <td class="column5" data-info="Cell44"><p1 style="font-size: 12px">Non-Matured_STD</td>
+            <td class="column6" data-info="Cell54"><p1 style="font-size: 12px">Open Booking</td>
+            <td class="column7" data-info="Cell64"><p1 style="font-size: 12px">Contra Facility</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell5"><p1 style="font-size: 12px">Non Citizen Spouse</td>
+            <td class="column2" data-info="Cell15"><p1 style="font-size: 12px">TCPS</td>
+            <td class="column3" data-info="Cell25"><p1 style="font-size: 12px">Enhanced Housing Grant (Single), 4.5k / 9k</td>
+            <td class="column4" data-info="Cell35"><p1 style="font-size: 12px">5-rm +, 14k / 21k_ext</td>
+            <td class="column5" data-info="Cell45"><p1 style="font-size: 12px">Non-Matured_PLUS</td>
+            <td class="column6" data-info="Cell55"><p1 style="font-size: 12px"></td>
+            <td class="column7" data-info="Cell65"><p1 style="font-size: 12px">Enhanced Contra Facility</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell6"><p1 style="font-size: 12px">Non Citizen Family</td>
+            <td class="column2" data-info="Cell16"><p1 style="font-size: 12px">ASSIST</td>
+            <td class="column3" data-info="Cell26"><p1 style="font-size: 12px">Half-Housing Grant, 14k</td>
+            <td class="column4" data-info="Cell36"><p1 style="font-size: 12px">3-Gen, 14k / 21k_ext</td>
+            <td class="column5" data-info="Cell46"><p1 style="font-size: 12px">Non-Matured_PRIME</td>
+            <td class="column6" data-info="Cell56"><p1 style="font-size: 12px"></td>
+            <td class="column7" data-info="Cell66"><p1 style="font-size: 12px">Temporary Loan Scheme</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell7"><p1 style="font-size: 12px">Orphan</td>
+            <td class="column2" data-info="Cell17"><p1 style="font-size: 12px">TPS</td>
+            <td class="column3" data-info="Cell27"><p1 style="font-size: 12px">Citizen Top-up Grant, 14k</td>
+            <td class="column4" data-info="Cell37"><p1 style="font-size: 12px">DBSS, 14k / 21k_ext</td>
+            <td class="column5" data-info="Cell47"><p1 style="font-size: 12px"></td>
+            <td class="column6" data-info="Cell57"><p1 style="font-size: 12px"></td>
+            <td class="column7" data-info="Cell67"><p1 style="font-size: 12px">Deferred Downpayment</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell8"><p1 style="font-size: 12px">Conversion</td>
+            <td class="column2" data-info="Cell18"><p1 style="font-size: 12px">SPS</td>
+            <td class="column3" data-info="Cell28"><p1 style="font-size: 12px">Step-up Housing Grant, 7k</td>
+            <td class="column4" data-info="Cell38"><p1 style="font-size: 12px">EC, 16k_total</td>
+            <td class="column5" data-info="Cell48"><p1 style="font-size: 12px"></td>
+            <td class="column6" data-info="Cell58"><p1 style="font-size: 12px"></td>
+            <td class="column7" data-info="Cell68"><p1 style="font-size: 12px">Staggered Downpayment</td>
+          </tr>
+          <tr>
+            <td class="column1" data-info="Cell9"><p1 style="font-size: 12px">Seniors 2-rm Flexi</td>
+            <td class="column2" data-info="Cell19"><p1 style="font-size: 12px"></td>
+            <td class="column3" data-info="Cell29"><p1 style="font-size: 12px"></td>
+            <td class="column4" data-info="Cell39"><p1 style="font-size: 12px"></td>
+            <td class="column5" data-info="Cell49"><p1 style="font-size: 12px"></td>
+            <td class="column6" data-info="Cell59"><p1 style="font-size: 12px"></td>
+            <td class="column7" data-info="Cell69"><p1 style="font-size: 12px"></td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <table id="outputTableNotes">
+            <tr>
+              <td class="column1" style="width: 145px;"><p1 style="font-size: 14px; font-weight: bold; text-align: left">Clicked On: </td>
+              <td class="column2" style="text-indent: 10px; text-align: left; width: 805px"><p1 id="csvHeader" style="font-size: 12px; text-align: left">click on cell above for more info.</td>
+            </tr>
+            <tr>
+              <td class="column1" style="height: 150px;"><p1 style="font-size: 14px; font-weight: bold; text-align: left">Information: </td>
+              <td class="column2" style="text-indent: 10px; text-align: left; vertical-align: top;"><p1 id="csvData" style="font-size: 0.2em">Start by selecting your profile on left pane. Then click on 'Refresh Options Available' button above.</td>
+            </tr>
+        </table>
+        </div>
+        <br>
+        <br>
+        <div class="section">
+            <!-- Content for Section 3 -->
+        </div>
+        <!-- Add more sections as needed -->
+        <div class="section">
+              <!-- Content for Section 2 -->
+          <p>Other Schemes:</p>
+          <p1 style="font-size: 8px">1) Elderly Buyback Scheme. Help seniors monetise remainder of lease.</p1>
+          <br>
+          <p1 style="font-size: 8px">2) Silver Housing Bonus Scheme. </p1>
+          <br>
+          <p1 style="font-size: 8px">3) Parenthood Provisional Housing Scheme. Help young couples who have booked a flat to temporarily be housed in  a HDB rental flat.</p1>
+          <br>
+          <p1 style="font-size: 8px">4) Fresh Start Housing Scheme / Grant. Help people staying in HDB rental flat to purchase a flat.</p1>
+          <br>
+          <p1 style="font-size: 8px">5) Young couples may apply for a flat first and defer the income assessment for the Enhanced CPF Housing Grant and HDB Housing Loan. </p1>
+          <br>
+          <p1 style="font-size: 8px">6) Read more on Resale Levy: https://www.hdb.gov.sg/residential/buying-a-flat/conditions-after-buying</p1>
+          <br>
+          <br>
+          <p1 style="font-size: 8px">A) Note that income shown does not apply to Resale.</p1>
+          <br>
+          <p1  style="font-size: 8px">B)As announced by PM Lee, we will introduce a new classification system from 2H2024 to differentiate our BTO projects by their locational attributes:
+            Location Attributes 1: Standard flats will come with the standard subsidies and standard restrictions that are applied to all BTO flats. They will continue to form the bulk of the housing supply.
+            Location Attributes 2: Plus flats, a new category of flats, will be in choicer locations within each region across Singapore (e.g. near MRT station, town centre). For example, Plus flats could be offered in the upcoming housing precinct in Bayshore, which is close to amenities such as MRT stations, a community club and East Coast Park. These flats will come with more subsidies and tighter restrictions, compared to the Standard BTO flats.
+            Location Attributes 3: Prime flats are in the choicest locations within Singapore, usually closer to the city centre. They will come with the most subsidies across the three categories, and will have the tightest conditions. These flats are currently offered under the PLH model.</p1>
+          <br>
+          <br>  
+        </div>
+      </div>
+  </div>
+
+</body>
+
+<script src="./hdbeligibility.js"></script>
+
+</html>

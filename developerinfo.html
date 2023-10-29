@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Past Projects</title>
+  <link rel="stylesheet" type="text/css" href="developerinfo.css" />
+</head>
+<body>
+  <div class = "u-font-montserrat-copy">Past Projects</div>
+  <div id="searchContainer">
+    <input type="text" style="height: 30px;" id="searchInput" placeholder="Search...">
+    <span id="clearIcon">&#10006;</span>-
+  </div>
+  <br>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th data-sort="dev">Developer<span id="devArrowIcon" class="arrow"></span></th>
+        <th data-sort="name">Background<span id="nameArrowIcon" class="arrow"></span></th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="dataList"></tbody>
+  </table>
+  
+
+  <script src="developerinfo.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</body>
+</html>

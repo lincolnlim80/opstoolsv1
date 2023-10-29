@@ -1,0 +1,104 @@
+<script       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<div id="text01"> BUC Timeline (Residential)</div>
+<br>
+<form action="/action_page.php">
+  <label for="campaignstart">Viewing Date:</label>
+  <input type="date" id="campaignstart" name="campaignstart">
+</form>
+<div id="text10"> <p style="font-size: 20px"><span id="textstartdate"> </span></p></div>
+<div id="text11"> <p style="font-size: 14px">Viewing to Booking (days): <span id="textdecisiondays"> 14</span> days</p></div>
+<input type="range" id="js-decisiondays-range" value="14" min="0" max="28" step="1">
+<input type="number" id="js-decisiondays-input" value="14" min="0" max="28" step="1"></input>
+<span id="text31"> Booking Date ~ <span id="textbookingdate"> </span></span>
+<span id="text31"> [Pay 5% Cash Booking Fee to get OTP] <span id="textbookingfeeamount"> </span></span>
+<br>
+<div id="text12"> <p style="font-size: 14px">Booking to Receipt of S&P and OTP (days): <span id="textbookingdays"> 14</span> days</p></div>
+<input type="range" id="js-bookingdays-range" value="14" min="1" max="14" step="1">
+<input type="number" id="js-bookingdays-input" value="14" min="1" max="14" step="1"></input>
+<span id="text32"> OTP and S&P Received ~ <span id="textotpreceiveddate"> </span></span>
+<span id="text32"> [10 - 14 days] </span>
+<br>
+<div id="text12"> <p style="font-size: 14px">OTP to Exercise (days): <span id="textotpdays"> 21</span> days</p></div>
+<input type="range" id="js-otpdays-range" value="21" min="1" max="21" step="1">
+<input type="number" id="js-otpdays-input" value="21" min="1" max="21" step="1"></input>
+<span id="text32"> Exercise Date ~ <span id="textexercisedate"> </span></span>
+<span id="text32"> [Engage Law Firm to Exercise] <span id="textdownpaymentamount"> </span></span>
+<span id="text32"> [within 21 days after receiving OTP and S&P] </span>
+<br>
+<div id="text13"> <p style="font-size: 14px">Exercise to Stamp Duty (days): <span id="textexercisedays"> 14</span> days</p></div>
+<input type="range" id="js-exercisedays-range" value="14" min="1" max="14" step="1">
+<input type="number" id="js-exercisedays-input" value="14" min="1" max="14" step="1"></input>
+<span id="text33"> Stamp Duty Date ~ <span id="textstampdutydate"> </span></span>
+<span id="text33"> [Pay Stamp Duty] <span id="textstampdutyamount"> </span></span>
+<span id="text32"> [within 14 days after exercise] </span>
+<br>
+<div id="text13"> <p style="font-size: 14px">Stamp Duty to Downpayment (days): <span id="textdpdays"> 7</span> days</p></div>
+<input type="range" id="js-dpdays-range" value="7" min="1" max="21" step="1">
+<input type="number" id="js-dpdays-input" value="7" min="1" max="21" step="1"></input>
+<span id="text33"> Downpayment Date ~ <span id="textdpdate"> </span></span>
+<span id="text33"> [Pay 15% Cash/CPF Booking Fee, No more than 8 weeks from Booking Date] <span id="textdpamount"> </span></span>
+<span id="textcheck"></span>
+<br>
+<div id="text14"> <p style="font-size: 14px">Days to Complete Foundation Work (days): <span id="textfoundationdays"> 270 </span> days</p></div>
+<input type="range" id="js-foundationdays-range" value="270" min="0" max="365" step="1">
+<input type="number" id="js-foundationdays-input" value="270" min="0" max="365" step="1"></input>
+<span id="text34"> Foundation Completed ~ <span id="textfoundationdonedate"> </span></span>
+<span id="text32"> [6 - 12 months; Pay 10% of which 5% Cash/CPF] </span>
+<br>
+<div id="text15"> <p style="font-size: 14px">Days to Reinforced Concrete Framework (days): <span id="textreinforcedays"> 240 </span> days</p></div>
+<input type="range" id="js-reinforcedays-range" value="240" min="0" max="270" step="1">
+<input type="number" id="js-reinforcedays-input" value="240" min="0" max="270" step="1"></input>
+<span id="text35"> Reinforced Concrete Framework Completed ~ <span id="textreinforcedonedate"> </span></span>
+<span id="text32"> [6 - 9 months; Pay 10%] </span>
+<br>
+<div id="text16"> <p style="font-size: 14px">Days to Partition Walls (days): <span id="textpartitiondays"> 160</span> days</p></div>
+<input type="range" id="js-partitiondays-range" value="160" min="0" max="180" step="1">
+<input type="number" id="js-partitiondays-input" value="160" min="0" max="180" step="1"></input>
+<span id="text36"> Partition Walls Completed ~ <span id="textpartitiondonedate"> </span></span>
+<span id="text32"> [3 - 6 months; Pay 5%] </span>
+<br>
+<div id="text17"> <p style="font-size: 14px">Days to Roofing (days): <span id="textroofingdays"> 160</span> days</p></div>
+<input type="range" id="js-roofingdays-range" value="160" min="0" max="180" step="1">
+<input type="number" id="js-roofingdays-input" value="160" min="0" max="180" step="1"></input>
+<span id="text37"> Roofing Completed ~ <span id="textroofingdonedate"> </span></span>
+<span id="text32"> [3 - 6 months; Pay 5%] </span>
+<br>
+<div id="text18"> <p style="font-size: 14px">Door, Window, Electrical (days): <span id="textdwedays"> 160</span> days</p></div>
+<input type="range" id="js-dwedays-range" value="160" min="0" max="180" step="1">
+<input type="number" id="js-dwedays-input" value="160" min="0" max="180" step="1"></input>
+<span id="text38"> Door, Window, Electrical Completed ~ <span id="textdwedonedate"> </span></span>
+<span id="text32"> [3 - 6 months; Pay 5%] </span>
+<br>
+<div id="text18"> <p style="font-size: 14px">Carpark, Road, Drain (days): <span id="textcrddays"> 160</span> days</p></div>
+<input type="range" id="js-crddays-range" value="160" min="0" max="180" step="1">
+<input type="number" id="js-crddays-input" value="160" min="0" max="180" step="1"></input>
+<span id="text38"> Carpark, Road, Drain Completed ~ <span id="textcrddonedate"> </span></span>
+<span id="text32"> [3 - 6 months; Pay 5%] </span>
+<br>
+<div id="text18"> <p style="font-size: 14px">Sewerage, Utilities (days): <span id="textsudays"> 160</span> days</p></div>
+<input type="range" id="js-sudays-range" value="160" min="0" max="180" step="1">
+<input type="number" id="js-sudays-input" value="160" min="0" max="180" step="1"></input>
+<span id="text38"> Sewerage, Utilities Completed ~ <span id="textsudonedate"> </span></span>
+<span id="text32"> [3 - 6 months; Pay 25%] </span>
+<br>
+<div id="text18"> <p style="font-size: 14px">Days to TOP (days): <span id="texttopdays"> 0</span> days</p></div>
+<input type="range" id="js-topdays-range" value="0" min="0" max="180" step="1">
+<input type="number" id="js-topdays-input" value="0" min="0" max="180" step="1"></input>
+<span id="text38"> TOP Date ~ <span id="texttopdate"> </span></span>
+<span id="text38"> [usually TOP in previous step] </span>
+<br>
+<div id="text18"> <p style="font-size: 14px">Days to Completion (days): <span id="textcompletiondays"> 90</span> days</p></div>
+<input type="range" id="js-completiondays-range" value="90" min="0" max="365" step="1">
+<input type="number" id="js-completiondays-input" value="90" min="0" max="365" step="1"></input>
+<span id="text38"> Completion Date ~ <span id="textcompletiondate"> </span></span>
+<span id="text32"> [1 - 12 months; Pay 15%] </span>
+<br>
+<br>
+
+<br>
+<br>
+<div id="text11"> <p style="font-size: 10px">(note: Exercise Date cannot fall on weekend )</p></div>
+
+<script src="./buctimeline.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>

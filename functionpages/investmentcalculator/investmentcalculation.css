@@ -1,0 +1,71 @@
+
+h1 {
+    margin-bottom: 10px;
+    padding: 0px;
+}
+
+h2 {
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+span.notesdenote {
+  margin-top: 0px;
+  text-indent: 5px;
+  font-size: 10px;
+}
+
+.notes {
+  margin-top: 0px;
+  text-indent: 5px;
+  font-size: 10px;
+}
+
+p.sliderlabel {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-indent: 0px;
+  font-size: 18px;
+  background-color: #ccc;
+}
+
+p2.sliderlabel {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-indent: 0px;
+  font-size: 16px;
+    background-color: #ccc;
+}
+
+span.sliderlabel {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-indent: 0px;
+  font-size: 16px;
+    background-color: #ccc;
+}
+input.sliderrange {
+   margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+input.slidernum {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-indent: 0px;
+  font-size: 18px;
+  background-color: #ccc;
+}
+
+
+
+div.a {
+  text-indent: 5px;
+  background-color: #ccc;
+}
+div.b {
+  text-indent: -2em;
+}
+div.c {
+  text-indent: 30%;
+}

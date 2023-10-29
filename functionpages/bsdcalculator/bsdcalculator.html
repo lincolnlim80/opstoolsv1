@@ -1,0 +1,40 @@
+<script       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<style>
+.input[type="range"] {
+    width:300px;
+  }
+</style>
+
+<div id="text01"> Buyer Stamp Duty Calculator (Residential)</div>
+<br>
+<div id="text11"> <p style="font-size: 26px">Property Price $<span id="textpropprice"> 1,000,000</span></p></div>
+<input type="range" id="js-amount-range" value="1000000" min="0" max="10000000" step="100000">
+<input type="number" id="js-amount-input" value="1000000" min="0" max="10000000" step="10000"></input>
+
+<!-- <label for="js-numprop-input">Points (between 1 and 10):</label> -->
+<br>
+<br>
+<div id="text12"> No. Properties After Purchase # <span id="textnumprop"> 1</span></div>
+<input type="range" id="js-numprop-range" value="1" min="1" max="3" step="1"></input>
+
+<br>
+<br>
+<input type="range" id="js-citizen-range" value="1" min="1" max="5" step="1"></input>
+<span id="textcitizen"> Singaporean</span>
+<br>
+<br>
+<br>  <!--//this is a break tab -->
+<div id="text13"> BSD [<span id="textbsdpc"> 2.46</span>%] = $ <span id="textbsd"> 24,600</span></div>
+
+<div id="text14"> ABSD [<span id="textabsdpc"> 0.00</span>%] = $ <span id="textabsd"> 0</span></div>
+
+<div id="text15"> Total Stamp Duty  [<span id="textotaldutypc"> 2.46</span>%] = $ <span id="texttotalduty"> 24,600</span></div>
+
+
+<img style = "width: 30%;" src="./img/bsd.png" /><div></div>
+<img style = "width: 30%;" src="./img/absd.png" /><div></div>
+<img style = "width: 30%;" src="./img/absd-trust.png" /><div></div>
+
+<script src="./bsdcalculator.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>

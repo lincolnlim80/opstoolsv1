@@ -1,0 +1,190 @@
+<html>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+</script>
+<link rel="stylesheet" type="text/css" href="loancalculation.css" />
+
+<h1>Loan Calculation</h1>
+<h2>Inputs<span class="notesdenote"> (note 1)</span></h2>
+  
+    <head>
+    <title>User Inputs 1</title>
+    <style>
+      /* Style for the table */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      /* Style for the table cells */
+      td {
+        padding: 10px;
+        border: 1px solid black;
+        vertical-align: middle;
+      }
+      /* Style for the first column */
+      .column1 {
+        width: 30%;
+      }
+      /* Style for the second column */
+      .column2 {
+        width: 70%;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td class="column1">Column 1</td>
+        <td class="column2">Column 2</td>
+      </tr>
+      <tr>
+        <td class="column1"><p2 class="sliderlabel" id="textfacility"> Private - Bank Loan </p2></td>
+        <td class="column2"><input class="sliderrange" style="width:100%" type="range" \
+              id="js-facility-range" \
+              value="1" min="1" max="3" step="1" list="steplist"></input></td>
+      </tr>
+      <tr>
+        <td class="column1"><input class = "slidernum" type="number"  style="width:40px"id="js-age-input" \
+              value="40" min="21" max="75" step="1"></input>
+              <p2 class="sliderlabel"> years old (average)</p2></td>
+        <td class="column2"><input class="sliderrange" style="width:100%" type="range" \
+              id="js-age-range" \
+              value="40" min="21" max="75" step="1"></input></td>
+      </tr>
+      <tr>
+        <td class="column1"><p2 class="sliderlabel" id="textnumprop"> 1#</p2>
+              <p2 class="sliderlabel"> loans after purchase</p2> 
+              <span class="notesdenote"> (note 2)</span></td>
+        <td class="column2"><input class="sliderrange" style="width:100%" type="range"\
+              id="js-numprop-range" \
+              value="1" min="1" max="3" step="1" list="steplist"></input></td>
+      </tr>  
+          <td class="column1"><p2 class="sliderlabel" id="textremainlease"> 50 </p2>
+              <p2 class="sliderlabel"> years remaining (HDB only)</p2></td>
+        <td class="column2"><input  class="sliderrange" style="width:100%" type="range" \
+              id="js-remainlease-range" \
+              value="50" min="1" max="100" step="1"></input></td>
+      </tr>
+
+    </table>
+
+
+<br>
+<h2>Loan Structure</h2>
+  
+    <title>User Inputs 1</title>
+
+
+
+    <table>
+      <tr>
+        <td class="column1">Column 1</td>
+        <td class="column2">Column 2</td>
+      </tr>
+      <tr>
+        <td class="column1"><p style="font-size: 16px">(<input type="checkbox" id="check2" value="0">Refinance)</p><input class = "slidernum" type="number" style="width:40px" id="js-firstloanyr-input" value="15" min="1" max="35" step="1"> years since first disbursement</input></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-firstloanyr-range" value="15" min="1" max="35" step="1"></input></td>
+      </tr>
+      <tr>
+        <td class="column1"><p style="font-size: 16px">Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p><input class = "slidernum" type="number" style="width:50px" id="js-ltv-input" value="75" min="0" max="100" step="1"> % LTV</input><span class="notesdenote"> (note 3)</span></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-ltv-range" value="75" min="0" max="100" step="1"></input></td>
+      </tr>
+      <tr>
+        <td class="column1"><input class = "slidernum" type="number" style="width:40px" id="js-tenure-input" value="25" min="0" max="50" step="1"> loan tenure</input><span class="notesdenote"> (note 4, 5, 6, 7)</span></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-tenure-range" value="25" min="0" max="50" step="1"></input></td>
+      </tr>
+    </table>
+
+
+<br>
+<h2>Loan Repayment Calculation</h2>
+
+    <title>User Inputs 1</title>
+
+
+
+    <table>
+      <tr>
+        <td class="column1">Column 1</td>
+        <td class="column2">Column 2</td>
+      </tr>
+      <tr>
+        <td class="column1"><p style="font-size: 16px">Lower of Transacted Price and Valuation $<span id="textprice">1,000,000 </span></p><input class = "slidernum" type="number" style="width:100px"  id="js-price-input" value="1000000" min="0" max="10000000" step="5000"></input><p>Loan Amount  [<span id="textltvpc"> 75</span> %]: </p><p>$ <span id="textloan"> 750,000</span></p></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-price-range" value="1000000" min="0" max="10000000" step="10000"></td>
+      </tr>
+      <tr>
+        <td class="column1"><p style="font-size: 16px"> Interest Rate <input class = "slidernum" type="number" style="width:60px"  id="js-rate-input" value="4" min="0" max="10" step="0.1"></input> %</p></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-rate-range" value="4" min="0" max="10" step="0.1"></input></td>
+      </tr>
+      <tr>
+        <td colspan="2">>> Repayment = $ <span id="textrepay"> 3,959 </span>/ month</td>
+      </tr>
+      <tr>
+        <td colspan="2">Upfront Payment:
+        <p>>> CPF [<span id="textcpfpc"> 20</span> %] = $ <span id="textcpf"> 200,000</span></p>
+<p>>> Minimum Cash [<span id="textcashpc"> 5</span>  %] = $ <span id="textcash"> 50,000 </span> <span class="notesdenote"> (+ Duties, COV, Lawyer, Agent, Bank Fees)</span></p>
+        </td>
+      </tr>
+    </table>
+
+
+
+
+<br>
+<h2>MAS Leverage Assessment</h2>
+
+    <title>User Inputs 1</title>
+
+
+
+    <table>
+      <tr>
+        <td class="column1">Column 1</td>
+        <td class="column2">Column 2</td>
+      </tr>
+      <tr>
+        <td class="column1"><div id="text12"><p style="font-size: 16px"> Total Income $<span id="texttotincome">15,000 </span>per month</div><input class = "slidernum" type="number" style="width:80px" id="js-totincome-input" value="15000" min="0" max="50000" step="10"></input></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-totincome-range" value="15000" min="0" max="50000" step="10"></td>
+      </tr>
+      <tr>
+        <td class="column1"><div id="text12"><p style="font-size: 16px"> Total Property Loan Repayment (inc. all properties) $<span id="texttotproploan">3,959 </span> per month</div><input class = "slidernum" type="number" style="width:80px" id="js-totproploan-input" value="3959" min="0" max="30000" step="10"></input></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-totproploan-range" value="3959" min="0" max="30000" step="10"></td>
+      </tr>
+      <tr>
+        <td class="column1"><div id="text12"><p style="font-size: 16px"> Total Debt Repayment (inc. property loan) $<span id="texttotliab">3,959 </span> per month</div><input class = "slidernum" type="number" style="width:80px" id="js-totliab-input" value="3959" min="0" max="30000" step="10"></input></td>
+        <td class="column2"><input type="range" style="width:100%" id="js-totliab-range" value="3959" min="0" max="30000" step="10"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div id="text11"> <p style="font-size: 16px">MSR Assessment (must be <30%): <span id="textmsr">PASSED </span><span id="textmsrpc"> (26.4%) </span></p></div></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div id="text11"> <p style="font-size: 16px">TDSR Assessment (must be <55%): <span id="texttdsr">PASSED </span><span id="texttdsrpc"> (26.4%) </span></p></div></td>
+      </tr>
+    </table>
+  </body>
+
+<!-- to show tick marks on discrete sliders -->
+<datalist id="steplist">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>     
+  <option>4</option>     
+</datalist>
+<br>
+<p class="notes">
+  <br>Note 1: Not for bridging loan, contra or SERS, shell company, etc.
+  <br>Note 2: Applies for private only.
+  <br>Note 3: LTV limit: 1st Property: 75% or 55% (min cash 5% or 10%). 2nd Property: 45% or 25% (min cash 25%). More Property: 35% or 15% (min cash 25%).
+  <br>Note 4: HDB Loan: Capped at whichever is shortest: 25 years; Up till the buyer is 65 years old; and Remaining lease of the flat minus 20 years.
+  <br>Note 5: Bank Loan: Capped at 30 years for HDB and 35 years for Private. If >25 years for HDB or > 30 years for private, or age > 65 yo, then LTV reduces to 'lower value' (see below).
+  <br>Note 6: Note that properties with 36 to 40 years left can attain a maximum LTV capped at 60%.
+  <br>Note 7:Bank Loan - Refinance: HDB flats: 30 years – Years since first loan; Non-HDB properties: 35 years – Years since first loan. Note that banks impose a max age limit of 70 or 75 yo.
+  <br>Note 8: Note that above calculation assumes no limitation on CPF usage. Please confirm CPF usage using below website as it depends on BRS required, age and property balance lease, https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage.
+</p>
+<br>
+<br>
+    
+<script src="./loancalculation.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+

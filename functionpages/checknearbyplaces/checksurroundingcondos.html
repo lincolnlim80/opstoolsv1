@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Places of Interest</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfsp-ZqZhw7s0nFt77pcUG5LjNnQIyzmM&libraries=places"></script>
+  <style>
+    #map {
+      height: 600px;
+      width: 75%;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label for="lat" style="display: inline-block; width: 200px;">Latitude:</label>
+    <input type="text" id="lat" style="margin-left: 10px;">
+  </div>
+  <div>
+    <label for="lng" style="display: inline-block; width: 200px;">Longitude:</label>
+    <input type="text" id="lng" style="margin-left: 10px;">
+  </div>
+  <div>
+    <label for="object" style="display: inline-block; width: 200px;">Place of Interest:</label>
+    <input type="text" id="object" style="margin-left: 10px;">
+  </div>
+  <div>
+    <label for="radius" style="display: inline-block; width: 200px;">Radius (in meters):</label>
+    <input type="text" id="radius" style="margin-left: 10px;">
+  </div>  
+  <br>
+  <button onclick="searchPlaces()">Search</button>
+  <br>
+  <br>
+  <br>
+  <div id="map"></div>
+  <div id="results"></div>
+
+  <script>
+    var map;
+    var marker;
+
+    function initMap() {
+      var singapore = new google.maps.LatLng(1.3521, 103.8198);
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: singapore,
+        zoom: 13
+      });
+
+      map.addListener('click', function(event) {
+        placeMarker(event.latLng);
+      });
+    }
+
+    function placeMarker(location) {
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+
+      document.getElementById('lat').value = location.lat();
+      document.getElementById('lng').value = location.lng();
+    }
+
+    function searchPlaces() {
+      var lat = parseFloat(document.getElementById('lat').value);
+      var lng = parseFloat(document.getElementById('lng').value);
+      var object = document.getElementById('object').value;
+      var radius = parseInt(document.getElementById('radius').value);
+
+      var location = new google.maps.LatLng(lat, lng);
+      map.setCenter(location);
+      placeMarker(location);
+
+      var request = {
+        location: location,
+        radius: radius,
+        keyword: object
+      };
+
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, callback);
+    }
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        var resultList = document.createElement('ul');
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          var listItem = document.createElement('li');
+          listItem.textContent = place.name;
+          resultList.appendChild(listItem);
+        }
+        document.getElementById('results').innerHTML = '';
+        document.getElementById('results').appendChild(resultList);
+      }
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfsp-ZqZhw7s0nFt77pcUG5LjNnQIyzmM&libraries=places&callback=initMap"></script>
+</body>
+</html>

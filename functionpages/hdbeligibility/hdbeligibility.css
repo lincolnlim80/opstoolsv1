@@ -1,0 +1,116 @@
+.small-text {
+  font-size: 8px;
+}
+    /* CSS styles for split screen layout */
+    .container {
+        display: flex;
+        height: 100vh;
+      }
+  
+      .left-panel {
+        flex: 0 0 500px; /* Fixed width for left panel */
+        background-color: #f1f1f1;
+        overflow-y: auto; /* Enable vertical scrolling */
+      }
+  
+      ul {
+        list-style-type: none; /* Remove default bullet style */
+        padding-left: 20px;
+      }
+  
+      li {
+        position: relative;
+        margin-bottom: 5px;
+        padding-left: 20px; /* Add space between bullet and text */
+        line-height: 1; /* Set line height to 1.5 times the font size */
+        font-size: 16px;
+      }
+  
+      lisub {
+        display: block; /* Display as a block-level element */
+        position: relative;
+        margin-bottom: 5px;
+        padding-left: 40px; /* Increase the padding to create indentation */
+        line-height: 1; /* Set line height to 1.5 times the font size */
+        font-size: 12px;
+      }
+  
+      li::before {
+        content: '';
+        position: absolute;
+        top: 5px; /* Align bullet with the first line */
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: red; /* Initial bullet color */
+      }
+  
+      lisub::before {
+        content: '';
+        position: absolute;
+        top: 5px; /* Align bullet with the first line */
+        left: 20px; /* Adjust the left position for the sub-bullet */
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgb(10, 10, 10); /* Sub-bullet color */
+      }
+  
+      .right-panel {
+        flex: 1;
+        background-color: #fff;
+        overflow-y: auto; /* Enable vertical scrolling */
+      }
+  
+      .section {
+        padding: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+  
+      .section:last-child {
+        border-bottom: none; /* Remove the divider for the last section */
+      }
+  
+      .bold {
+        font-weight: bold;
+        font-size: 20px;
+      }
+  
+      input[type="radio"] {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 2px;
+      }
+
+
+/* Style for the table */
+    table {
+        border-collapse: collapse;
+      }
+      .equal-columns tr td {
+        width: 14%;
+        cursor: pointer; 
+      }
+      /* CSS styles for the clickable table cells */
+      .equal-columns td {
+        border: 1px solid #ccc; /* Add a border to create a button-like appearance */
+        text-align: center; /* Center the text within the cells */
+        transition: background-color 0.3s; /* Add a smooth background color transition */
+      }
+
+
+
+      /* Style for the table cells */
+      td {
+        padding: 2px;
+        border: 1px solid black;
+        vertical-align: middle;
+        text-align: center;
+      }
+
+      p1 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-indent: 0px;
+      }

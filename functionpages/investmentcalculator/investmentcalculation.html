@@ -1,0 +1,525 @@
+<html>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="investmentcalculation.css" />
+
+<h1>Investment Calculation</h1>
+  
+<head>
+  <title>Investment Calculation</title>
+  <style>
+    /* Style for the table */
+    table {
+      border-collapse: collapse;
+      max-width: 95%;
+    }
+    /* Style for the table cells */
+    td {
+      padding: 10px;
+      border: 1px solid black;
+      vertical-align: middle;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <br>
+  <h2>Inputs </h2>
+  <!-- Save button -->
+  <br>
+  <button id="saveData">Save Data</button>
+  <button id="retrieveData">Retrieve Data</button>
+  <button id="clearData">Clear Data</button>
+  <button id="refreshOutputCalcButton">Re-Calculate Output</button>
+  <br>  
+  <br>
+  <label for="reportfilenameInput">Enter Client Name:</label>
+  <input type="text" id="reportfilenameInput" placeholder="ClientName">
+  <button id="generateReport">Generate Report</button>
+  <br>
+  <br>
+      <table id="inputTable">
+        <tr>
+          <td class="column1" style="width: 20%"><p style="font-size: 16px">Parameter</td>
+          <td class="column2" style="width: 20%"><p style="font-size: 16px">Notes</td>
+          <td class="column3" style="width: 15%"><p style="font-size: 16px">Normal Range</td>
+          <td class="column4" style="width: 10%"><p style="font-size: 16px">Property 1</td>
+          <td class="column5" style="width: 10%"><p style="font-size: 16px">Property 2</td>
+          <td class="column6" style="width: 10%"><p style="font-size: 16px">Property 3</td>
+          <td class="column7" style="width: 10%"><p style="font-size: 16px">Property 4</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>Duplicate me</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> </td>
+          <td class="column3"><div><p style="font-size: 16px"> </td>
+          <td class="column4"><div><p style="font-size: 16px"><button onclick="duplicate1()">Duplicate</button></div><input class = "slidernum" type="number" style="width:40px" id="js-duplicate1-input" value="1" min="0" max="4" step="1"></input></td>
+          <td class="column5"><div><p style="font-size: 16px"><button onclick="duplicate2()">Duplicate</button></div><input class = "slidernum" type="number" style="width: 40px;" id="js-duplicate2-input" value="1" min="0" max="4" step="1"></input></td>
+          <td class="column6"><div><p style="font-size: 16px"><button onclick="duplicate3()">Duplicate</button></div><input class = "slidernum" type="number" style="width: 40px;" id="js-duplicate3-input" value="1" min="0" max="4" step="1"></input></td>
+          <td class="column7"><div><p style="font-size: 16px"><button onclick="duplicate4()">Duplicate</button></div><input class = "slidernum" type="number" style="width: 40px;" id="js-duplicate4-input" value="1" min="0" max="4" step="1"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[1] Purchase Price $</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textpurchaseprice1">2,000,000 </span></div>$ <input class = "slidernum" type="number" style="width:100px" id="js-purchaseprice1-input" value="2000000" min="0" max="5000000" step="1000"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textpurchaseprice2">2,000,000 </span></div>$ <input class = "slidernum" type="number" style="width: 100px;" id="js-purchaseprice2-input" value="2000000" min="0" max="5000000" step="1000"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textpurchaseprice3">2,000,000 </span></div>$ <input class = "slidernum" type="number" style="width: 100px;" id="js-purchaseprice3-input" value="2000000" min="0" max="5000000" step="1000"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textpurchaseprice4">2,000,000 </span></div>$ <input class = "slidernum" type="number" style="width: 100px;" id="js-purchaseprice4-input" value="2000000" min="0" max="5000000" step="1000"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1A] LTV %</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-ltv1-input" value="75" min="0" max="100" step="1"></input> %</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-ltv2-input" value="75" min="0" max="100" step="1"></input> %</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-ltv3-input" value="75" min="0" max="100" step="1"></input> %</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-ltv4-input" value="75" min="0" max="100" step="1"></input> %</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1B] Loan $</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textloan1">1,500,000 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textloan2">1,500,000 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textloan3">1,500,000 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textloan4">1,500,000 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1C] Downpayment $</td>
+          <td class="column2"><div><p style="font-size: 16px"> CPF + Cash </td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textdp1">500,000 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textdp2">500,000 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textdp3">500,000 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textdp4">500,000 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1D] Loan Tenure (years)</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-tenure1-input" value="25" min="0" max="50" step="1"></input> years</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-tenure2-input" value="25" min="0" max="50" step="1"></input> years</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-tenure3-input" value="25" min="0" max="50" step="1"></input> years</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-tenure4-input" value="25" min="0" max="50" step="1"></input> years</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1E] Interest Rate %</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-intrate1-input" value="4" min="0" max="20" step="0.1"></input> %</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-intrate2-input" value="4" min="0" max="20" step="0.1"></input> %</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-intrate3-input" value="4" min="0" max="20" step="0.1"></input> %</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-intrate4-input" value="4" min="0" max="20" step="0.1"></input> %</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1F] Assumed Investment Period (years)</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> Max to be capped at Loan Tenure</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-invperiod1-input" value="10" min="0" max="30" step="1"></input> years</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-invperiod2-input" value="10" min="0" max="30" step="1"></input> years</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-invperiod3-input" value="10" min="0" max="30" step="1"></input> years</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width: 50px;" id="js-invperiod4-input" value="10" min="0" max="30" step="1"></input> years</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1G] Total Principal Paid</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> End of Investment Period</td>
+            <td class="column4"><div><p style="font-size: 16px">$<span id="texttotfinexprin1">1,500,000 </span></td>
+            <td class="column5"><div><p style="font-size: 16px">$<span id="texttotfinexprin2">1,500,000 </span></td>
+            <td class="column6"><div><p style="font-size: 16px">$<span id="texttotfinexprin3">1,500,000 </span></td>
+            <td class="column7"><div><p style="font-size: 16px">$<span id="texttotfinexprin4">1,500,000 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[1H] Mortgage Balance</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> End of Investment Period</td>
+            <td class="column4"><div><p style="font-size: 16px">$<span id="textmb1">500,000 </span></td>
+            <td class="column5"><div><p style="font-size: 16px">$<span id="textmb2">500,000 </span></td>
+            <td class="column6"><div><p style="font-size: 16px">$<span id="textmb3">500,000 </span></td>
+            <td class="column7"><div><p style="font-size: 16px">$<span id="textmb4">500,000 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[2] Occupancy Rate %</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> 96%</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-vacantrate1-input" value="96" min="0" max="100" step="1"></input> %</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-vacantrate2-input" value="96" min="0" max="100" step="1"></input> %</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-vacantrate3-input" value="96" min="0" max="100" step="1"></input> %</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-vacantrate4-input" value="96" min="0" max="100" step="1"></input> %</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[3] Rental Rate $/mth</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-rentalrate1-input" value="4000" min="0" max="20000" step="100"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-rentalrate2-input" value="4000" min="0" max="20000" step="100"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-rentalrate3-input" value="4000" min="0" max="20000" step="100"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-rentalrate4-input" value="4000" min="0" max="20000" step="100"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[4] Operating Expense $/mth</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opex1-input" value="0" min="0" max="10000" step="50"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opex2-input" value="0" min="0" max="10000" step="50"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opex3-input" value="0" min="0" max="10000" step="50"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opex4-input" value="0" min="0" max="10000" step="50"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[4A] OpEx - Prop. Management $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmgmt1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmgmt2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmgmt3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmgmt4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[4B] OpEx - Maintainence $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmaint1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmaint2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmaint3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexmaint4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[4C] OpEx - Property Tax $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opextax1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opextax2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opextax3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opextax4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[4D] OpEx - Insurance $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexinsure1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexinsure2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexinsure3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexinsure4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[4E] OpEx - Utilities $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexutil1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexutil2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexutil3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexutil4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[4F] OpEx - Agent Fee $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexagentfee1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexagentfee2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexagentfee3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$ <input class = "slidernum" type="number" style="width:70px" id="js-opexagentfee4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[5] Financing Expense, Running $/mth</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textfinex1">0 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textfinex2">0 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textfinex3">0 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textfinex4">0 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[5A] FinEx - Mortgage Principal $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textfinexprin1">0 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textfinexprin2">0 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textfinexprin3">0 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textfinexprin4">0 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[5B] FinEx - Mortgage Interest $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textfinexint1">0 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textfinexint2">0 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textfinexint3">0 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textfinexint4">0 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[5C] FinEx - Mortgage Total $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textfinexmort1">0 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textfinexmort2">0 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textfinexmort3">0 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textfinexmort4">0 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[5D] FinEx - Others $/mth</td>
+          <td class="column2"><div><p style="font-size: 16px">  can add other monthly costs here.</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textfinexother1">0 </span>/mth</div><input class = "slidernum" type="number" style="width:80px" id="js-finexother1-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textfinexother2">0 </span>/mth</div><input class = "slidernum" type="number" style="width:80px" id="js-finexother2-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textfinexother3">0 </span>/mth</div><input class = "slidernum" type="number" style="width:80px" id="js-finexother3-input" value="0" min="0" max="2000" step="10"></input></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textfinexother4">0 </span>/mth</div><input class = "slidernum" type="number" style="width:80px" id="js-finexother4-input" value="0" min="0" max="2000" step="10"></input></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[6] Financing Expense, One-Off $</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textfinexoneoff1">0 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textfinexoneoff2">0 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textfinexoneoff3">0 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textfinexoneoff4">0 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[6A] Costs to Acquire Property $</td>
+          <td class="column2"><div><p style="font-size: 16px"> Stamp Duty, Agent, reno/repair, etc. Enter one-off and normalised will be calculated.</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexacquireoneoff1-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexacquire1">0 </span>/mth</td>
+          <td class="column5"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexacquireoneoff2-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexacquire2">0 </span>/mth</td>
+          <td class="column6"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexacquireoneoff3-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexacquire3">0 </span>/mth</td>
+          <td class="column7"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexacquireoneoff4-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexacquire4">0 </span>/mth</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[6B] Costs to Dispose Property $</td>
+          <td class="column2"><div><p style="font-size: 16px"> Stamp Duty, Agent, etc. Enter one-off and normalised will be calculated.</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexdisposeoneoff1-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexdispose1">0 </span>/mth</td>
+          <td class="column5"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexdisposeoneoff2-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexdispose2">0 </span>/mth</td>
+          <td class="column6"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexdisposeoneoff3-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexdispose3">0 </span>/mth</td>
+          <td class="column7"><div><p style="font-size: 16px">Enter one-off cost:</div><input class = "slidernum" type="number" style="width:80px" id="js-finexdisposeoneoff4-input" value="0" min="0" max="1000000" step="1000"></input><div><p style="font-size: 16px">$<span id="textfinexdispose4">0 </span>/mth</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[7] Gross Income $/mth</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> Rental taking into account occupancy rate.</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="textgi1">1000 </td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="textgi2">1000 </td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="textgi3">1000 </td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="textgi4">1000 </td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[8] Total Equity $ at end of investment period</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> Total Equity = Sales Proceeds = Resale Value - O/S Loan (if no capital gain or depreciation, then it's Downpayment + Principal)</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px">$<span id="texttotequity1">0 </span></td>
+          <td class="column5"><div><p style="font-size: 16px">$<span id="texttotequity2">0 </span></td>
+          <td class="column6"><div><p style="font-size: 16px">$<span id="texttotequity3">0 </span></td>
+          <td class="column7"><div><p style="font-size: 16px">$<span id="texttotequity4">0 </span></td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px">[8A] Capital Gain or Depreciation $ at end of investment period</td>
+          <td class="column2"><div><p style="font-size: 16px"> Enter -100 if investment will reduce to zero.</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+            <td class="column4"><div><p style="font-size: 16px">FV = $<span id="textfv1">0 </span><div><p style="font-size: 16px">CG = $<span id="texttotcapgain1">0 </span></div><input class = "slidernum" type="number" style="width:80px" id="js-pcpy_capgain1-input" value="0" min="-20" max="20" step="0.25"></input> %/yr</td>
+            <td class="column5"><div><p style="font-size: 16px">FV = $<span id="textfv2">0 </span><div><p style="font-size: 16px">CG = $<span id="texttotcapgain2">0 </span></div><input class = "slidernum" type="number" style="width:80px" id="js-pcpy_capgain2-input" value="0" min="-20" max="20" step="0.25"></input> %/yr</td>
+            <td class="column6"><div><p style="font-size: 16px">FV = $<span id="textfv3">0 </span><div><p style="font-size: 16px">CG = $<span id="texttotcapgain3">0 </span></div><input class = "slidernum" type="number" style="width:80px" id="js-pcpy_capgain3-input" value="0" min="-20" max="20" step="0.25"></input> %/yr</td>
+            <td class="column7"><div><p style="font-size: 16px">FV = $<span id="textfv4">0 </span><div><p style="font-size: 16px">CG = $<span id="texttotcapgain4">0 </span></div><input class = "slidernum" type="number" style="width:80px" id="js-pcpy_capgain4-input" value="0" min="-20" max="20" step="0.25"></input> %/yr</td>
+          </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[9] Floor Area</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:80px" id="js-area1-input" value="1000" min="0" max="10000" step="10"></input> sqft</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:80px" id="js-area2-input" value="1000" min="0" max="10000" step="10"></input> sqft</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:80px" id="js-area3-input" value="1000" min="0" max="10000" step="10"></input> sqft</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:80px" id="js-area4-input" value="1000" min="0" max="10000" step="10"></input> sqft</td>
+        </tr>
+        <tr>
+          <td class="column1"><div><p style="font-size: 16px"><b>[10] Discount Rate %</b></td>
+          <td class="column2"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+          <td class="column4"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-discountrate1-input" value="2" min="0" max="100" step="1"></input> %</td>
+          <td class="column5"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-discountrate2-input" value="2" min="0" max="100" step="1"></input> %</td>
+          <td class="column6"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-discountrate3-input" value="2" min="0" max="100" step="1"></input> %</td>
+          <td class="column7"><div><p style="font-size: 16px"><input class = "slidernum" type="number" style="width:50px" id="js-discountrate4-input" value="2" min="0" max="100" step="1"></input> %</td>
+        </tr>
+      </table>
+
+      <br>
+      <h2>Analysis and Comparison </h2>
+      <br>
+      <br>
+          <table id="OutputTable">
+            <tr>
+              <td class="column1" style="width: 20%">Metrics</td>
+              <td class="column2" style="width: 15%">Notes</td>
+              <td class="column3" style="width: 14%">Normal Range</td>
+              <td class="column4" style="width: 10%">Property 1</td>
+              <td class="column5" style="width: 10%">Property 2</td>
+              <td class="column6" style="width: 10%">Property 3</td>
+              <td class="column7" style="width: 10%">Property 4</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[1] Gross Rent Multiplier (GRM)</td>
+              <td class="column2"><div><p style="font-size: 16px"> Ratio of property's purchase price to gross annual rental income. Shows value based on income potential. The lower the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textgrm1">100 </span>  (-)</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textgrm2">100 </span>  (-)</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textgrm3">100 </span>  (-)</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textgrm4">100 </span>  (-)</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[2] Net Operating Income (NOI)</td>
+              <td class="column2"><div><p style="font-size: 16px"> Annual gross income after operating expenses (inclusive of opex such as management, property tax, insurance, etc.) but before mortgage payments or income taxes (i.e., excludes principal and interest payments on loans, capital expenditures, depreciation, and amortization). The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px">$ <span id="textnoi1">10000 </span> /year</td>
+              <td class="column5"><div><p style="font-size: 16px">$ <span id="textnoi2">10000 </span> /year</td>
+              <td class="column6"><div><p style="font-size: 16px">$ <span id="textnoi3">10000 </span> /year</td>
+              <td class="column7"><div><p style="font-size: 16px">$ <span id="textnoi4">10000 </span> /year</td>
+            </tr>
+            <tr>
+              <td class="column1" rowspan="5"><div><p style="font-size: 16px">[3] Cash Flow</td>
+              <td class="column2" rowspan="5"><div><p style="font-size: 16px"> Cash flow is NOI minus financing costs (such as mortgage payments, interest, loan fees) before income tax. Cash flow reflects the cash available to owner or for reinvestment. <p style="font-size: 16px; width: 400px">Cash Balance calculated inclusive of downpayment and one-off costs to acquire/dispose property. The higher the better.</td>
+                <td class="column3"><div><p style="font-size: 16px"> Initial Cash Position</td>
+                <td class="column4"><div><p style="font-size: 16px">$ <span id="texticp1">-100000 </span><div><p style="font-size: 16px"></td>
+                <td class="column5"><div><p style="font-size: 16px">$ <span id="texticp2">-100000 </span><div><p style="font-size: 16px"></td>
+                <td class="column6"><div><p style="font-size: 16px">$ <span id="texticp3">-100000 </span><div><p style="font-size: 16px"></td>
+                <td class="column7"><div><p style="font-size: 16px">$ <span id="texticp4">-100000 </span><div><p style="font-size: 16px"></td>
+            </tr>
+            <tr>
+              <td class="column3"><div><p style="font-size: 16px"> Cash Flow (or Cash Income)</td>
+                <td class="column4"><div><p style="font-size: 16px">$ <span id="textcf1">10000 </span> /year<div><p style="font-size: 16px">$ <span id="texttotcf1">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcfpv1">5000 </span> total, pv</td>
+                <td class="column5"><div><p style="font-size: 16px">$ <span id="textcf2">10000 </span> /year<div><p style="font-size: 16px">$ <span id="texttotcf2">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcfpv2">5000 </span> total, pv</td>
+                <td class="column6"><div><p style="font-size: 16px">$ <span id="textcf3">10000 </span> /year<div><p style="font-size: 16px">$ <span id="texttotcf3">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcfpv3">5000 </span> total, pv</td>
+                <td class="column7"><div><p style="font-size: 16px">$ <span id="textcf4">10000 </span> /year<div><p style="font-size: 16px">$ <span id="texttotcf4">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcfpv4">5000 </span> total, pv</td>
+            </tr>
+            <tr>
+              <td class="column3"><div><p style="font-size: 16px"> Cash Flow Breakeven Time (years)</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textcfbe1">10 </span> years</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textcfbe2">10 </span> years</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textcfbe3">10 </span> years</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textcfbe4">10 </span> years</td>
+            </tr>
+            <tr>
+              <td class="column3"><div><p style="font-size: 16px"> Sales Proceeds (FV-MB)</td>
+              <td class="column4"><div><p style="font-size: 16px">$ <span id="textsp1">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="textsppv1">250000 </span> total, pv</td>
+              <td class="column5"><div><p style="font-size: 16px">$ <span id="textsp2">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="textsppv2">250000 </span> total, pv</td>
+              <td class="column6"><div><p style="font-size: 16px">$ <span id="textsp3">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="textsppv3">250000 </span> total, pv</td>
+              <td class="column7"><div><p style="font-size: 16px">$ <span id="textsp4">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="textsppv4">250000 </span> total, pv</td>
+            </tr>
+            <tr>
+              <td class="column3"><div><p style="font-size: 16px"> Final Cash Position (or Cash Balance at end of investment period)</td>
+              <td class="column4"><div><p style="font-size: 16px">$ <span id="texttotcb1">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcbpv1">255000 </span> total, pv</td>
+              <td class="column5"><div><p style="font-size: 16px">$ <span id="texttotcb2">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcbpv2">255000 </span> total, pv</td>
+              <td class="column6"><div><p style="font-size: 16px">$ <span id="texttotcb3">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcbpv3">255000 </span> total, pv</td>
+              <td class="column7"><div><p style="font-size: 16px">$ <span id="texttotcb4">10000 </span> total, nominal<div><p style="font-size: 16px">$ <span id="texttotcbpv4">255000 </span> total, pv</td>
+            </tr>
+            <tr>
+              <td class="column1" rowspan="2"><div><p style="font-size: 16px">[4] Cash on Cash (CoC), a.k.a. ROI</td>
+              <td class="column2"><div><p style="font-size: 16px"> Cash-on-cash return measures the amount of cash flow relative to the amount of cash invested in a property investment and is calculated on a pre-tax basis. <p style="font-size: 16px; width: 400px">Typical Method (first year): Focus on cash return based on first year cash flow in relation to cash committed including downpayment and acquisition costs (duties, reno/repair, etc.). Also known as Return of Investment. The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textcoc1_firstyear">30 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textcoc2_firstyear">30 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textcoc3_firstyear">30 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textcoc4_firstyear">30 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column2"><div><p style="font-size: 16px"> Projection Method (end of investment period): Cash-on-cash return can also be used as a forecasting tool to set a target for projected total earnings (includes cash flow and sales proceeds) and total expenses. The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> Ideally >100%, otherwise need appreciation to see value in investment.</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textcoc1_invperiod">30 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textcoc2_invperiod">30 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textcoc3_invperiod">30 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textcoc4_invperiod">30 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column1" rowspan="2"><div><p style="font-size: 16px">[5] Return on Equity (RoE)</td>
+              <td class="column2"><div><p style="font-size: 16px"> RoE measures the income (i.e. cashflow) to net worth (equity is 'net worth' which is market value minus liabilities and includes cash committed, but ignores one-off financial costs) and is calculated on a pre-tax basis. <p style="font-size: 16px; width: 400px">Method 1 (first year): Cash Flow/Cash initially committed. This is a simple metric to assess 'interest-only' loans or 'full cash' purchase. The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textroe1_firstyear">30 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textroe2_firstyear">30 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textroe3_firstyear">30 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textroe4_firstyear">30 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column2"><div><p style="font-size: 16px"> Method 2 (end of investment period): Cash Flow ('income') divide by Sales Proceeds ('worth'). The higher the better.<p style="font-size: 16px; width: 400px">However, asset depreciation will diminish the 'worth', thereby increasing the RoE leading to false indication. In other words, 'infinity' can mean that the future value has reduced to zero. </td>
+              <td class="column3"><div><p style="font-size: 16px"> Therefore, this indicator is only useful if asset doesn't depreciate. Capped to 100% for this calculation so it doesn't look silly.</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textroe1_invperiod">30 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textroe2_invperiod">30 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textroe3_invperiod">30 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textroe4_invperiod">30 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[6] Rate of Return on Investment (ROR)</td>
+              <td class="column2"><div><p style="font-size: 16px"> ROR is similar to ROI, but may be more specifically used to refer over the life assessment on investment. Net Profit (in nominal terms; end of investment period. Net profit includes monthly cashflow and capital gain) divide by Cash Invested (all expenses, acquisition/disposal costs, principle/interest and downpayment.). The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textror1">5 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textror2">5 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textror3">5 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textror4">5 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[7] Net Yield (Net Rental Yield)</td>
+              <td class="column2"><div><p style="font-size: 16px"> Income-generating capacity of a property.  NOI divide by purchase price (does not account for appreciation/depreciation). The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textry1">5 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textry2">5 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textry3">5 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textry4">5 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[8] Operating Expense Ratio (OER)</td>
+              <td class="column2"><div><p style="font-size: 16px"> Proportion of operating expenses relative to the property's gross income. % shown is expenditure. The balance is net operating income. The lower the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textoer1">30 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textoer2">30 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textoer3">30 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textoer4">30 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[9] Gross Income psf</td>
+              <td class="column2"><div><p style="font-size: 16px"> Efficiency of return by floor area. The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textgipsf1">30 </span> (-)</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textgipsf2">30 </span> (-)</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textgipsf3">30 </span> (-)</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textgipsf4">30 </span> (-)</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[10] Capitalisation Rate</td>
+              <td class="column2"><div><p style="font-size: 16px"> The ratio of the property's net operating income (NOI) to its market value. It indicates the property's potential return on investment. The higher the better.</td>
+              <td class="column3"><div><p style="font-size: 16px"> XXX</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textcr1">30 </span> %</td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textcr2">30 </span> %</td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textcr3">30 </span> %</td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textcr4">30 </span> %</td>
+            </tr>
+            <tr>
+              <td class="column1"><div><p style="font-size: 16px">[11] Internal Rate of Return (IRR) </td>
+              <td class="column2"><div><p style="font-size: 16px"> IRR is the tolerable discount rate at which the present value of all expected future cash flows (including sales proceeds from capital gain) matches the initial investment amount (inc. all costs incurred and downpayment). The higher the tolerable discount rate wrt inflation, the better (i.e., preserving value and generates a  real growth), but must be higher than hurdle rate. In short, IRR is the rate at which I can tolerate my cash flow to be eroded by time, without losing my purchasing power.</td>
+              <td class="column3"><div><p style="font-size: 16px"> Investment period should be capped to loan tenure since any income after that will be mortgage free, hence requiring a separate calculation. <br>Note that hurdle rate is the minimum required discount rate to consider an investment viable/ attractive. Therefore, if irr is much higher than fixed deposit rate (opportunity cost), then it's attractive.</td>
+              <td class="column4"><div><p style="font-size: 16px"><span id="textirr1">3 </span> %<div><p style="font-size: 16px"><span id="textirrnpv1"> </span></td>
+              <td class="column5"><div><p style="font-size: 16px"><span id="textirr2">3 </span> %<div><p style="font-size: 16px"><span id="textirrnpv2"> </span></td>
+              <td class="column6"><div><p style="font-size: 16px"><span id="textirr3">3 </span> %<div><p style="font-size: 16px"><span id="textirrnpv3"> </span></td>
+              <td class="column7"><div><p style="font-size: 16px"><span id="textirr4">3 </span> %<div><p style="font-size: 16px"><span id="textirrnpv4"> </span></td>
+            </tr>
+          </table>
+</body>
+
+
+<!-- <td class="column5"><input type="range" style="width:100%" id="js-totincome-range" value="15000" min="0" max="50000" step="10"></td> -->
+        
+<!-- to show tick marks on discrete sliders -->
+<datalist id="steplist">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>     
+  <option>4</option>     
+</datalist>
+<br>
+<p class="notes">
+  <br>Note 1: Above calculation good for constant income, up to end of loan tenure. For detailed calculations based on variable income/expenses, which will affect breakeven time, or overall outcome beyond loan tenure, refer to Spreadsheet Calculation.
+</p>
+<br>
+<br>
+    
+<script src="./investmentcalculation.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Past Projects</title>
+  <link rel="stylesheet" type="text/css" href="pastprojects.css" />
+</head>
+<body>
+  <div class = "u-font-montserrat-copy">Past Projects</div>
+  <div id="searchContainer">
+    <input type="text" style="height: 30px;" id="searchInput" placeholder="Search...">
+    <span id="clearIcon">&#10006;</span>
+    <button id="LastResale">Last Resale Transacted</button>
+    <button id="LastNewSale">Last New Sale Transacted</button>
+    <button id="MaxValue">Max Value</button>
+    <button id="AverageHalfYear">AverageHalfYear</button>
+    <button id="Y2018">Y2018</button>
+    <button id="Y2019">Y2019</button>
+    <button id="Y2020">Y2020</button>
+    <button id="Y2021">Y2021</button>
+    <button id="Y2022">Y2022</button>
+    <button id="Y2023">Y2023</button>
+  </div>
+  <br>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th data-sort="name">Name<span id="nameArrowIcon" class="arrow"></span></th>
+        <th data-sort="type">Type<span id="typeArrowIcon" class="arrow"></span></th>
+        <th data-sort="zone">Zone<span id="zoneArrowIcon" class="arrow"></span></th>
+        <th data-sort="category">Category<span id="categoryArrowIcon" class="arrow"></span></th>
+        <th data-sort="top">TOP<span id="topArrowIcon" class="arrow"></span></th>
+        <th data-sort="psf1">Psf <= 1000 sqft<span id="psf1ArrowIcon" class="arrow"></span></th>
+        <th data-sort="psf1_date">Transacted Date</th>
+        <th data-sort="psf2">Psf > 1000 sqft<span id="psf2ArrowIcon" class="arrow"></span></th>
+        <th data-sort="psf2_date">Transacted Date</th>
+        <th data-sort="notes">NOTES<span id="notesArrowIcon" class="arrow"></span></th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="dataList"></tbody>
+  </table>
+  
+
+  <script src="pastprojects.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</body>
+</html>

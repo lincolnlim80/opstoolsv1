@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-US" class="hide-scroll">
+<head> 
+    <title>MPA88</title>
+    <meta name="Keywords">
+    <meta name="Description">
+
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no,width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Roboto|Open+Sans:200,300,400,700,800,900&amp;subset=latin" rel="stylesheet" as="font" />
+
+        
+<script>
+    window.isAuthenticated = 0;
+    window.clientUserId = 0;
+    window.clientUserName = '';
+    window.userCountryCode = '';
+    window.logPageEvent = 1;
+    window.userHasAdsParams = 1;
+    window.utmSourceFromReferrer = 0;
+    window.currentLang = '';
+    window.baseUrl = 'html-templates';
+    window.currentUrl = 'html-templates';
+    window.np_userId = '';
+    window.isAmplitudeInitialized = false;
+
+    function sendAnalyticsData(eventType, props, cb) {
+        var json = { data: {} };
+        json.userToken = np_userId;
+        json.data.adsParams = $.cookie('AdsParameters');
+        json.data.ga = $.cookie('_ga');
+        json.data.gac = $.cookie('_gac_UA-88868916-2');
+        json.data.userAgent = navigator.userAgent;
+        json.data.eventType = eventType;
+        json.data.props = props;
+        $.ajax({
+            'type': 'POST',
+            'url': '/Feedback/SendAdsLog',
+            'contentType': 'application/json; charset=utf-8',
+            'data': JSON.stringify(json),
+            'dataType': 'json',
+            'complete': cb || function() {}
+        });
+    }
+
+    function initializeAmplitudeUser() {
+        if (isAmplitudeInitialized) {
+            return;
+        }
+        isAmplitudeInitialized = true;
+
+        if (clientUserId > 0)
+        {
+            identifyAmplitudeUser(clientUserId, clientUserName);
+        }
+        else
+        {
+            identifyAmplitudeUser(null);
+        }
+    }
+
+    function sendAmplitudeAnalyticsData(eventName, eventProperties, userProperties, callback_function) {
+        initializeAmplitudeUser();
+
+        if (userProperties) {
+            if(userProperties.utm_source || userProperties.utm_campaign) {
+                var identify = new amplitude.Identify();
+                identify.setOnce("utm_campaign", userProperties.utm_campaign);
+                identify.setOnce("utm_source", userProperties.utm_source);
+                identify.setOnce("utm_content", userProperties.utm_content);
+                identify.setOnce("utm_term", userProperties.utm_term);
+                identify.setOnce("utm_page", userProperties.utm_page);
+                identify.setOnce("utm_page2", userProperties.utm_page);
+                identify.setOnce("referrer", userProperties.referrer);
+
+                amplitude.getInstance().identify(identify);
+
+                userProperties.utm_source_last = userProperties.utm_source;
+                userProperties.utm_campaign_last = userProperties.utm_campaign;
+                userProperties.utm_content_last = userProperties.utm_content;
+                userProperties.utm_term_last = userProperties.utm_term;
+                userProperties.utm_page_last = userProperties.utm_page;
+            }
+
+            var userProps = objectWithoutProperties(userProperties, ["utm_campaign", "utm_source","utm_content", "utm_term", "utm_page", "referrer"]);
+            amplitude.getInstance().setUserProperties(userProps);
+        }
+
+        eventProperties.WebSite = 'true';
+        eventProperties.IsAuthenticated = window.isAuthenticated;
+        eventProperties.country_code = getCountryCode();
+        eventProperties.lang = window.currentLang || '';
+
+        var fullPageUrl = window.location.pathname.split('?')[0];
+        eventProperties.full_page_url = fullPageUrl;
+        eventProperties.page_url = clearPageUrl(fullPageUrl);
+
+        if (typeof callback_function === 'function') {
+            amplitude.getInstance().logEvent(eventName, eventProperties, callback_function);
+        } else {
+            amplitude.getInstance().logEvent(eventName, eventProperties);
+        }
+    }
+
+    function identifyAmplitudeUser(userId, token) {
+        if (userId) {
+            amplitude.getInstance().setUserProperties({
+                "Token": token,
+                "UserId": userId
+            });
+        }
+
+        var identify = new amplitude.Identify();
+        amplitude.getInstance().identify(identify);
+        if (userId) {
+            amplitude.getInstance().setUserId(userId);
+        }
+    }
+
+    function sendAnalyticsFromUrl(referrer, pageType) {
+        var hash = window.location.hash;
+
+        var urlIsAvailable = typeof URL === "function" || (navigator.userAgent.indexOf('MSIE') !== -1 && typeof URL === 'object');
+        if (!urlIsAvailable) {
+            return;
+        }
+
+        var url = new URL(window.location.href);
+        if (hash && hash.indexOf('utm_') >= 0) {
+            url = new URL(window.location.origin + window.location.pathname + hash.replace('#', '?'));
+        }
+
+        if (!url.searchParams) {
+            return;
+        }
+
+        var utmParams = getUtmParams(url);
+        var gclidFromUrl = utmParams.gclid;
+        var utmParamsFromUrl = !!utmParams.utmSource || !!utmParams.utmCampaign || !!utmParams.gclid;
+        if (!utmParamsFromUrl && userHasAdsParams)
+        {
+            utmParams = getUtmParamsFromCookie();
+        }
+
+        var canLog = canLogToAmplitude();
+        if (utmParamsFromUrl || utmSourceFromReferrer) {
+            var fullPageUrl = window.location.pathname.split('?')[0];
+            var pageUrl = clearPageUrl(fullPageUrl);
+            var userProps = {
+                "utm_source": utmParams.utmSource,
+                "utm_campaign": utmParams.utmCampaign,
+                "utm_content": utmParams.utmContent,
+                "utm_term": utmParams.utmTerm,
+                "utm_page": getUtmPageValue(pageUrl),
+                "utm_lang": window.currentLang || '',
+                "referrer": referrer
+            };
+
+            if (gclidFromUrl) {
+                var landingUrl = pageUrl.startsWith('/') && pageUrl !== '/' ? pageUrl.substr(1) : pageUrl;
+                userProps.landing_page = landingUrl;
+
+                var event = {
+                    'Page': landingUrl,
+                    'Url': window.location.href,
+                    'utm_campaign_event': utmParams.utmCampaign
+                }
+                sendAmplitudeAnalyticsData('Landing Page', event, userProps);
+            } else {
+                var eventProps = {
+                    "utm_source": utmParams.utmSource,
+                    "utm_campaign": utmParams.utmCampaign,
+                    "utm_content": utmParams.utmContent,
+                    "utm_term": utmParams.utmTerm
+                };
+
+                if (utmParams.utmSource === "elastic") {
+                    sendAmplitudeAnalyticsData('Email Click', eventProps);
+                }
+
+                if (canLog) {
+                    //sendAmplitudeAnalyticsData('Campaign', eventProps, userProps);
+                }
+            }
+        }
+
+        //if (logPageEvent && canLog || (pageType === 'Pricing Page' && !window.isForbiddenCountry())) {
+        if (pageType === 'Pricing Page' && !window.isForbiddenCountry()) {
+            var pageEventProps = {
+                'type': pageType,
+                'accepted_country': isValidCountry(),
+                'force_log': !canLog
+            };
+
+            sendAmplitudeAnalyticsData('Page View', pageEventProps);
+        }
+    }
+
+</script>
+
+
+<script src="./index.js" ></script>
+<script src="./index_script.js" ></script>
+<link href="./index.css" rel="stylesheet" />
+
+    <meta name="robots" content="noindex, nofollow">
+    <script type="text/javascript">
+        var device = 'desktop';
+        function init($) {
+            $('#previewDesktopBtn').click(function (e) {
+                setLivePreviewFrameSize($(this));
+                setActiveResponsiveButton(this);
+                e.preventDefault();
+            });
+
+            $('#previewLaptopBtn').click(function (e) {
+                setLivePreviewFrameSize($(this));
+                setActiveResponsiveButton(this);
+                e.preventDefault();
+            });
+            $('#previewTabletBtn').click(function (e) {
+                setLivePreviewFrameSize($(this));
+                setActiveResponsiveButton(this);
+                e.preventDefault();
+            });
+            $('#previewPhoneHorizontalBtn').click(function (e) {
+                setLivePreviewFrameSize($(this));
+                setActiveResponsiveButton(this);
+                e.preventDefault();
+            });
+            $('#previewPhoneBtn').click(function (e) {
+                setLivePreviewFrameSize($(this));
+                setActiveResponsiveButton(this);
+                e.preventDefault();
+            });
+
+            detectActiveResponsiveButton();
+        }
+
+        if (jQuery.isReady) {
+            init(jQuery);
+        } else {
+            jQuery(function ($) {
+                init($);
+            });
+        }
+
+        function setActiveResponsiveButton(btn) {
+            $(".page-preview-header > a").removeClass("active");
+            $(btn).addClass("active");
+        }
+
+        function detectActiveResponsiveButton() {
+            var d = device;
+            if (!d) {
+                d = 'desktop';
+            }
+            $("#preview" + d.charAt(0).toUpperCase() + d.substr(1) + "Btn").click();
+        }
+
+        function getDataPreviewSizeAttr(el) {
+            return el.closest("[data-preview-size]").attr("data-preview-size");
+        }
+
+        function setLivePreviewFrameSize(srcEl) {
+            var getScrollbarWidth = function () {
+                var s = $('<div style="width:100px;height:100px;overflow:scroll;visibility:hidden;position:absolute;top:-99999px"><div style="height:200px;"></div></div>')
+                    .appendTo("body");
+                var res = s.width() - s.find("div").last().width();
+                s.remove();
+                return res;
+            };
+            var attr = getDataPreviewSizeAttr(srcEl);
+            $('#livePreviewFrame').width(attr.indexOf("%") !== -1 ? attr : parseInt(attr, 10) + getScrollbarWidth());
+        }
+
+    </script>
+    <style>
+        .dialog-wrapper {
+            display: none !important;
+        }
+
+        .wrap,
+        #main {
+            height: 100vh;
+            margin: 0 !important;
+        }
+
+        iframe {
+            display: none;
+        }
+
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .page-preview {
+            border-radius: 0;
+            height: 100%;
+        }
+
+        .page-preview-header {
+            background: #f2f2f2;
+            border: none;
+            height: 70px;
+            position: relative;
+            text-align: center;
+        }
+
+        .page-preview-header > a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 4px;
+        }
+
+        .page-preview-header > a:hover {
+            background: #e2f0fc;
+            text-decoration: none;
+        }
+
+        .page-preview-header > a.active {
+            background: #c9e4f9;
+        }
+
+        .page-preview-header > .close {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .page-preview-body {
+            height: calc(100% - 70px);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .page-preview-body iframe {
+            border: none;
+            display: inline-block;
+            height: 100%;
+        }
+
+        .u-font-montserrat-copy {
+            position: absolute;
+            font-family: Montserrat, sans-serif !important;
+            margin: 20px auto;
+            top: 10px;
+            left: 80px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            p.u-font-montserrat-copy {
+            margin: 10px auto;
+            top: 35px;
+            left: 70px;
+            font-size: 12px;
+            }
+        }
+
+        .msg-link {
+            position: absolute;
+            top: 25px;
+            right: 240px;
+        }
+
+        @media (max-width: 768px) {
+            a.msg-link {
+            top: 5px;
+            right: 180px;
+            }
+        }
+
+        
+        .whatsapp-link {
+            position: absolute;
+            top: 25px;
+            right: 50px;
+        }
+
+        @media (max-width: 768px) {
+            a.whatsapp-link {
+            top: 5px;
+            right: 5px;
+            }
+        }
+    </style>
+
+</head>
+    <body>
+        
+
+
+<div class="page-preview">
+    <div class="page-preview-header">
+        <a class="hidden-sm hidden-xs" href="#" id="previewDesktopBtn" data-preview-size="100%"><img alt="Responsive Desktop Mode" src="./img/icon-responsive-desktop.png"></a>
+        <a class="hidden-sm hidden-xs" href="#" id="previewLaptopBtn" data-preview-size="1040px"><img alt="Responsive Laptop Mode" src="./img/icon-responsive-laptop.png"></a>
+        <a class="hidden-sm hidden-xs" href="#" id="previewTabletBtn" data-preview-size="820px"><img alt="Responsive Tablet Mode" src="./img/icon-responsive-tablet.png"></a>
+        <a class="hidden-sm hidden-xs" href="#" id="previewPhoneHorizontalBtn" data-preview-size="640px"><img alt="Responsive Phone Horizontal Mode" src="./img/icon-responsive-phone-horizontal.png"></a>
+        <a class="hidden-sm hidden-xs" href="#" id="previewPhoneBtn" data-preview-size="440px"><img alt="Responsive Phone Mode" src="./img/icon-responsive-phone.png"></a>
+        <a class="close" href="https://lincolnlim80.github.io/ops4-testOnline"><img alt="Close" src="./img/icon-close.png"></a>
+    </div>
+    <div class="page-preview-body">
+        <iframe id="livePreviewFrame" src="./index_background.html" width="1057" height="640" style="width:100%;"></iframe>
+    </div>
+</div>
+
+
+
+<body>
+    <a style="position:absolute;top:17px;left:10px;" href="https://lincolnlim80.github.io/ops4-testOnline"><img alt="" src="./img/icon-house6.png"></a>
+    <p class="u-font-montserrat-copy">Your specialist in condo purchases...</p>
+    <a class="msg-link" href="#" onclick="showGetInTouch()"><img alt="" src="./img/icon-getintouch5a.png"></a>
+    <a class="whatsapp-link" href="https://wa.me/6588171953?text=Hi%20Lincoln,%20I%20have%20an%20enquiry.%20Please%20reach%20out%20to%20me.%20My%20name%20is%20"><img alt="" src="./img/icon-whatsapp1a.png"></a>
+</body>
+
+
+    <div id="popupForm" class="popup">
+        <!-- this formspree works -->
+        <form onsubmit="submitForm(event)" action="https://formspree.io/f/xzbqqkjd" method="POST">
+          <label id="name">Your Name:</label>
+          <input type="text" name="name" required autocomplete="name">
+          <label id="mobile">Your Mobile Number:</label>
+          <input type="tel" name="mobile" required autocomplete="tel">
+          <label id="email">Your Email:</label>
+          <input type="email" name="email" autocomplete="email">
+          <label id="enquiry">Enquiry:</label>
+          <textarea name="enquiry"></textarea>
+          <button type="submit" class="send">Send</button>
+          <a class="close" onclick="closeForm()">Close</a>
+        </form>
+        
+        <script>
+          function submitForm(event) {
+            localStorage.setItem("hasEnteredMPAInfo", true);
+          }
+        </script>
+
+      </div>
+      
+    <script>
+        if (window.parent) {
+            var _w = 0, _h = 0;
+            var updateFormSize = function () {
+                var form = $('form.shaped-form-extended,form.shaped-form');
+                var w = form.outerWidth(true);
+                var h = form.outerHeight(true);
+                if (Math.abs(_w - w) > 5 || Math.abs(_h - h) > 5) {
+                    _w = w;
+                    _h = h;
+                    var msg = { key: 'login-frame-size', width: w, height: h };
+                    window.parent.postMessage(msg, "*");
+                }
+                setTimeout(updateFormSize, 300);
+            }
+            updateFormSize();
+        }
+    </script>
+
+</body>
+
+
+</html>

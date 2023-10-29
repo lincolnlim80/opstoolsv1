@@ -1,0 +1,26 @@
+<script       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<div id="text01"> Property Tax (Residential)</div>
+<br>
+<div id="text11"> <p style="font-size: 26px">Annual Value $<span id="textav"> 24,000</span></p></div>
+<input type="range" id="js-av-range" value="24000" min="0" max="300000" step="100">
+<input type="number" id="js-av-input" value="24000" min="0" max="300000" step="100"></input>
+<br>
+<br>
+<input type="range" id="js-occupancy-range" value="1" min="1" max="2" step="1"></input>
+<span id="textoccupancy"> Owner</span>
+<br>
+<br>
+
+
+<br>  <!--//this is a break tab -->
+<div id="text13"> Property Tax Payable $ <span id="textpropertytax"> 580</span></div>
+<br>
+<br>
+
+<img style = "width: 30%;" src="./img/ResidentialPropertyTax-OwnerOccupied.png" /><div></div>
+<img style = "width: 30%;" src="./img/ResidentialPropertyTax-NonOwnerOccupied.png" /><div></div>
+
+
+<script src="./residentialpropertytax.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>

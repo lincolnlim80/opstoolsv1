@@ -1,0 +1,25 @@
+<script       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<div id="text01"> Apartment Size, PSF and Budget (Residential)</div>
+<br>
+<div id="text11"> <p style="font-size: 16px">Apartment Type: <span id="texttype">3 Bedroom (or similar) </span></p></div>
+<div id="text11"> <p style="font-size: 16px">Size <span id="textsqft">1,000 </span><span id="text30">   (sqft) or    </span><span id="textsqm"> 92.9 </span><span id="text32">(sqm) </span></p></div>
+<input type="range" id="js-size-range" value="1000" min="0" max="4000" step="10">
+<input type="number" id="js-size-input" value="1000" min="0" max="4000" step="10"></input>
+<br>
+<br>
+<div id="text12"><p style="font-size: 16px"> PSF $/sqft <span id="textpsf"> 2,000</span></div>
+<input type="range" id="js-psf-range" value="2000" min="500" max="4000" step="50"></input>
+<input type="number" id="js-psf-input" value="2000" min="500" max="4000" step="50"></input>
+<br>
+<br>
+
+
+<br>  <!--//this is a break tab -->
+<div id="text13"> Budget $ <span id="textbudget"> 2,000,000</span></div>
+<br>
+<br>
+<div id="text20"> <p style="font-size: 9px">(Note: Estimates provided are not development-specific)</div>
+
+<script src="./condosizebudget.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>

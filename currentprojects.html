@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Current Projects</title>
+  <link rel="stylesheet" type="text/css" href="currentprojects.css" />
+</head>
+<body>
+  <div class = "u-font-montserrat-copy">Current Projects</div>
+  <div id="searchContainer">
+    <input type="text" style="height: 30px;" id="searchInput" placeholder="Search...">
+    <span id="clearIcon">&#10006;</span>
+  </div>
+  <br>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th data-sort="name">Name<span id="nameArrowIcon" class="arrow"></span></th>
+        <th data-sort="zone">Zone<span id="zoneArrowIcon" class="arrow"></span></th>
+        <th data-sort="category">Category<span id="categoryArrowIcon" class="arrow"></span></th>
+        <th data-sort="top">TOP<span id="topArrowIcon" class="arrow"></span></th>
+        <th data-sort="numunits">No. Units<span id="numunitsArrowIcon" class="arrow"></span></th>
+        <th data-sort="tenure">Tenure<span id="tenureArrowIcon" class="arrow"></span></th>
+        <th data-sort="preview">Preview Date<span id="previewArrowIcon" class="arrow"></span></th>
+        <th data-sort="booking">Booking Date<span id="bookingArrowIcon" class="arrow"></span></th>
+        <th data-sort="psf">PSF<span id="psfArrowIcon" class="arrow"></span></th>
+        <th data-sort="notes">NOTES<span id="notesArrowIcon" class="arrow"></span></th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="dataList"></tbody>
+  </table>
+  
+
+  <script src="currentprojects.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</body>
+</html>

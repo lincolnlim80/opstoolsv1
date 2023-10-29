@@ -1,0 +1,56 @@
+.table-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+#dataTable {
+  width: 2000px;
+}
+
+table {
+    table-layout: fixed;
+    width: auto;
+    border-collapse: collapse;
+  }
+
+/* Set width for the first and third columns */
+table tr th:nth-child(1),
+table tr th:nth-child(7) {
+  width: 300px; /* Adjust the width value as desired */
+}
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    cursor: pointer;
+  }
+  
+
+  .arrow::after {
+    content: ' ▼';
+  }
+  
+  .arrow.asc::after {
+    content: ' ▲';
+  }
+  
+  .arrow.desc::after {
+    content: ' ▼';
+  }
+
+    
+  #clearIcon {
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  .u-font-montserrat-copy {
+    font-family: Montserrat, sans-serif !important;
+    margin: 20px auto;
+    font-size: 26px;
+    font-weight: bold;
+}

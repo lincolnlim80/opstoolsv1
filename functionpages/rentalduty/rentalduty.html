@@ -1,0 +1,23 @@
+<script       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<div id="text01"> Rental Stamp Duty (Residential)</div>
+<br>
+<div id="text11"> <p style="font-size: 26px">Monthly Rental Fee $<span id="textrentalfee"> 4,000</span></p></div>
+<input type="range" id="js-amount-range" value="4000" min="0" max="10000" step="100">
+<input type="number" id="js-amount-input" value="4000" min="0" max="10000" step="50"></input>
+<br>
+<br>
+<div id="text12"> No. Years # <span id="textnumyears"> 2</span></div>
+<input type="range" id="js-numyears-range" value="2" min="1" max="4" step="1"></input>
+<br>
+<br>
+
+
+<br>  <!--//this is a break tab -->
+<div id="text13"> Rental Stamp Duty Payable $ <span id="texttotalduty"> 384</span></div>
+<br>
+<br>
+<div id="text11"> <p style="font-size: 10px">(0.4% of total rent for the period of lease)</p></div>
+
+<script src="./rentalduty.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
