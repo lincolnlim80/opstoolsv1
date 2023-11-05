@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head> 
+    <title>Decoupling Calculator</title>
+    <!-- Include Normalize.css .. Normalize.css is a CSS file that helps standardize and normalize default styles across different web browsers. It's often used as a starting point in web development to ensure a more consistent rendering of web content. -->
+    <link rel="stylesheet" href="rsc/Normalize.css"> 
+    <link href="rsc/myDefaultStyle.css" rel="stylesheet" />
+    <link href="./decoupling.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </head>
+
+<body>
+    <h1>Decoupling Calculator</h1>
+    <br>
+    <!-- this section contains the Inputs -->
+    <div class="input-container">
+        <h3 style="width: 20%;">Market Value $: </h3>
+        <input type="range" id="js-mv-range" value="1500000" min="0" max="5000000" step="50000"></input>
+        <input type="number" id="js-mv-input" value="1500000" min="0" max="5000000" step="5000"></input>
+    </div>
+    <br>
+    <div class="input-container">
+        <h3 style="width: 20%;">Share of LP %: </h3>
+        <input type="range" id="js-lpsharepc-range" value="50" min="1" max="99" step="1"></input>
+        <input type="number" id="js-lpsharepc-input" value="50" min="1" max="99" step="1"></input>
+    </div>
+    <br>
+    <div class="input-container">
+        <h3 style="width: 20%;">Outstanding Loan $: </h3>
+        <input type="range" id="js-ol-range" value="200000" min="0" max="1000000" step="10000"></input>
+        <input type="number" id="js-ol-input" value="200000" min="0" max="1000000" step="5000"></input>
+    </div>
+    <br>
+    <div class="container">  <!-- left and right panels -->
+        <div class="left-panel"  style="font-size: 0.5rem;">
+            <h3 style="margin: 10px;">Leaving Party</h3>
+            <div class="output-container">
+                <p>Shares Value: <span><output id="output-lpsharesvalue">750000</output></span></p>
+                <p  style="margin: 0px; padding:0px;">Loan Settlemt: </p>
+                <output style="margin-left: 5%;" id="output-lploansettlement">-100000</output>
+                <div class="input-containerSmall">
+                    <p style="width: 25%;">CPF Owed: </p>
+                    <input type="range" id="js-lpcpfowed-range" value="-50000" min="-500000" max="0" step="10000"></input>
+                    <input type="number" id="js-lpcpfowed-input" value="-50000" min="-500000" max="0" step="1000"></input>
+                </div>
+                <p >Cash Balance: <span><output id="output-lpcashbalance">600000</output></span></p>
+            </div>
+        </div>
+        <div class="right-panel"  style="font-size: 0.5rem;">
+            <h3 style="margin: 10px;">Staying Party</h3>
+            <div class="output-container">
+                <p >Shares Value: <span><output id="output-spsharesvalue">-750000</output></span></p>
+
+                <p style="display:flex; align-items: center; margin: 0px; padding:0px; ">Loan Settlemt: 
+                <input style="width: 50px; height: 25px; font-size: x-small; margin-left: 2%; margin-right: 0%;" type="number" id="js-sploanpc-input" value="75" min="0" max="100" step="1">%;</p>
+                <output style="margin-left: 5%;" id="output-sploansettlement" >562500</output>
+
+                <div class="input-containerSmall">
+                    <p style="width: 30%;">CPF Available: </p>
+                    <input type="range" id="js-spcpfsaved-range" value="50000" min="0" max="500000" step="10000"></input>
+                    <input type="number" id="js-spcpfsaved-input" value="50000" min="0" max="500000" step="1000"></input>
+                </div>
+                <p >Cash Balance: <span><output id="output-spcashbalance">-137500</output></span></p>
+            
+                <select id="NumProperties">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>=>3</option>
+                </select>
+                <select id="Citizenship">
+                    <option value="Singaporean">SC</option>
+                    <option value="SPR">SPR</option>
+                    <option value="Foreigner">FOR</option>
+                </select>
+                <p class="compacttext">BSD% <span id="textbsdpc"></span></p>
+                <p class="compacttext">BSD$ <span id="textbsd"></span></p>
+                <p class="compacttext">ABSD% <span id="textabsdpc"></span></p>
+                <p class="compacttext">BSD$ <span id="textabsd"></span></p>
+                <p class="compacttext">Total Stamp Duty% <span id="texttotaldutypc"></span></p>
+                <p class="compacttext">Total Stamp Duty$ <span id="texttotalduty"></span></p>
+            </div>
+        </div>
+    </div>
+    <!-- this section contains the Overall CashBalance Outputs -->
+    <div style="height: auto; width: auto; background: linear-gradient(to bottom, rgba(154, 186, 228, 0.7), rgba(98, 103, 238, 0.7)); padding-top: 5px; padding-left: 5px; padding-right: 5px">
+        <div style="display: flex; align-items: center;">
+        <div style="padding: 10px;">
+            <div style="display: flex; align-items: center;">
+                <p>Overall Cash Balance = LP Cash Balance <span><output id="output-lpcashbalance1">[600000]</output></span> + SP Cash Balance <span><output id="output-spcashbalance1">[-137500]</output></span> - Stamp Duty <span><output id="texttotalduty1">[17100]</output></span> - Legal 6000 = <output id="output-overallcashbalance">439400</output></p>
+              </div>
+        </div>
+        </div>
+    </div>
+    <!-- this section contains the New Debt Positions Outputs -->
+    <div class="input-container">
+        <div class="left-panel"  style="font-size: 0.5rem;">
+            <br>
+            <div> <p>Property Price $<span>
+            <input type="range" id="js-propertyprice-range" value="1000000" min="0" max="6000000" step="20000"></input>
+            <input type="number" id="js-propertyprice-input" value="1000000" min="0" max="6000000" step="10000"></input></span></p></div>
+            <div> <p>LTV %<span>
+            <input type="range" id="js-ltv-range" value="75" min="0" max="100" step="5"></input>
+            <input type="number" id="js-ltv-input" value="75" min="0" max="100" step="1"></input></span></p></div>
+            <div> <p>Loan Amount $<span>
+            <input type="range" id="js-loanamount-range" value="750000" min="0" max="5000000" step="20000"></input>
+            <input type="number" id="js-loanamount-input" value="750000" min="0" max="5000000" step="10000"></input></span></p></div>
+            <div> <p>Interest Rate %/yr<span>
+            <input type="range" id="js-ir-range" value="5" min="0" max="20" step="1"></input>
+            <input type="number" id="js-ir-input" value="5" min="0" max="20" step="0.5"></input></span></p></div>
+            <div> <p>Loan Tenure yr<span>
+            <input type="range" id="js-tenure-range" value="20" min="0" max="30" step="1"></input>
+            <input type="number" id="js-tenure-input" value="20" min="0" max="30" step="1"></input></span></p></div>
+            <br>
+            <br>
+            <div> New Property Monthly Mortgage $ <span id="textmonthlymortgage"> 4950</span></div>
+            <br>
+        </div>
+        
+        <div class="right-panel"  style="font-size: 0.5rem;">
+            <div> <p class="compacttext">Current loan $ <span id="textspcurrentloan">100000</span></p></div>
+            <div> <p class="compacttext">i) Find out current loan repayment $ <span><input type="number" id="js-spcurrentmortgage-input" value="633" min="0" max="10000" step="1"></input></span></p></div>
+            <div style="text-indent: 10px; font-family:'Arial Narrow'; font-size: 0.5rem;">Use below tool to help work it out. Loan tenure for this refinancing portion is lower of (75-age) or (35- years loan started). Set LTV to 100%. </div>
+            <br>
+            <div> <p class="compacttext">ii) Find out added loan repayment $ </p></div>
+            <div> <p>Extra Loan $<span>
+            <input type="range" id="js-extraloan-range" value="562500" min="0" max="5000000" step="20000"></input>
+            <input type="number" id="js-extraloan-input" value="562500" min="0" max="5000000" step="10000"></input></span></p></div>
+            <div> <p>Interest Rate %/yr<span>
+            <input type="range" id="js-spir-range" value="5" min="0" max="20" step="1"></input>
+            <input type="number" id="js-spir-input" value="5" min="0" max="20" step="0.5"></input></span></p></div>
+            <div> <p>Loan Tenure yr<span>
+            <input type="range" id="js-sptenure-range" value="20" min="0" max="30" step="1"></input>
+            <input type="number" id="js-sptenure-input" value="20" min="0" max="30" step="1"></input></span></p></div>
+            <div> Added Monthly Mortgage $ <span id="textspaddedmonthlymortgage"> 2501</span></div>
+            <div> Total Monthly Mortgage $ <span id="textsptotalmonthlymortgage"> 3134</span></div>
+            <br>
+        </div>
+    </div>
+
+</body>
+<script src="./decoupling.js" ></script>
+</html>
+

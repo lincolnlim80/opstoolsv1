@@ -135,7 +135,7 @@ $("#textabsd").html("<strong>" + numberWithCommas(parseFloat(op_ABSD).toFixed(0)
 function getTotalDuty() {
   
 op_totaldutypc = op_BSDpc + op_ABSDpc;
-$("#textotaldutypc").html("<strong>" + numberWithCommas(parseFloat(op_totaldutypc).toFixed(2)) + "</strong>");
+$("#texttotaldutypc").html("<strong>" + numberWithCommas(parseFloat(op_totaldutypc).toFixed(2)) + "</strong>");
   
 op_TotalDuty = parseFloat(op_BSD) + parseFloat(op_ABSD);
 $("#texttotalduty").html("<strong>" + numberWithCommas(parseFloat(op_TotalDuty).toFixed(0)) + "</strong>");  // got to parse as op_ABSD was not a number

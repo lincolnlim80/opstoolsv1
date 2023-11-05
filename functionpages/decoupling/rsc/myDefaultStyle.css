@@ -1,0 +1,542 @@
+/* tips to get responsive styles */
+/* 1. use % rather than pixels */
+/* 2. Styles defined without a media query will be the default styles, which will apply to all screen sizes unless overridden by media queries. */
+/*    So start with 100% assuming this is for mobile, then use media query to override for other larger screen sizes. */
+/* 2. To allow content to extend outside of the screen and make the user scroll horizontally on mobile devices when necessary, you can use CSS properties like overflow-x and white-space. Here's how you can achieve this: */
+/* white-space: nowrap;: This CSS property specifies that the text within an element should not wrap to the next line. By setting it to nowrap, you prevent line breaks, and content will extend beyond the screen horizontally.
+overflow-x: auto;: This CSS property specifies how to handle content that overflows the horizontal axis. By setting it to auto, it adds a horizontal scrollbar when the content extends beyond the screen. */
+/* 3. The image dimensions you mentioned within an <img> tag are the intrinsic dimensions of the image. These dimensions determine the image's aspect ratio and how it will be displayed within its container. When you specify an image's dimensions in HTML, you're telling the browser how much space to allocate for that image, which can be helpful for optimizing page layout and reducing layout shifts when the page loads. These dimensions aren't typically changed based on media queries. */
+/* However, it's important to note that media queries can be used in conjunction with CSS to specify different images (with different dimensions) to be displayed under different conditions. For example, you might load larger images for larger screens and smaller ones for mobile devices using CSS and media queries. */
+/* 4. Critical Content First: On small screens, it's important to place the most critical content at the top of the page. This is often referred to as "above-the-fold" content, which users see without having to scroll. Critical content includes your main message, key calls to action, and important information. */
+/* 5. Primary Font (Font Family): This is the primary font that you use for your website's main content. It's the font that visitors will read the most. It should be legible, easy to read, and appropriate for the content of your site. Common choices include serif or sans-serif fonts.
+Secondary Font (Font Stack): This font is used for headings, subheadings, and other elements that you want to stand out. It complements the primary font but can be a bit more decorative or attention-grabbing. You might choose a font stack that specifies a series of fonts, allowing your design to fall back to similar fonts if the primary choice isn't available on the user's device. */
+/* 6. For Small Screens (e.g., Mobile Devices):
+Body Text: The base font size for body text on small screens is commonly set between 16px and 18px. This size provides good readability on most mobile devices.
+Headings (H1, H2, H3): Headings can be larger to emphasize their importance. H1 headings can range from 24px to 30px, H2 headings from 20px to 24px, and H3 headings from 18px to 22px.
+Line Height: To improve readability, use a line height (line spacing) of around 1.5 times the font size. */
+/* 6. For Larger Screens (e.g., Desktop):
+Body Text: The base font size for body text on larger screens can be slightly smaller, typically between 18px and 20px. This maintains readability without making the text too large.
+Headings (H1, H2, H3): Headings can also be slightly smaller. H1 headings might range from 26px to 32px, H2 headings from 22px to 28px, and H3 headings from 20px to 24px.
+Line Height: Maintain a line height of around 1.6 times the font size for improved readability.
+Spacing and Layout: On larger screens, you can use additional spacing between elements to make the content look well-proportioned and easily scannable. */
+/* 7. Line Height for Body text:
+A line height (line spacing) of around 1.5 to 1.7 times the font size is generally considered readable for body text. For your body text with a default font size of 16px, this would mean a line height of around 24px to 27px. */
+/* 7. Font Sizes and Line Height for Headings:
+You've defined font sizes for headings in your styles. To ensure good readability, you can set line heights for headings. Typically, headings can have a slightly tighter line height compared to body text, somewhere around 1.2 to 1.4 times the font size. For instance, if your H1 has a font size of 24px, you might set the line height to 30px to 33px. */
+/* 7. Spacing:
+The spacing between sections depends on your design preferences. You've used gap: 20px in your .hsection-container, which should provide sufficient spacing between horizontal sections on small screens. For smaller screen sizes (mobile), this space will remain consistent. */
+/* 8. Spacing:
+To set spacing between headings and paragraphs in your CSS, you can use the margin or padding properties. You can target specific elements, like headings and paragraphs, and define margins or padding for them.*/
+/* 9. Designing a table that allows overspill outside of the viewport is not a common approach for web design because it can lead to a poor user experience. Horizontal scrolling for tables is generally not user-friendly, especially on mobile devices with limited screen space. The mobile-first design philosophy suggests optimizing your design for smaller screens first, but it doesn't mean making content overflow outside of the viewport.
+Instead, for tables with a large number of columns and lots of information, you should aim to design responsive tables that adapt to different screen sizes. Here are some common approaches: */
+/* Horizontal Scrolling Within Table: Consider implementing horizontal scrolling within the table, but ensure it's contained within the table's designated area. This approach allows users to scroll horizontally within the table's boundaries.
+Responsive Design: Design your table to be responsive. You can hide less important columns on smaller screens or display them differently (e.g., as dropdowns or accordions). This way, users can still access all the information without horizontal scrolling.
+Column Prioritization: Prioritize the display of columns based on their importance. Show the most critical information first and design the table layout accordingly. Use media queries to adjust the display of columns for different screen sizes.
+Data Pagination: If you have a large dataset, consider implementing pagination for the table. This allows users to navigate through multiple pages of data rather than dealing with a wide table.
+Use of Cards: Consider displaying tabular data as cards in a stacked format for smaller screens. Each card can represent a row of data, making it easier to view on mobile devices. */
+
+
+/* STYLES INCLUDED HERE */
+
+    /* CLASS */
+    /* .section */
+/* Color Palette */
+:root {
+    --neutral-brown: #8B4513;    /* Saddle Brown */
+    --light-gray: #D3D3D3;       /* Light Gray */
+    --medium-gray: #808080;      /* Medium Gray */
+    --dark-gray: #2F4F4F;        /* Dark Slate Gray */
+    --text-color: #333;          /* Default Text Color */
+    }
+
+    .tableheader-selector {
+        background-color: var(--light-gray); /* Using the light gray color */
+        color: var(--neutral-brown);         /* Using the neutral brown color */
+      }      
+
+/* EXAMPLES FOR INFORMATION*/
+.hanging-indent {
+    text-indent: 30px; /* Indent specific paragraphs by 30 pixels */
+}
+
+.my-divbackground1 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    /* Other styling properties for the element */
+}
+
+/* MAIN STYLES FOR COMMON HTML TAGS*/
+/* text styles */
+    /* Primary Font: Lato */
+    body {
+        font-family: 'Lato', sans-serif;
+        font-size: 16px; /* Default font size for the entire page */
+        line-height: 1.5; /* Adjust the line height as needed */
+        padding: 20px;
+        /* text indent should not be placed here as it'll affect list and other tags. best to define more specifically. */
+        }
+    p   {
+        margin-bottom: 20px; /* Adjust the value to control the spacing between paragraphs */
+        text-indent: 20px; /* Indent the first line by 20 pixels*/
+    }
+    /* Define font sizes for other elements as needed. For those not specified, then browser will use its default, very often its 16px*/
+
+    /* Secondary Font: Roboto */
+    /* This is an example of defining another font for variety */
+    h1, h2, h3, h4, h5, h6 {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        font-family: 'Roboto', sans-serif;
+        margin-bottom: 10px; /* Adjust the value to control the spacing between headings and paragraphs */
+        text-indent: 0px; /* Indent the first line by 20 pixels*/
+    }
+    h1 {
+        font-size: 24px; /* Font size for H1 headings */
+        line-height: 1.4; /* Adjust the line height as needed */
+    }
+    h2 {
+        font-size: 20px; /* Font size for H2 headings */
+        line-height: 1.3; /* Adjust the line height as needed */
+    }
+    h3, h4, h5, h6 {
+        font-size: 16px; /* Font size for H2 headings */
+        line-height: 1.2 /* Adjust the line height as needed */
+    }
+
+/* List styles */
+    ul {
+        list-style-type: disc; /* Unordered list marker style */
+        margin: 0; /* Reset margin to remove default spacing */
+        padding: 10; /* Reset padding to remove default spacing */
+    }
+    ol.decimal {
+        list-style-type: decimal;
+    }
+        /* ol.lower-alpha {
+        list-style-type: lower-alpha;
+    }
+        ol.upper-alpha {
+        list-style-type: upper-alpha;
+    }
+        ol.lower-roman {
+        list-style-type: lower-roman;
+    }
+        ol.upper-roman {
+        list-style-type: upper-roman;
+    } */
+    li {
+        margin: 10px 0; /* Add vertical margin between list items. the second digit is for the left and right hand margins */
+        padding-left: 20px; /* Indent the list items by 20 pixels */
+    }
+
+/* Anchor style */
+    a {
+        color: #0077cc; /* anchor tag for lines. Link text color */
+        text-decoration: underline; /* Underline the link text */
+    }
+    a:hover {
+        color: #ff3300; /* Link text color on hover */
+        text-decoration: none; /* Remove underline on hover */
+        background-color: #f2f2f2; /* Background color on hover */
+    }
+
+    img {
+        max-width: 100%;  /*scale size of original image to screen*/
+        height: auto;
+    }
+    
+
+/* Apply a style to the entire table */
+    table {
+        width: 100%; /*this controls how much space the table occupies across the page. but if max and min column width not set, then it's possible for table to spill outside viewport. recommend to always set min and max column width in td*/
+        border-collapse: collapse;
+        border: 1px solid #0b0a0a;
+    }
+    /* Style for table headers (th) */
+    th {
+        background-color: #3498db; /* Header background color */
+        color: white; /* Header text color */
+        text-align: center; /* Center-align text in headers */
+        padding: 0px; /* can use Header cell padding to give space top and bottom*/
+        border: 1px solid #0b0a0a;
+    }
+    /* Style for table cells (td) */
+    td {
+        padding: 8px; /* Cell padding */
+        text-align: left; /* Left-align text in table cells */
+        line-height: 1.5; /* Adjust line height for better readability */
+        border: 1px solid #0b0a0a;
+        overflow:unset; /* allow scrolling of cells within a table if set to scroll */
+        white-space: unset; /* if unset, then browser will change cell height and wrap text. in that case, the scrollable cell effect will not occur*/
+        /* column-width: 50px; setting column width on its own has some limitations. the browser will limit this to a min. therefore recommend to set max and min column width instead*/
+        max-width: 120px; /* Need to fix max-column-width to enable scrolling within cell effect. */
+        min-width: 80px; /* use min-width to set a min width for cell*/
+    }
+        /*Below is an example to use a link to display text as required instead of showing all text upfront*/
+        .td-ellipsis {
+            overflow: auto;
+            text-overflow: ellipsis;
+            cursor: pointer; /* Change cursor to a pointer on hover */
+        }
+        .td-ellipsis .content {
+            display: none; /* Initially hide the content */
+        }
+    /* Alternating row colors for better readability */
+    tr:nth-child(even) {
+        background-color:  rgba(118, 102, 66, 0.7);
+    }
+    tr:nth-child(odd) {
+        background-color: rgba(233, 227, 214, 0.7);
+    }
+    /* Hover effect for table rows */
+    tr:hover {
+        background-color: #732f0520;
+    }
+
+/* Single Card Style  */
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 16px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.card-text {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.card-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.card-button:hover {
+    background-color: #2374ab;
+}
+
+
+/* Multiple Card Style  */
+.card-gallery {
+    display:flex;
+    overflow: hidden;
+    width: 80%; /* Adjust the width as needed */
+    border: 1px solid #ddd;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+    position: relative; /* To position buttons relative to this container */
+}
+
+.card-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0; /* Set a lower z-index to let buttons appear on top */
+}
+
+.card1 img {    /*targes img that are descendents of .card1 */
+    width: 50%;  /*scale size of original image*/
+    height: auto;
+}
+
+.card1 {
+    width: 300px; /* Adjust the card width as needed */
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.scroll-button {
+    position: absolute;
+    top: 50%; /* Adjust the vertical position as needed */
+    transform: translateY(-50%);
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1; /* Ensure buttons are above the card container */
+}
+  
+  .left-button {
+    left: 10px; /* Adjust the position from the left edge */
+}
+  
+  .right-button {
+    right: 10px; /* Adjust the position from the right edge */
+}
+
+/* for Carousel */
+.carousel {
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+  }
+  
+  .carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    flex: 0 0 300px;
+  }
+  
+
+  .my-tab-container{width: 100%}
+  .my-tab-container .tab-nav{display: flex; list-style: none; padding: 0}
+  .my-tab-container .tab-nav li{margin-right: 10px}
+  .my-tab-container .tab-nav li a{display: block; padding: 5px 10px; background-color: #f1f1f1; color: #333; text-decoration: none; border: 1px solid #ccc; border-bottom: none; border-radius: 4px 4px 0 0}
+  .my-tab-container .tab-nav li a.active{background-color: #fff; border-bottom: 1px solid #fff}
+  .my-tab-container .tab-content{display: none; padding: 10px; border: 1px solid #ccc; border-top: none; border-radius: 0 4px 4px 4px}
+  .my-tab-container .tab-content.active{display: block}
+
+
+
+/* MEDIA QUERY RULES BASED ON CLASSES*/
+/* MOBILE LAYOUT */
+.vsection1 {
+    text-align: center;
+    color: #515157ce;
+    padding: 20px; /* Padding for small screens (mobile) */
+}
+.vsection2 {
+    text-align: center;
+    color: #515157ce;
+    padding: 0px; /* Padding for small screens (mobile) */
+}
+/* Base styles for the vertical sections */
+.hsection-container {
+    display: flex; /* Use a flex container to arrange sections vertically */
+    flex-direction: row; /* Arrange sections in a column layout */
+    justify-content: space-between; /* Distribute columns equally */
+    gap: 20px; /* Add spacing between sections */
+}
+.hsection {
+    background-color: #3498db;
+    padding: 20px;
+    border: 1px solid #ccc;
+    flex: 1; /* Grow to occupy available space equally */
+    max-width: calc(33.3333% - 20px); /* Account for margins between columns */
+    margin-right: 20px; /* Add margin to separate columns */
+}
+/* Remove the margin from the last column to avoid extra spacing */
+.hsection:last-child {
+    margin-right: 0;
+}
+
+    /* for additional information, below style will choose not to resize and allow content to spill outside of viewport. the way the horizontal scroll works is then defined by values such as visible, hidden, scroll and auto*/
+    /* .hsection {
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+      .vsection {
+        white-space: nowrap;
+        overflow-x: auto;
+      } */
+
+/* TABLET LAYOUT */
+@media (min-width: 768px) {
+    .vsection {
+        background-color: #515157ce;
+        padding: 0px;
+    }
+    .hsection {
+        background-color: #229366;
+    }
+    .popup{
+        max-width:40%;
+    }
+
+}
+
+/* PC LAYOUT */
+@media (min-width: 1024px) {
+    .vsection {
+        background-color: #515157ce;
+        padding: 0px;
+    }
+    .hsection {
+        background-color: #a01f9c;
+    }
+    .popup {
+        max-width:40%;
+    }
+}
+
+/* below is for pop-up form */
+  /* my own style for popup */
+.popup{
+    display:none;
+    position:fixed;
+    z-index:1;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:80%;
+    height:80%;
+    overflow:auto;
+    background-color:#565454;
+    margin:0;
+    padding:10px;
+    border:10px solid #888;
+    border-width: 3px;
+    font-size:1rem;
+    font-weight:200;
+    }
+.send{
+	margin-top:10px;
+	}
+.close{
+	color:#fff;
+	margin-top:10px;
+	}
+
+form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0 auto;
+    }
+
+
+.popup .send:focus,.popup .send:hover{
+    color:#000;
+    background-color:#cac3c3;
+    text-decoration:none;
+    cursor:pointer
+    }
+.popup .close:focus,.popup .close:hover{
+    color:#cac3c3;
+    text-decoration:none;
+    cursor:pointer
+    }
+
+label{
+    display: inline; /* Labels are typically inline elements */
+    cursor: pointer; /* The cursor changes to a pointer when hovering over a label, indicating it's clickable */
+    color:#fff; /* The text color may vary depending on the user agent's color scheme */
+    font-size: 0.8rem; /* The font size may vary depending on the user agent's default font settings */
+    font-weight: normal; /* Typically, labels have normal font weight */
+    margin: 0; /* No margin by default */
+    padding: 0; /* No padding by default */
+    background-color: transparent; /* Typically, labels have a transparent background */
+    border: 0; /* No border by default */
+    text-align: left; /* Text alignment is typically left-aligned */
+    }
+    
+input{
+    display: inline-block; /* Inputs are typically displayed as inline-block elements */
+    box-sizing: border-box; /* The box model includes padding and border within the width and height */
+    padding:5px; /* Default padding around the input element */
+    border: 1px solid #ccc; /* Default border with a light gray color */
+    background-color:#cac3c3; /* Default background color is typically white */
+    color: -system-text; /* The text color may vary depending on the user agent's color scheme */
+    font-size: 0.8rem;  /* The font size may vary depending on the user agent's default font settings */
+    font-weight: normal; /* Typically, inputs have normal font weight */
+    margin: 0; /* No margin by default */
+    text-align: left; /* Text alignment is typically left-aligned */
+    cursor: text; /* The cursor style is usually set to a text cursor when hovering over the input */
+    width:100%;
+    }
+textarea{
+    display: inline-block; /* Textareas are typically displayed as inline-block elements */
+    box-sizing: border-box; /* The box model includes padding and border within the width and height */
+    padding: 2px; /* Default padding around the textarea element */
+    border: 1px solid #ccc; /* Default border with a light gray color */
+    background-color:#cac3c3; /* Default background color is typically white */
+    color: -system-text; /* The text color may vary depending on the user agent's color scheme */
+    font-size: 0.8rem;  /* The font size may vary depending on the user agent's default font settings */
+    font-weight: normal; /* Typically, textareas have normal font weight */
+    margin: 0; /* No margin by default */
+    text-align: left; /* Text alignment is typically left-aligned */
+    cursor: text; /* The cursor style is usually set to a text cursor when hovering over the textarea */
+    resize: both; /* Allows the textarea to be resized by the user, both horizontally and vertically */
+    overflow: auto; /* If the content exceeds the dimensions, it adds scrollbars */
+    width:100%;
+    height:200px;
+    }    
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed to control button spacing */
+    }
+/* below are for carousell */
+.menu-wrapper {
+	position: relative;
+	width: 90%;
+	height: auto;
+	margin: 0px;
+    padding: 0px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+	border: 1px solid black;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.menu	{
+	height: 100px; 
+	background: #f3f3f3;
+	box-sizing: border-box;
+    white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	
+	.item {
+        white-space: wrap;
+		display: inline-block;
+		width: auto;
+		height: 80px;
+		outline: 2px dotted gray;
+		padding: 1.5em;
+		box-sizing: border-box;
+	}
+}
+.paddle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 3em;
+}
+.left-paddle {
+	left: 0;
+}
+.right-paddle {
+	right: 0;
+}
+.hidden {
+	display: none;
+}
