@@ -32,37 +32,46 @@
         <input type="number" id="js-ol-input" value="200000" min="0" max="1000000" step="5000"></input>
     </div>
     <br>
-    <div class="container">  <!-- left and right panels -->
-        <div class="left-panel"  style="font-size: 0.5rem;">
-            <h3 style="margin: 10px;">Leaving Party</h3>
-            <div class="output-container">
-                <p>Shares Value: <span><output id="output-lpsharesvalue">750000</output></span></p>
-                <p  style="margin: 0px; padding:0px;">Loan Settlemt: </p>
-                <output style="margin-left: 5%;" id="output-lploansettlement">-100000</output>
-                <div class="input-containerSmall">
-                    <p style="width: 25%;">CPF Owed: </p>
-                    <input type="range" id="js-lpcpfowed-range" value="-50000" min="-500000" max="0" step="10000"></input>
-                    <input type="number" id="js-lpcpfowed-input" value="-50000" min="-500000" max="0" step="1000"></input>
+    <div class="container" style="height: fit-content;">  <!-- left and right panels -->
+        <div class="left-panel">
+            <h3 style="margin: 10px;font-size: 1.5rem;">Leaving Party</h3>
+            <div style="font-size: 1.5rem;">
+                <div style="display: flex; padding-top: 10px; ">
+                    <p style="width: 45%; padding: 0px; margin: 0px;">Shares Value: </p> 
+                    <p style="padding: 0px; margin: 0px;" id="output-lpsharesvalue">750000</p>
+                </div>
+                <div style="display: flex; padding-top: 10px; ">
+                    <p style="width: 45%; padding: 0px; margin: 0px;">Loan Settlemt: </p>
+                    <p style="padding: 0px; margin: 0px;" id="output-lploansettlement">-100000</p>
+                </div>
+                <div class="input-container" style="padding-top: 10px; ">
+                    <p style="width: 30%; padding: 0px; margin: 0px;">CPF Owed: </p>
+                    <input style="width: 30%;" type="range" id="js-lpcpfowed-range" value="-50000" min="-500000" max="0" step="10000"></input>
+                    <input style="width: 30%; font-size: 30px;" type="number" id="js-lpcpfowed-input" value="-50000" min="-500000" max="0" step="1000"></input>
                 </div>
                 <p >Cash Balance: <span><output id="output-lpcashbalance">600000</output></span></p>
             </div>
         </div>
-        <div class="right-panel"  style="font-size: 0.5rem;">
-            <h3 style="margin: 10px;">Staying Party</h3>
-            <div class="output-container">
-                <p >Shares Value: <span><output id="output-spsharesvalue">-750000</output></span></p>
 
-                <p style="display:flex; align-items: center; margin: 0px; padding:0px; ">Loan Settlemt: 
-                <input style="width: 50px; height: 25px; font-size: x-small; margin-left: 2%; margin-right: 0%;" type="number" id="js-sploanpc-input" value="75" min="0" max="100" step="1">%;</p>
-                <output style="margin-left: 5%;" id="output-sploansettlement" >562500</output>
-
-                <div class="input-containerSmall">
-                    <p style="width: 30%;">CPF Available: </p>
-                    <input type="range" id="js-spcpfsaved-range" value="50000" min="0" max="500000" step="10000"></input>
-                    <input type="number" id="js-spcpfsaved-input" value="50000" min="0" max="500000" step="1000"></input>
+        <div class="right-panel">
+            <h3 style="margin: 10px;font-size: 1.5rem;">Staying Party</h3>
+            <div style="font-size: 1.5rem;">
+                <div style="display: flex; padding-top: 10px; ">
+                    <p style="width: 45%; padding: 0px; margin: 0px;">Shares Value: </p> 
+                    <p style="padding: 0px; margin: 0px;" id="output-spsharesvalue">-750000</p>
+                </div>
+                <div style="display: flex; padding-top: 10px; ">
+                    <p style="width: 45%; padding: 0px; margin: 0px;">Loan Settlemt: </p>
+                    <p style="padding: 0px; margin: 0px;" id="output-sploansettlement">562500</p>
+                </div>
+                <div class="input-container" style="padding-top: 10px; ">
+                    <p style="width: 30%; padding: 0px; margin: 0px;">CPF Avail.: </p>
+                    <input style="width: 30%;" type="range" id="js-spcpfsaved-range" value="50000" min="0" max="500000" step="10000"></input>
+                    <input style="width: 30%; font-size: 30px;" type="number" id="js-spcpfsaved-input" value="50000" min="0" max="500000" step="10000"></input>
                 </div>
                 <p >Cash Balance: <span><output id="output-spcashbalance">-137500</output></span></p>
-            
+            </div>
+            <div class="output-container">            
                 <select id="NumProperties">
                     <option value=1>1</option>
                     <option value=2>2</option>
@@ -73,65 +82,104 @@
                     <option value="SPR">SPR</option>
                     <option value="Foreigner">FOR</option>
                 </select>
-                <p class="compacttext">BSD% <span id="textbsdpc"></span></p>
-                <p class="compacttext">BSD$ <span id="textbsd"></span></p>
-                <p class="compacttext">ABSD% <span id="textabsdpc"></span></p>
-                <p class="compacttext">BSD$ <span id="textabsd"></span></p>
-                <p class="compacttext">Total Stamp Duty% <span id="texttotaldutypc"></span></p>
-                <p class="compacttext">Total Stamp Duty$ <span id="texttotalduty"></span></p>
+                <div style="display: flex; font-size: 24px;">
+                    <p style="width: 25%;">BSD% </p>
+                    <p id="textbsdpc" style="width: 25%;"></p>
+                    <p style="width: 25%;">BSD$ </p>
+                    <p id="textbsd" style="width: 25%;"></p>
+                </div>
+                <div style="display: flex; font-size: 24px;">
+                    <p style="width: 25%;">ABSD% </p>
+                    <p id="textabsdpc" style="width: 25%;"></p>
+                    <p style="width: 25%;">ABSD$ </p>
+                    <p id="textabsd" style="width: 25%;"></p>
+                </div>
+                <div style="display: flex; font-size: 24px;">
+                    <p style="width: 25%;">Total SD% </p>
+                    <p id="texttotaldutypc" style="width: 25%;"></p>
+                    <p style="width: 25%;">Total SD$ </p>
+                    <p id="texttotalduty" style="width: 25%;"></p>
+                </div>
             </div>
         </div>
+
+
     </div>
     <!-- this section contains the Overall CashBalance Outputs -->
     <div style="height: auto; width: auto; background: linear-gradient(to bottom, rgba(154, 186, 228, 0.7), rgba(98, 103, 238, 0.7)); padding-top: 5px; padding-left: 5px; padding-right: 5px">
         <div style="display: flex; align-items: center;">
         <div style="padding: 10px;">
             <div style="display: flex; align-items: center;">
-                <p>Overall Cash Balance = LP Cash Balance <span><output id="output-lpcashbalance1">[600000]</output></span> + SP Cash Balance <span><output id="output-spcashbalance1">[-137500]</output></span> - Stamp Duty <span><output id="texttotalduty1">[17100]</output></span> - Legal 6000 = <output id="output-overallcashbalance">439400</output></p>
+                <p style="font-size: 30px;">Overall Cash Balance = LP Cash Balance <span><output id="output-lpcashbalance1">[600000]</output></span> + SP Cash Balance <span><output id="output-spcashbalance1">[-137500]</output></span> - Stamp Duty <span><output id="texttotalduty1">[17100]</output></span> - Legal 6000 = <output id="output-overallcashbalance">439400</output></p>
               </div>
         </div>
         </div>
     </div>
     <!-- this section contains the New Debt Positions Outputs -->
     <div class="input-container">
-        <div class="left-panel"  style="font-size: 0.5rem;">
+        <div class="left-panel"  style="font-size: 1.5rem;">
             <br>
-            <div> <p>Property Price $<span>
-            <input type="range" id="js-propertyprice-range" value="1000000" min="0" max="6000000" step="20000"></input>
-            <input type="number" id="js-propertyprice-input" value="1000000" min="0" max="6000000" step="10000"></input></span></p></div>
-            <div> <p>LTV %<span>
-            <input type="range" id="js-ltv-range" value="75" min="0" max="100" step="5"></input>
-            <input type="number" id="js-ltv-input" value="75" min="0" max="100" step="1"></input></span></p></div>
-            <div> <p>Loan Amount $<span>
-            <input type="range" id="js-loanamount-range" value="750000" min="0" max="5000000" step="20000"></input>
-            <input type="number" id="js-loanamount-input" value="750000" min="0" max="5000000" step="10000"></input></span></p></div>
-            <div> <p>Interest Rate %/yr<span>
-            <input type="range" id="js-ir-range" value="5" min="0" max="20" step="1"></input>
-            <input type="number" id="js-ir-input" value="5" min="0" max="20" step="0.5"></input></span></p></div>
-            <div> <p>Loan Tenure yr<span>
-            <input type="range" id="js-tenure-range" value="20" min="0" max="30" step="1"></input>
-            <input type="number" id="js-tenure-input" value="20" min="0" max="30" step="1"></input></span></p></div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Property$: </p>
+                <input style="width: 30%;" type="range" id="js-propertyprice-range" value="1000000" min="0" max="6000000" step="20000"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-propertyprice-input" value="1000000" min="0" max="6000000" step="10000"></input>
+            </div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">LTV%: </p>
+                <input style="width: 30%;" type="range" id="js-ltv-range" value="75" min="0" max="100" step="5"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-ltv-input" value="75" min="0" max="100" step="1"></input>
+            </div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Loan$: </p>
+                <input style="width: 30%;" type="range" id="js-loanamount-range" value="750000" min="0" max="5000000" step="20000"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-loanamount-input" value="750000" min="0" max="5000000" step="10000"></input>
+            </div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Rate$/yr: </p>
+                <input style="width: 30%;" type="range" id="js-ir-range" value="5" min="0" max="20" step="1"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-ir-input" value="5" min="0" max="20" step="0.5"></input>
+            </div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Tenure, yr: </p>
+                <input style="width: 30%;" type="range" id="js-tenure-range" value="20" min="0" max="30" step="1"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-tenure-input" value="20" min="0" max="30" step="1"></input>
+            </div>            
             <br>
             <br>
             <div> New Property Monthly Mortgage $ <span id="textmonthlymortgage"> 4950</span></div>
+            <br style="text-indent: 10px; font-family:'Arial Narrow'; font-size: 1rem;"></br>
+            <br>
             <br>
         </div>
         
-        <div class="right-panel"  style="font-size: 0.5rem;">
+        <div class="right-panel"  style="font-size: 1.5rem;">
             <div> <p class="compacttext">Current loan $ <span id="textspcurrentloan">100000</span></p></div>
-            <div> <p class="compacttext">i) Find out current loan repayment $ <span><input type="number" id="js-spcurrentmortgage-input" value="633" min="0" max="10000" step="1"></input></span></p></div>
-            <div style="text-indent: 10px; font-family:'Arial Narrow'; font-size: 0.5rem;">Use below tool to help work it out. Loan tenure for this refinancing portion is lower of (75-age) or (35- years loan started). Set LTV to 100%. </div>
+            <div> 
+                <p class="compacttext">i) Find out current loan repayment $ </p>
+            </div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Loan$: </p>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-spcurrentmortgage-input" value="633" min="0" max="10000" step="1"></input>
+            </div>
+            <div style="text-indent: 10px; font-family:'Arial Narrow'; font-size: 1rem;">Use below tool to help work it out. Loan tenure for this refinancing portion is lower of (75-age) or (35- years loan started). Set LTV to 100%. </div>
             <br>
             <div> <p class="compacttext">ii) Find out added loan repayment $ </p></div>
-            <div> <p>Extra Loan $<span>
-            <input type="range" id="js-extraloan-range" value="562500" min="0" max="5000000" step="20000"></input>
-            <input type="number" id="js-extraloan-input" value="562500" min="0" max="5000000" step="10000"></input></span></p></div>
-            <div> <p>Interest Rate %/yr<span>
-            <input type="range" id="js-spir-range" value="5" min="0" max="20" step="1"></input>
-            <input type="number" id="js-spir-input" value="5" min="0" max="20" step="0.5"></input></span></p></div>
-            <div> <p>Loan Tenure yr<span>
-            <input type="range" id="js-sptenure-range" value="20" min="0" max="30" step="1"></input>
-            <input type="number" id="js-sptenure-input" value="20" min="0" max="30" step="1"></input></span></p></div>
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Loan$: </p>
+                <input style="width: 30%;" type="range" id="js-extraloan-range" value="562500" min="0" max="5000000" step="20000"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-extraloan-input" value="562500" min="0" max="5000000" step="10000"></input>
+            </div>            
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Rate$/yr: </p>
+                <input style="width: 30%;" type="range" id="js-spir-range" value="5" min="0" max="20" step="1"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-spir-input" value="5" min="0" max="20" step="0.5"></input>
+            </div>            
+            <div class="input-container" style="padding-top: 20px; ">
+                <p style="width: 30%; padding: 0px; margin: 0px;">Tenure, yr: </p>
+                <input style="width: 30%;" type="range" id="js-sptenure-range" value="20" min="0" max="30" step="1"></input>
+                <input style="width: 30%; font-size: 30px;" type="number" id="js-sptenure-input" value="20" min="0" max="30" step="1"></input>
+            </div> 
+            <br>
             <div> Added Monthly Mortgage $ <span id="textspaddedmonthlymortgage"> 2501</span></div>
             <div> Total Monthly Mortgage $ <span id="textsptotalmonthlymortgage"> 3134</span></div>
             <br>
