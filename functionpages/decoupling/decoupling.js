@@ -125,7 +125,7 @@ function numberWithCommas(x) {
 function recalculate() {
     op_LPsharevalue = ip_LPsharepc/100 * ip_MV;
     op_SPsharevalue = ip_MV - op_LPsharevalue;
-    $("#output-lpsharesvalue").html(numberWithCommas(parseFloat(-op_LPsharevalue).toFixed(0)));
+    $("#output-lpsharesvalue").html(numberWithCommas(parseFloat(op_LPsharevalue).toFixed(0)));
     $("#output-spsharesvalue").html(numberWithCommas(parseFloat(-op_SPsharevalue).toFixed(0)));
     op_LPloan = -ip_LPsharepc/100 * ip_OL;
     $("#output-lploansettlement").html(numberWithCommas(parseFloat(op_LPloan).toFixed(0)));
