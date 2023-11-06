@@ -60,18 +60,35 @@
                     <p style="width: 45%; padding: 0px; margin: 0px;">Shares Value: </p> 
                     <p style="padding: 0px; margin: 0px;" id="output-spsharesvalue">-750000</p>
                 </div>
-                <div style="display: flex; padding-top: 10px; ">
+                <div class="input-container" style="padding-top: 20px; ">
+                    <p style="width: 30%; padding: 0px; margin: 0px;">LTV%: </p>
+                    <input style="width: 30%;" type="range" id="js-spltv-range" value="75" min="0" max="100" step="5"></input>
+                    <input style="width: 30%; font-size: 30px;" type="number" id="js-spltv-input" value="75" min="0" max="100" step="1"></input>
+                </div>
+                    <div style="display: flex; padding-top: 10px; ">
                     <p style="width: 45%; padding: 0px; margin: 0px;">Loan Settlemt: </p>
                     <p style="padding: 0px; margin: 0px;" id="output-sploansettlement">562500</p>
                 </div>
                 <div class="input-container" style="padding-top: 10px; ">
-                    <p style="width: 30%; padding: 0px; margin: 0px;">CPF Avail.: </p>
-                    <input style="width: 30%;" type="range" id="js-spcpfsaved-range" value="50000" min="0" max="500000" step="10000"></input>
-                    <input style="width: 30%; font-size: 30px;" type="number" id="js-spcpfsaved-input" value="50000" min="0" max="500000" step="10000"></input>
+                    <p style="width: 30%; padding: 0px; margin: 0px;">CPF%: </p>
+                    <input style="width: 30%;" type="range" id="js-spcpfusedpc-range" value="20" min="0" max="100" step="1"></input>
+                    <input style="width: 30%; font-size: 30px;" type="number" id="js-spcpfusedpc-input" value="20" min="0" max="100" step="1"></input>
                 </div>
-                <p >Cash Balance: <span><output id="output-spcashbalance">-137500</output></span></p>
+                 <div class="input-container" style="padding-top: 10px; ">
+                    <p style="width: 30%; padding: 0px; margin: 0px;">CPF Avail.: </p>
+                    <input style="width: 30%;" type="range" id="js-spcpfavail-range" value="150000" min="0" max="500000" step="10000"></input>
+                    <input style="width: 30%; font-size: 30px;" type="number" id="js-spcpfavail-input" value="150000" min="0" max="500000" step="10000"></input>
+                </div>
+                <div style="display: flex;">
+                    <p style="padding: 0px; margin: 0px;">CPF Used [</p>
+                    <p  style="padding: 0px; margin: 0px;" id="output-cpfusedpc">20</p>
+                    <p style="padding: 0px; margin: 0px;">%]: </p>
+                    <p  style="padding: 0px; margin: 0px;" id="output-cpfused">150000</p>
+                </div>
+                <div style="text-indent: 10px; font-family:'Arial Narrow'; font-size: 1rem;" id="output-errormsg">Enough CPF</div>
+                <p >Cash Balance: <span><output id="output-spcashbalance">-37500</output></span></p>
             </div>
-            <div class="output-container">            
+            <div class="output-container" style="font-size: 24px;">            
                 <select id="NumProperties">
                     <option value=1>1</option>
                     <option value=2>2</option>
@@ -110,7 +127,7 @@
         <div style="display: flex; align-items: center;">
         <div style="padding: 10px;">
             <div style="display: flex; align-items: center;">
-                <p style="font-size: 30px;">Overall Cash Balance = LP Cash Balance <span><output id="output-lpcashbalance1">[600000]</output></span> + SP Cash Balance <span><output id="output-spcashbalance1">[-137500]</output></span> - Stamp Duty <span><output id="texttotalduty1">[17100]</output></span> - Legal 6000 = <output id="output-overallcashbalance">439400</output></p>
+                <p style="font-size: 30px;">Overall Cash Balance = LP Cash Balance <span><output id="output-lpcashbalance1">[600000]</output></span> + SP Cash Balance <span><output id="output-spcashbalance1">[-37500]</output></span> - Stamp Duty <span><output id="texttotalduty1">[17100]</output></span> - Legal 6000 = <output id="output-overallcashbalance">539400</output></p>
               </div>
         </div>
         </div>
@@ -148,6 +165,8 @@
             <br>
             <div> New Property Monthly Mortgage $ <span id="textmonthlymortgage"> 4950</span></div>
             <br style="text-indent: 10px; font-family:'Arial Narrow'; font-size: 1rem;"></br>
+            <br>
+            <br>
             <br>
             <br>
         </div>

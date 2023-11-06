@@ -6,17 +6,20 @@
 var ip_MV = 1500000;  //current market value
 var ip_OL = 200000;  //outstanding loan
 var ip_LPCPF_owed = -50000;  //leaving party cpf owef
-var ip_SPCPF_saved = 50000;  //staying party cpf saved in oa account
+var ip_SPCPF_avail = 150000;  //staying party cpf saved in oa account
+var ip_SPCPFusedpc = 20;  //staying party cpf used in oa account
 var ip_LPsharepc = 50;  //share of leaving party to be bought by staying party
-var ip_SPloanpc = 75; 
+var ip_SPltv = 75;
 
 var op_LPsharevalue = 750000;
 var op_SPsharevalue = -750000;
 var op_LPloan = -100000;
 var op_SPloan = 562500;
+var op_SPcpfusedpc = 20;
+var op_SPCPFused = 150000;
 var op_SPcurrentloan = 100000;
 var op_LPcashbalance = 600000;
-var op_SPcashbalance = -137500;
+var op_SPcashbalance = -37500;
 var op_OverallCashBalance = 0;
 
 //BSD Variables
@@ -37,11 +40,14 @@ var $OL_rangeslider = $('#js-ol-range');
 var $OL_amount = $('#js-ol-input');
 var $LPCPF_owed_rangeslider = $('#js-lpcpfowed-range');
 var $LPCPF_owed_amount = $('#js-lpcpfowed-input');
-var $SPCPF_saved_rangeslider = $('#js-spcpfsaved-range');
-var $SPCPF_saved_amount = $('#js-spcpfsaved-input');
+var $SPCPF_avail_rangeslider = $('#js-spcpfavail-range');
+var $SPCPF_avail_amount = $('#js-spcpfavail-input');
 var $LP_sharepc_rangeslider = $('#js-lpsharepc-range');
 var $LP_sharepc_amount = $('#js-lpsharepc-input');
-var $SP_loanpc_amount = $('#js-sploanpc-input');
+var $SPltv_rangeslider = $('#js-spltv-range');
+var $SPltv_amount = $('#js-spltv-input');
+var $SPCPF_usedpc_rangeslider = $('#js-spcpfusedpc-range');
+var $SPCPF_usedpc_amount = $('#js-spcpfusedpc-input');
 
 //function for rangeslider. If this moves, then textvalues and inputbox get updated
 $MV_rangeslider.on('input', function() {
@@ -72,20 +78,24 @@ $LPCPF_owed_rangeslider.on('input', function() {
     recalculate(); 
 }); 
   
-$LPCPF_owed_amount.on('input', function() {$LPCPF_owed_rangeslider.val(this.value).change();
-ip_LPCPF_owed = this.value * 1;
+$LPCPF_owed_amount.on('input', function() {
+    $LPCPF_owed_rangeslider.val(this.value).change();
+    ip_LPCPF_owed = this.value * 1;
 recalculate(); 
 }); 
 
-$SPCPF_saved_rangeslider.on('input', function() {
-    ip_SPCPF_saved = this.value * 1;
-    $SPCPF_saved_amount[0].value = this.value;
+$SPCPF_avail_rangeslider.on('input', function() {
+    ip_SPCPF_avail = this.value * 1;
+    $SPCPF_avail_amount[0].value = this.value;
+    calcCPFusage();
     recalculate(); 
 }); 
   
-$SPCPF_saved_amount.on('input', function() {$SPCPF_saved_rangeslider.val(this.value).change();
-ip_SPCPF_saved = this.value * 1;
-recalculate(); 
+$SPCPF_avail_amount.on('input', function() {
+    $SPCPF_avail_rangeslider.val(this.value).change();
+    ip_SPCPF_avail = this.value * 1;
+    calcCPFusage();
+    recalculate(); 
 }); 
 
 $LP_sharepc_rangeslider.on('input', function() {
@@ -100,10 +110,30 @@ $LP_sharepc_amount.on('input', function() {
     recalculate(); 
 }); 
 
-
-$SP_loanpc_amount.on('input', function() {
-ip_SPloanpc   = this.value * 1;
+$SPltv_rangeslider.on('input', function() {
+    ip_SPltv = this.value * 1;
+    $SPltv_amount[0].value = this.value;
+    recalculate(); 
+}); 
+ 
+$SPltv_amount.on('input', function() {
+ip_SPltv   = this.value * 1;
 recalculate(); 
+});
+
+$SPCPF_usedpc_rangeslider.on('input', function() {
+    ip_SPCPFusedpc = this.value * 1;
+    $SPCPF_usedpc_amount[0].value = this.value;
+    $("#output-cpfusedpc").html(numberWithCommas(parseFloat(ip_SPCPFusedpc).toFixed(0)));
+    calcCPFusage();
+    recalculate(); 
+}); 
+ 
+$SPCPF_usedpc_amount.on('input', function() {
+    ip_SPCPFusedpc  = this.value * 1;
+    $("#output-cpfusedpc").html(numberWithCommas(parseFloat(ip_SPCPFusedpc).toFixed(0)));
+    calcCPFusage();
+    recalculate(); 
 });
 
 dropdown_NumProperties.addEventListener("change", function() {
@@ -121,6 +151,23 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+//function to decide how much cpf staying party will use
+// if cpf available is >=20% of share value, then use 20% as starting point
+// if cpf available is <20% of share value, then max out as starting point
+// apply lock so that use of cpf cannot reduce cash to less than 5%.
+// this part actually requires a proper loan analysis so it's best too keep it simple
+// so cpf use is lower of 0.2% share value and cpf available
+function calcCPFusage(){
+    op_SPCPFused = ip_SPCPFusedpc/100 * op_SPsharevalue;
+    $("#output-cpfused").html(numberWithCommas(parseFloat(op_SPCPFused).toFixed(0)));
+    if(op_SPCPFused > ip_SPCPF_avail){
+        $("#output-errormsg").html("Not Enough CPF").css("color", "red");
+    } else {
+        $("#output-errormsg").html("Enough CPF").css("color", "black");    
+    }
+}
+
+
 //calculates cash balance
 function recalculate() {
     op_LPsharevalue = ip_LPsharepc/100 * ip_MV;
@@ -131,12 +178,12 @@ function recalculate() {
     $("#output-lploansettlement").html(numberWithCommas(parseFloat(op_LPloan).toFixed(0)));
     op_SPcurrentloan = ip_OL + op_LPloan;
     $("#textspcurrentloan").html(numberWithCommas(parseFloat(op_SPcurrentloan).toFixed(0)));
-    op_SPloan = ip_SPloanpc/100 * op_LPsharevalue;
+    op_SPloan = ip_SPltv/100 * op_LPsharevalue;
     $("#output-sploansettlement").html(numberWithCommas(parseFloat(op_SPloan).toFixed(0)));
     op_LPcashbalance = op_LPsharevalue + op_LPloan + ip_LPCPF_owed;
     $("#output-lpcashbalance").html(numberWithCommas(parseFloat(op_LPcashbalance).toFixed(0)));
     $("#output-lpcashbalance1").html(numberWithCommas(parseFloat(op_LPcashbalance).toFixed(0)));
-    op_SPcashbalance = -op_SPsharevalue + op_SPloan + ip_SPCPF_saved;
+    op_SPcashbalance = -op_SPsharevalue + op_SPloan + op_SPCPFused;
     $("#output-spcashbalance").html(numberWithCommas(parseFloat(op_SPcashbalance).toFixed(0)));
     $("#output-spcashbalance1").html(numberWithCommas(parseFloat(op_SPcashbalance).toFixed(0)));
 
@@ -338,7 +385,6 @@ $Extraloan_rangeslider.on('input', function() {
 $Extraloan_amount.on('input', function() {
     $Extraloan_rangeslider.val(this.value).change();
     ip_spLoanamount = this.value * 1;
-    console.log(ip_spLoanamount);
     MonthlyspMortgage(); 
 }); 
 
@@ -368,7 +414,6 @@ $spTenure_amount.on('input', function() {
 
 function MonthlyspMortgage(){
     op_spaddedMonthlymortgage = Math.round(ip_spLoanamount * ip_spIR/100/12* (1+ip_spIR/100/12)**(ip_spTenure*12)/((1+ip_spIR/100/12)**(ip_spTenure*12)-1));
-    console.log(op_spaddedMonthlymortgage);
     $("#textspaddedmonthlymortgage").html(numberWithCommas(parseFloat(op_spaddedMonthlymortgage).toFixed(0)));
     op_sptotalMonthlymortgage = ip_spcurrentMonthlymortgage + op_spaddedMonthlymortgage;
     $("#textsptotalmonthlymortgage").html(numberWithCommas(parseFloat(op_sptotalMonthlymortgage).toFixed(0)));
