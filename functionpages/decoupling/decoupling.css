@@ -24,12 +24,14 @@
     /* Style the h3 element */
     .input-container h3 {
         margin-right: 10px; /* Add some spacing between the h3 and the range input */
+        width: 25%; 
+        font-size:30px;
     }
 
     /* Style the range input */
     .input-container input[type="range"] {
         -webkit-appearance: none;
-        width: 50%; /* Set the width of the range input */
+        width: 40%; /* Set the width of the range input */
         height: 10px; /* Set the height of the range input */
         background: #ddd; /* Background color of the track */
         outline: none; /* Remove the default focus styling */
@@ -50,6 +52,7 @@
     .input-container input[type="number"] {
         width: 20%; /* Set the width of the number input */
         height: 30px; /* Set the height of the number input */
+        font-size: 30px;
         margin-left: 2%; /* Add some spacing between the range and number inputs */
         position: relative; /* Position the range input relative to its containing element */
         left: 5%; /* Set the initial position from the left edge of the containing element */
