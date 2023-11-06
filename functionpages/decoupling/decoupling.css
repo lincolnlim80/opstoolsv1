@@ -51,55 +51,12 @@
 
     .input-container input[type="number"] {
         width: 20%; /* Set the width of the number input */
-        height: 42px; /* Set the height of the number input */
+        height: 60px; /* Set the height of the number input */
         font-size: 36px;
         margin-left: 2%; /* Add some spacing between the range and number inputs */
         position: relative; /* Position the range input relative to its containing element */
         left: 5%; /* Set the initial position from the left edge of the containing element */
     }
 
-    /* Style the container for the inputs and the h3 */
-    .input-containerSmall {
-        display: flex;
-        align-items: center;
-        }
-
-    /* Style the h3 element */
-    .input-containerSmall h3 {
-        margin-right: 10px; /* Add some spacing between the h3 and the range input */
-        font-size: 30px;
-    }
-
-    /* Style the range input */
-    .input-containerSmall input[type="range"] {
-        -webkit-appearance: none;
-        width: 40%; /* Set the width of the range input */
-        height: 10px; /* Set the height of the range input */
-        background: #ddd; /* Background color of the track */
-        outline: none; /* Remove the default focus styling */
-        position: relative; /* Position the range input relative to its containing element */
-        left: 0px; /* Set the initial position from the left edge of the containing element */
-        transform: translateX(0px); /* Adjust the range position based on left value */
-        }
-    
-    /* Style the thumb (handle) of the range input */
-    .input-containerSmall input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 10px; /* Set the width of the thumb */
-        height: 30px; /* Set the height of the thumb */
-        background: #3498db; /* Background color of the thumb */
-        cursor: pointer; /* Change the cursor to a pointer */
-    }
-
-    .input-containerSmall input[type="number"] {
-        width: 100px; /* Set the width of the number input */
-        height: 30px; /* Set the height of the number input */
-        margin-left: 15px; /* Add some spacing between the range and number inputs */
-        position: relative; /* Position the range input relative to its containing element */
-        left: 0px; /* Set the initial position from the left edge of the containing element */
-    }
-
-    .compacttext {
-        padding: 0px;
-        margin: 0px;
-    } 
+   
+ 
