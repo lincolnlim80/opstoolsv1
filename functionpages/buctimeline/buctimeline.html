@@ -11,8 +11,33 @@
   </head>
 
 <body>
-    <h1>BUC Timeline (Residential)s</h1>
+    <h1 style="font-size: 1.5rem;">BUC Timeline (Residential)</h1>
     <br>
+    <div class="input-container" style="font-size: 1.5rem; display: flex;">
+      <p style="width: 15%;">Property Price:</p>
+      <input style="left: 0px; width: 50%;" type="range" id="js-propertyprice-range" value="2000000" min="0" max="10000000" step="25000"></input>
+      <input style="font-size: 1.5rem; left: 0px;" type="number" id="js-propertyprice-input" value="2000000" min="0" max="10000000" step="10000"></input>
+    </div>
+    <div class="input-container" style="font-size: 1.5rem; display: flex;">
+      <p style="width: 15%;">CPF:</p>
+      <input style="left: 0px; width: 50%;" type="range" id="js-cpf-range" value="250000" min="0" max="1000000" step="10000"></input>
+      <input style="font-size: 1.5rem; left: 0px;" type="number" id="js-cpf-input" value="250000" min="0" max="1000000" step="10000"></input>
+      <p style="font-size: 1.5rem; margin-top: 30px; " id="js-textcpfpc">12.5</p> %
+    </div>
+    <div style="font-size: 1.5rem; display: flex;">
+      <p style="width: 15%;">LTV:</p>
+        <input style="font-size: 1.5rem; width: 8%; height: 100%;margin-top: 30px; " type="number" id="js-ltv-input" value="75" min="0" max="100" step="1">
+        <span style="font-size: 1.5rem; margin-top: 30px; "> %</span></input>      
+      <p style="width: 20%; margin-left: 5%;">Loan Amount: $<span id="js-textloanamount">1500000</span> </p>
+      <p >Cash: $<span id="js-textcash">250000</span>  ;</p>
+      <p style="font-size: 1.5rem; margin-top: 30px; " id="js-textcashpc">12.5</p> 
+        <span style="font-size: 1.5rem; margin-top: 30px;"> %</span>
+      <!-- <p style="width: 15%;">Interest Rate: <span>
+      <input style="font-size: 1.5rem; left: 0px; width: 25%;" type="number" id="js-rate-input" value="4" min="0" max="20" step="0.5"></input>%</span></p> -->
+    </div>
+
+    <br>
+
     <table style="font-size: 1.5rem;">
       <thead>
         <tr>
@@ -54,7 +79,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 5% Cash Booking Fee to get OTP</p> 
-              <p id="paymentbooking5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentbooking5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">100000</p>
             </div>
           </td>
           <td>
@@ -150,7 +175,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 15% Downpayment</p> 
-              <p id="paymentdownpayment15pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentdownpayment15pc" style="padding: 0px; margin: 0px;text-indent: 0px;">300000</p>
             </div>
           </td>
           <td>
@@ -175,7 +200,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 10%</p> 
-              <p id="paymentfoundation10pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentfoundation10pc" style="padding: 0px; margin: 0px;text-indent: 0px;">200000</p>
             </div>
           </td>
           <td>
@@ -200,7 +225,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 10%</p> 
-              <p id="paymentsuperstructure10pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentsuperstructure10pc" style="padding: 0px; margin: 0px;text-indent: 0px;">200000</p>
             </div>
           </td>
           <td>
@@ -225,7 +250,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 5%</p> 
-              <p id="paymentwalls5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentwalls5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">100000</p>
             </div>
           </td>
           <td>
@@ -250,7 +275,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 5%</p> 
-              <p id="paymentroof5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentroof5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">100000</p>
             </div>
           </td>
           <td>
@@ -275,7 +300,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 5%</p> 
-              <p id="paymentelectrical5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentelectrical5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">100000</p>
             </div>
           </td>
           <td>
@@ -290,7 +315,7 @@
             </div>
           </td>
         </tr>
-        <tr>
+        <tr>    
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; font-weight: bold; text-indent: 0px;">Carpark, Road, Drain Completed ~ </p> 
@@ -300,7 +325,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 5%</p> 
-              <p id="paymentroad5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentroad5pc" style="padding: 0px; margin: 0px;text-indent: 0px;">100000</p>
             </div>
           </td>
           <td>
@@ -325,7 +350,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 25%</p> 
-              <p id="paymentutilities25pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentutilities25pc" style="padding: 0px; margin: 0px;text-indent: 0px;">500000</p>
             </div>
           </td>
           <td>
@@ -349,7 +374,7 @@
           </td>
           <td>
             <div>
-              <p style="padding: 0px; margin: 0px; text-indent: 0px;">XX</p>
+              <p style="padding: 0px; margin: 0px; text-indent: 0px;">-</p>
             </div>
           </td>
           <td>
@@ -374,7 +399,7 @@
           <td>
             <div>
               <p style="padding: 0px; margin: 0px; text-indent: 0px;">Pay 15%</p> 
-              <p id="paymentcompletion15pc" style="padding: 0px; margin: 0px;text-indent: 0px;">XX</p>
+              <p id="paymentcompletion15pc" style="padding: 0px; margin: 0px;text-indent: 0px;">300000</p>
             </div>
           </td>
           <td>

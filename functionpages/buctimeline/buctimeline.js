@@ -10,6 +10,12 @@ var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 $('#campaignstart').val(today);
 
 
+
+var ip_PropertyPrice = 2000000;
+var ip_CPF = 250000;
+var ip_LTV = 75; 
+var ip_Rate = 4;
+
 var ip_DecisionDays = 14;
 var ip_BookingDays = 14;
 var ip_OTPDays = 21;
@@ -24,6 +30,22 @@ var ip_CRDDays = 4;
 var ip_SUDays = 4;
 var ip_TOPDays = 0;
 var ip_CompletionDays = 6;
+
+var op_Cash = 250000;
+var op_LoanAmount = 1500000;
+var op_CPFpc = 12.5;
+var op_Cashpc = 12.5;
+var op_paymentbooking5pc = 100000;
+var op_paymentstampduty = 0;
+var op_paymentdownpayment15pc = 300000;
+var op_paymentfoundation10pc = 200000;
+var op_paymentsuperstructure10pc = 200000;
+var op_paymentwalls5pc = 100000;
+var op_paymentroof5pc = 100000;
+var op_paymentelectrical5pc = 100000;
+var op_paymentroad5pc = 100000;
+var op_paymentutilities25pc = 500000;
+var op_paymentcompletion15pc = 300000;
 
 var op_bookingDate = new Date();
 var op_otpreceivedDate = new Date();
@@ -65,6 +87,13 @@ getCompletionDate();
 });
 
 //define variables to be used in JS that links with HTML objects
+var $propertyprice_rangeslider = $('#js-propertyprice-range');
+var $propertyprice_amount = $('#js-propertyprice-input');
+var $cpf_rangeslider = $('#js-cpf-range');
+var $cpf_amount = $('#js-cpf-input');
+var $ltv_amount = $('#js-ltv-input');
+
+
 var $decisiondays_rangeslider = $('#js-decisiondays-range');
 var $bookingdays_rangeslider = $('#js-bookingdays-range');
 var $otpdays_rangeslider = $('#js-otpdays-range');
@@ -153,6 +182,42 @@ $decisiondays_amount.on('input', function() {  $decisiondays_rangeslider.val(thi
   });
 
 //----------------
+
+$propertyprice_rangeslider.on('input', function() {
+  ip_PropertyPrice = this.value * 1;
+  $propertyprice_amount[0].value = this.value;
+  getLoanCash();
+  getPayments();
+}); 
+
+$propertyprice_amount.on('input', function() {
+  $propertyprice_rangeslider.val(this.value).change();
+  ip_PropertyPrice = this.value * 1;
+  getLoanCash();
+  getPayments();
+});
+
+$cpf_rangeslider.on('input', function() {
+  ip_CPF = this.value * 1;
+  $cpf_amount[0].value = this.value;
+  getLoanCash();
+  getPayments();
+}); 
+
+$cpf_amount.on('input', function() {
+  $cpf_rangeslider.val(this.value).change();  
+  ip_CPF = this.value * 1;
+  getLoanCash();
+  getPayments();
+});
+
+$ltv_amount.on('input', function() {
+  ip_LTV = this.value * 1;
+  getLoanCash();
+  getPayments();
+});
+
+
 
 $bookingdays_rangeslider.on('input', function() {
   var num = this.value;
@@ -516,6 +581,41 @@ getCompletionDate();
 //function to display numbers with commas
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function getLoanCash() {
+  op_LoanAmount = (ip_LTV/100) * ip_PropertyPrice;
+  op_CPFpc = ip_CPF/ip_PropertyPrice*100;
+  op_Cash = ip_PropertyPrice - ip_CPF - op_LoanAmount;
+  op_Cashpc = op_Cash/ip_PropertyPrice*100;
+  $("#js-textloanamount").html(numberWithCommas(Math.round(op_LoanAmount))); 
+  $("#js-textcpfpc").html(op_CPFpc.toFixed(1));
+  $("#js-textcash").html(numberWithCommas(Math.round(op_Cash)));
+  $("#js-textcashpc").html(op_Cashpc.toFixed(1));
+}
+
+function getPayments() {
+  op_paymentbooking5pc = 0.05 * ip_PropertyPrice;
+  $("#paymentbooking5pc").html(numberWithCommas(Math.round(op_paymentbooking5pc)));
+  op_paymentstampduty
+  op_paymentdownpayment15pc = 0.15 * ip_PropertyPrice;
+  $("#paymentdownpayment15pc").html(numberWithCommas(Math.round(op_paymentdownpayment15pc)));
+  op_paymentfoundation10pc = 0.1 * ip_PropertyPrice;
+  $("#paymentfoundation10pc").html(numberWithCommas(Math.round(op_paymentfoundation10pc)));
+  op_paymentsuperstructure10pc = 0.1 * ip_PropertyPrice;
+  $("#paymentsuperstructure10pc").html(numberWithCommas(Math.round(op_paymentsuperstructure10pc)));
+  op_paymentwalls5pc = 0.05 * ip_PropertyPrice;
+  $("#paymentwalls5pc").html(numberWithCommas(Math.round(op_paymentwalls5pc)));
+  op_paymentroof5pc = 0.05 * ip_PropertyPrice;
+  $("#paymentroof5pc").html(numberWithCommas(Math.round(op_paymentroof5pc)));
+  op_paymentelectrical5pc = 0.05 * ip_PropertyPrice;
+  $("#paymentelectrical5pc").html(numberWithCommas(Math.round(op_paymentelectrical5pc)));
+  op_paymentroad5pc = 0.05 * ip_PropertyPrice;
+  $("#paymentroad5pc").html(numberWithCommas(Math.round(op_paymentroad5pc)));
+  op_paymentutilities25pc = 0.25 * ip_PropertyPrice;
+  $("#paymentutilities25pc").html(numberWithCommas(Math.round(op_paymentutilities25pc)));
+  op_paymentcompletion15pc = 0.15 * ip_PropertyPrice;
+  $("#paymentcompletion15pc").html(numberWithCommas(Math.round(op_paymentcompletion15pc)));
 }
 
 function getBookingDate() {
