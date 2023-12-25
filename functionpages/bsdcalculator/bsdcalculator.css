@@ -23,7 +23,7 @@ overflow-y: auto; /* Enable vertical scrolling */
 
 /* Style the h3 element */
 .input-container h3 {
-    font-size:24px;
+    font-size:1rem;
     margin-left: 2%;
 }
 
@@ -51,7 +51,7 @@ overflow-y: auto; /* Enable vertical scrolling */
 .input-container input[type="number"] {
     width: fit-content; /* Set the width of the number input */
     height: 60px; /* Set the height of the number input */
-    font-size: 24px;
+    font-size: 1rem;
     margin-left: 2%; /* Add some spacing between the range and number inputs */
     position: relative; /* Position the range input relative to its containing element */
     left: 5%; /* Set the initial position from the left edge of the containing element */
