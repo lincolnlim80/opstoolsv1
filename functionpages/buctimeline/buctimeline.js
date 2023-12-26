@@ -761,3 +761,8 @@ function getCRDDate() {
   calcDate.setHours(8, 0, 0, 0);
   $("#textcompletiondate").html(calcDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year:'2-digit' }));
   }
+
+  
+function printPage() {
+  window.print();
+}
