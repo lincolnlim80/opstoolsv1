@@ -83,6 +83,7 @@
 
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
+      window.scrollTo(0, document.body.scrollHeight);
     }
 
     function callback(results, status) {
