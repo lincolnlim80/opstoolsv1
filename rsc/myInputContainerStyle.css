@@ -2,7 +2,6 @@
 /* Style the container for the inputs and the h3 */
 .input-container {
     display: flex;
-    align-items: center;
     }
 
 /* Style the h3 element */
@@ -10,6 +9,15 @@
     font-size:1.2rem;
     margin-left: 2%;
 }
+
+.input-container input[type="number"] {
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.2rem;
+    position: relative;
+    left: 1%;
+}
+
 
 /* Style the range input */
 .input-container input[type="range"] {
@@ -32,12 +40,3 @@
     cursor: pointer; /* Change the cursor to a pointer */
 }
 
-.input-container input[type="number"] {
-    max-width: 50%;
-    width: fit-content; /* Set the width of the number input */
-    height: fit-content; /* Set the height of the number input */
-    font-size: 1.2rem;
-    margin-left: 2%; /* Add some spacing between the range and number inputs */
-    position: relative; /* Position the range input relative to its containing element */
-    left: 5%; /* Set the initial position from the left edge of the containing element */
-}
