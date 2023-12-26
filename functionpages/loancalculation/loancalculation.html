@@ -1,87 +1,65 @@
-<html>
-  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-</script>
-<link rel="stylesheet" type="text/css" href="loancalculation.css" />
+<!DOCTYPE html>
+<html lang="en-US">
+  <head> 
+    <title>Loan Calculation</title>
+    <link rel="stylesheet" href="../../rsc/Normalize.css"> 
+    <link href="../../rsc/myDefaultStyle.css" rel="stylesheet" />
+    <link href="../../rsc/myInputContainerStyle.css" rel="stylesheet" />
+    <link href="./loancalculation.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
 
-<h1>Loan Calculation</h1>
-<h2>Inputs<span class="notesdenote"> (note 1)</span></h2>
-  
-    <head>
-    <title>User Inputs 1</title>
-    <style>
-      /* Style for the table */
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      /* Style for the table cells */
-      td {
-        padding: 10px;
-        border: 1px solid black;
-        vertical-align: middle;
-      }
-      /* Style for the first column */
-      .column1 {
-        width: 30%;
-      }
-      /* Style for the second column */
-      .column2 {
-        width: 70%;
-      }
-      
-    </style>
-  </head>
-  <body>
+<body>
+    <h2>Inputs<span class="notesdenote"> (note 1)</span></h2>
     <table>
       <tr>
-        <td class="column1">Column 1</td>
-        <td class="column2">Column 2</td>
+        <th class="tableheader-selector; tablecol1">Column 1</th>
+        <th class="tableheader-selector; tablecol2">Column 2</th>
       </tr>
       <tr>
-        <td class="column1">
-          <p id="textfacility">Private - Bank Loan </p>
+        <td>
+          <p style="font-size: 1rem; text-indent: 0%;" id="textfacility">Private - Bank Loan </p>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-facility-range" value="1" min="1" max="3" step="1" list="steplist"></input>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input style="width: 10%;" type="number" id="js-age-input" value="40" min="21" max="75" step="1"> years old (average)</input>
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-age-range" value="40" min="21" max="75" step="1"></input>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <p style="font-size: 1.5rem;" class="sliderlabel" id="textnumprop"> 1#</p> loans after purchase
           </div>
           <span class="notesdenote"> (note 2)</span>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-numprop-range" value="1" min="1" max="3" step="1" list="steplist"></input>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <p style="font-size: 1.5rem;" class="sliderlabel" id="textremainlease"> 50</p> years remaining (HDB only)
           </div>
           <span class="notesdenote"> (note 2)</span>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-remainlease-range" value="50" min="1" max="100" step="1"></input>
           </div>
         </td>
@@ -98,46 +76,46 @@
 
     <table>
       <tr>
-        <td class="column1">Column 1</td>
-        <td class="column2">Column 2</td>
+        <td class="tableheader-selector; tablecol1">Column 1</td>
+        <td class="tableheader-selector; tablecol2">Column 2</td>
       </tr>
       
       <tr>
-        <td class="column1">
-          <p style="font-size: 16px">(<input type="checkbox" id="check2" value="0">Refinance)</p>
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <p>(<input type="checkbox" id="check2" value="0">Refinance)</p>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input style="width: 10%;" type="number" id="js-firstloanyr-input" value="15" min="1" max="35" step="1"> years since first disbursement</input>
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-firstloanyr-range" value="15" min="1" max="35" step="1"></input>
           </div>
         </td>
       </tr>
 
       <tr>
-        <td class="column1">
-          <p style="font-size: 16px">Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p>
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <p>Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input style="width: 10%;" type="number" id="js-ltv-input" value="75" min="0" max="100" step="1"> % LTV</input>
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-ltv-range" value="75" min="0" max="100" step="1"></input>
           </div>
         </td>
       </tr>      
       
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input style="width: 10%;" type="number" id="js-tenure-input" value="25" min="0" max="50" step="1"> loan tenure</input><span class="notesdenote"> (note 4, 5, 6, 7)</span>
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-tenure-range" value="25" min="0" max="50" step="1"></input>
           </div>
         </td>
@@ -155,36 +133,36 @@
 
     <table>
       <tr>
-        <td class="column1">Column 1</td>
-        <td class="column2">Column 2</td>
+        <td class="tableheader-selector; tablecol1">Column 1</td>
+        <td class="tableheader-selector; tablecol2">Column 2</td>
       </tr>
       
       
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display:inline;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <p>Lower of Transacted Price and Valuation:</p>
-            $<input style="width: fit-content;" type="number" id="js-price-input" value="1000000" min="0" max="10000000" step="5000"></input>
+            $<input type="number" id="js-price-input" value="1000000" min="0" max="10000000" step="5000"></input>
             <p>Loan Amount  [<span id="textltvpc"> 75</span> %]: </p>
             <p>$ <span id="textloan"> 750,000</span></p></td>
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-price-range" value="1000000" min="0" max="10000000" step="10000"></input>
           </div>
         </td>
       </tr>  
       
       <tr>
-        <td class="column1">
-          <p style="font-size: 16px">Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p>
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <p>Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input style="width: 15%;" type="number" id="js-rate-input" value="4" min="0" max="10" step="0.1"> % Interest Rate</input>
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-rate-range" value="4" min="0" max="10" step="0.1"></input>
           </div>
         </td>
@@ -192,7 +170,7 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             >> Repayment = $ <span id="textrepay"> 3,959 </span>/ month
           </div>
         </td>
@@ -200,7 +178,7 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             Upfront Payment:
             <p>>> CPF [
               <span id="textcpfpc"> 20</span> %] = $ 
@@ -230,44 +208,44 @@
 
     <table>
       <tr>
-        <td class="column1">Column 1</td>
-        <td class="column2">Column 2</td>
+        <td class="tableheader-selector; tablecol1">Column 1</td>
+        <td class="tableheader-selector; tablecol2">Column 2</td>
       </tr>
       
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display:inline;">
-            $<input style="width: fit-content;" type="number" id="js-totincome-input" value="15000" min="0" max="50000" step="10"></input> Total Income
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+            $<input type="number" id="js-totincome-input" value="15000" min="0" max="50000" step="10"></input> Total Income
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-totincome-range" value="15000" min="0" max="50000" step="10"></input>
           </div>
         </td>
       </tr>  
 
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display:inline;">
-            $<input style="width: fit-content;" type="number" id="js-totproploan-input" value="3959" min="0" max="30000" step="10"></input>  Total Property Loan Repayment (inc. all properties)
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+            $<input type="number" id="js-totproploan-input" value="3959" min="0" max="30000" step="10"></input>  Total Property Loan Repayment (inc. all properties)
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-totproploan-range" value="3959" min="0" max="30000" step="10"></input>
           </div>
         </td>
       </tr>  
     
       <tr>
-        <td class="column1">
-          <div class="input-container" style="font-size: 1.5rem; display:inline;">
-            $<input style="width: fit-content;" type="number" id="js-totliab-input" value="3959" min="0" max="30000" step="10"></input>  Total Debt Repayment (inc. property loan)
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+            $<input type="number" id="js-totliab-input" value="3959" min="0" max="30000" step="10"></input>  Total Debt Repayment (inc. property loan)
           </div>
         </td>
-        <td class="column2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+        <td>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             <input type="range" id="js-totliab-range" value="3959" min="0" max="30000" step="10"></input>
           </div>
         </td>
@@ -275,7 +253,7 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             MSR Assessment (must be <30%): <span id="textmsr">PASSED </span><span id="textmsrpc"> (26.4%) </span>
           </div>
         </td>
@@ -283,7 +261,7 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1.5rem; display: flex;">
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
             TDSR Assessment (must be <55%): <span id="texttdsr">PASSED </span><span id="texttdsrpc"> (26.4%) </span>
           </div>
         </td>
@@ -313,7 +291,9 @@
 </p>
 <br>
 <br>
-    
+</body>
+</html>
+
 <script src="./loancalculation.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
