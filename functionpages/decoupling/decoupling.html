@@ -3,19 +3,18 @@
   <head> 
     <title>Decoupling Calculator</title>
     <!-- Include Normalize.css .. Normalize.css is a CSS file that helps standardize and normalize default styles across different web browsers. It's often used as a starting point in web development to ensure a more consistent rendering of web content. -->
-    <link rel="stylesheet" href="rsc/Normalize.css"> 
-    <link href="rsc/myDefaultStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../rsc/Normalize.css"> 
+    <link href="../../rsc/myDefaultStyle.css" rel="stylesheet" />
+    <link href="../../rsc/myInputContainerStyle.css" rel="stylesheet" />
     <link href="./decoupling.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   </head>
 
 <body>
-    <h1>Decoupling Calculator</h1>
-    <br>
     <!-- this section contains the Inputs -->
     <div class="input-container">
-        <h3>Market Value $: </h3>
+        <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">Market Value $: </p>
         <input type="range" id="js-mv-range" value="1500000" min="0" max="5000000" step="50000"></input>
         <input type="number" id="js-mv-input" value="1500000" min="0" max="5000000" step="5000"></input>
     </div>
@@ -34,8 +33,8 @@
     <br>
     <div class="container" style="height: fit-content;">  <!-- left and right panels -->
         <div class="left-panel">
-            <h3 style="margin: 10px;font-size: 1.5rem;">Leaving Party</h3>
-            <div style="font-size: 1.5rem;">
+            <h3 style="margin: 10px;font-size:1rem">Leaving Party</h3>
+            <div style="font-size:1rem">
                 <div style="display: flex; padding-top: 10px; ">
                     <p style="width: 45%; padding: 0px; margin: 0px;">Shares Value: </p> 
                     <p style="padding: 0px; margin: 0px;" id="output-lpsharesvalue">750000</p>
@@ -54,8 +53,8 @@
         </div>
 
         <div class="right-panel">
-            <h3 style="margin: 10px;font-size: 1.5rem;">Staying Party</h3>
-            <div style="font-size: 1.5rem;">
+            <h3 style="margin: 10px;font-size:1rem">Staying Party</h3>
+            <div style="font-size:1rem">
                 <div style="display: flex; padding-top: 10px; ">
                     <p style="width: 45%; padding: 0px; margin: 0px;">Shares Value: </p> 
                     <p style="padding: 0px; margin: 0px;" id="output-spsharesvalue">-750000</p>
@@ -134,7 +133,7 @@
     </div>
     <!-- this section contains the New Debt Positions Outputs -->
     <div class="input-container">
-        <div class="left-panel"  style="font-size: 1.5rem;">
+        <div class="left-panel"  style="font-size:1rem">
             <br>
             <div class="input-container" style="padding-top: 20px; ">
                 <p style="width: 30%; padding: 0px; margin: 0px;">Property$: </p>
@@ -171,7 +170,7 @@
             <br>
         </div>
         
-        <div class="right-panel"  style="font-size: 1.5rem;">
+        <div class="right-panel"  style="font-size:1rem">
             <div> <p class="compacttext">Current loan $ <span id="textspcurrentloan">100000</span></p></div>
             <div> 
                 <p class="compacttext">i) Find out current loan repayment $ </p>
