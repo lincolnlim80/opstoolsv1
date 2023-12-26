@@ -15,30 +15,38 @@
   <br>
 
   <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <h4>Property Price $<span><input type="number" id="js-propertyprice-input" value="2000000" min="0" max="10000000" step="10000"></input></span></h4>
+    <div style="display: flex; margin-top: 20px;">
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 15%;">Property Price $</h4>
+      <input type="number" id="js-propertyprice-input" value="2000000" min="0" max="10000000" step="10000" style="width:50%">
+    </div>
     <input type="range" id="js-propertyprice-range" value="2000000" min="0" max="10000000" step="25000"></input>
   </div>
 
   <div class="input-container" style="font-size: 1.5rem; display: inline;">
     <div style="display: flex; margin-top: 20px;">
-      <h4>CPF Usage $</h4>
-      <input type="number" id="js-cpf-input" value="250000" min="0" max="1000000" step="10000">
-      <h4 id="js-textcpfpc">12.5 <span>%</span></h4>
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 15%;">CPF Usage $</h4>
+      <input type="number" id="js-cpf-input" value="250000" min="0" max="1000000" step="10000" style="width:50%">
+      <h4 id="js-textcpfpc" style="padding: 5px;">12.5 <span></span></h4>%
     </div>
     <input type="range" id="js-cpf-range" value="250000" min="0" max="1000000" step="10000"></input>
   </div>
 
-  <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <h4 style="margin-top: 20px;">LTV %: <span><input type="number" id="js-ltv-input" value="75" min="0" max="100" step="1"></input></span> </h4>
+  <div class="input-container" style="font-size: 1.5rem; display: inline">
+    <div style="display: flex; margin-top: 20px;">
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 15%;">LTV %:</h4>
+      <input type="number" id="js-ltv-input" value="75" min="0" max="100" step="1" style="width:50%">
+    </div>
   </div>
+
   <div class="input-container" style="font-size: 1.5rem; display: inline;">
     <h4 style="margin-top: 20px;">Loan Amount: $<span id="js-textloanamount">1500000</span> </h4>
   </div>
+
   <div class="input-container" style="font-size: 1.5rem; display: inline;">
     <div style="display: flex; margin-top: 20px;">
-      <h4>Cash: $<span id="js-textcash">250000</span> </h4>
-      <input type="number" id="js-cpf-input" value="250000" min="0" max="1000000" step="10000">
-      <h4 id="js-textcashpc">12.5 <span>%</span></h4>
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 15%;">Cash: $
+      <span id="js-textcash">250000</span></h4>
+      <h4 id="js-textcashpc" style="padding: 5px;">12.5 <span></span></h4>%
     </div>
   </div>
 
