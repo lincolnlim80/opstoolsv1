@@ -10,7 +10,7 @@
     margin-left: 2%;
 }
 
-.input-container input[type="number"] {
+.input-container my-input[type="number"] {
     width: fit-content;
     height: fit-content;
     font-size: 1.2rem;
