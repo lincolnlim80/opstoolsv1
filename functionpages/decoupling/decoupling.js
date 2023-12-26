@@ -117,8 +117,9 @@ $SPltv_rangeslider.on('input', function() {
 }); 
  
 $SPltv_amount.on('input', function() {
-ip_SPltv   = this.value * 1;
-recalculate(); 
+    $SPltv_rangeslider.val(this.value).change();
+    ip_SPltv  = this.value * 1;
+    recalculate(); 
 });
 
 $SPCPF_usedpc_rangeslider.on('input', function() {
@@ -130,6 +131,7 @@ $SPCPF_usedpc_rangeslider.on('input', function() {
 }); 
  
 $SPCPF_usedpc_amount.on('input', function() {
+    $SPCPF_usedpc_rangeslider.val(this.value).change();
     ip_SPCPFusedpc  = this.value * 1;
     $("#output-cpfusedpc").html(numberWithCommas(parseFloat(ip_SPCPFusedpc).toFixed(0)));
     calcCPFusage();
