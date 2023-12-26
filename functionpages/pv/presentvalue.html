@@ -5,7 +5,7 @@
     <!-- Include Normalize.css .. Normalize.css is a CSS file that helps standardize and normalize default styles across different web browsers. It's often used as a starting point in web development to ensure a more consistent rendering of web content. -->
     <link rel="stylesheet" href="../../rsc/Normalize.css"> 
     <link href="../../rsc/myDefaultStyle.css" rel="stylesheet" />
-    <link href="./presentvalue.css" rel="stylesheet" />
+    <link href="../../rsc/myInputContainerStyle.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
 
@@ -13,25 +13,25 @@
 <br>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <p style="margin-bottom: 0;">Future Value $ </p>
-    <input type="range" id="js-fv-range" value="100000" min="0" max="10000000" step="1000"></input>
-    <input type="number" id="js-fv-input" value="100000" min="0" max="10000000" step="1000"></input>
+    <h4 style="margin-bottom: 0;">Future Value $ </h4>
+    <input type="range" id="js-fv-range" value="100000" min="0" max="10000000" step="1000" style="width: 65%;"></input>
+    <input type="number" id="js-fv-input" value="100000" min="0" max="10000000" step="1000"style="left: 2%;"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <p style="margin-bottom: 0;"># Years </p>
-    <input type="range" id="js-yrs-range" value="10" min="0" max="100" step="1"></input>
-    <input type="number" id="js-yrs-input" value="10" min="0" max="100" step="1"></input>
+    <h4 style="margin-bottom: 0;"># Years </h4>
+    <input type="range" id="js-yrs-range" value="10" min="0" max="100" step="1" style="width: 65%;"></input>
+    <input type="number" id="js-yrs-input" value="10" min="0" max="100" step="1"style="left: 2%;"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <p style="margin-bottom: 0;">Discount Rate % <span id="textdr"> 2</span></p>
-    <input type="range" id="js-dr-range" value="2" min="0" max="20" step="0.1"></input>
-    <input type="number" id="js-dr-input" value="2" min="0" max="20" step="0.1"></input>
+    <h4 style="margin-bottom: 0;">Discount Rate % <span id="textdr"> 2</span></h4>
+    <input type="range" id="js-dr-range" value="2" min="0" max="20" step="0.1" style="width: 65%;"></input>
+    <input type="number" id="js-dr-input" value="2" min="0" max="20" step="0.1"style="left: 2%;"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;"> 
-  <p>Present Value $ <span id="textpv"> 82,035</span></p>
+  <h3 style="margin-top: 20px;">Present Value $ <span id="textpv"> 82,035</span></h3>
 </div>
 <br>
 <br>
