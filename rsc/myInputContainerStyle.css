@@ -10,6 +10,13 @@
     margin-left: 2%;
 }
 
+/* Style the h4 element */
+.input-container h4 {
+    font-size:1.2rem;
+    margin-left: 2%;
+    font-weight: normal;
+}
+
 .input-container input[type="number"] {
     width: fit-content;
     height: fit-content;
