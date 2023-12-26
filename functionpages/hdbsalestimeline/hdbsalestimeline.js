@@ -316,3 +316,7 @@ op_HandoverDate = someDate.setDate(myStartDate.getDate() + numberOfDaysToAdd);
 let calcDate = new Date(op_HandoverDate);
 $("#texthandoverdate").html("<strong>" + calcDate.toDateString() + "</strong>");
 }
+
+function printPage() {
+  window.print();
+}

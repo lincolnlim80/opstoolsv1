@@ -15,10 +15,10 @@
   <h4 style="font-size: 20px"><span id="textstartdate"> </span></h4>
   
   <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <h4 style="margin-bottom: 0;">Marketing to OTP</h4>
-    <input type="range" id="js-marketingdays-range" value="28" min="0" max="100" step="1" style="width: 40%;"></input>
-    <input type="number" id="js-marketingdays-input" value="28" min="0" max="100" step="1">  
-      <span style="padding-left: 15px;"> days; OTP ~ <span id="textotpdate"> </span>
+    <h4 style="margin-bottom: 0;">Marketing to OTP (OTP on <span id="textotpdate"> </span>)</h4>
+    <input type="range" id="js-marketingdays-range" value="28" min="0" max="100" step="1" style="width: 80%;"></input>
+    <input type="number" id="js-marketingdays-input" value="28" min="0" max="100" step="1" style="left: 2%;">  
+    <span style="padding-left: 2%;"> days</span>
     </input>
   </div>
 
@@ -78,8 +78,9 @@
     </input>
   </div>
 
-  <br>
-
+<br>
+<br>
+<button onclick="printPage()">Print Page</button>
 </body>
 </html>
 
