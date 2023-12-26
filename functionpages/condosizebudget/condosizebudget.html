@@ -2,29 +2,32 @@
 <html lang="en-US">
   <head> 
     <title>Apartment Size, PSF and Budget (Residential)</title>
-    <link rel="stylesheet" type="text/css" href="condosizebudget.css" />
+    <link rel="stylesheet" type="text/css" href="../../rsc/myInputContainerStyle.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
 
 <body>
 
     <div class="input-container" style="font-size: 1.5rem; display: inline;">
-        <p style="margin-bottom: 0;">Apartment Type:<span id="texttype">3 Bedroom (or similar) </span></p>
-        <p style="margin-bottom: 0;">Size: <span id="textsqft">1,000 </span><span>   (sqft) or    </span><span id="textsqm"> 92.9 </span><span>(sqm) </span></p>
-        <input type="range" id="js-size-range" value="1000" min="0" max="4000" step="10"></input>
-        <input type="number" id="js-size-input" value="1000" min="0" max="4000" step="10"></input>
+        <h4 style="margin-bottom: 0;">Apartment Type:<span id="texttype">3 Bedroom (or similar) </span></h4>
+        <h4 style="margin-bottom: 0;">Size: <span id="textsqft">1,000 </span><span>   (sqft) or    </span><span id="textsqm"> 92.9 </span><span>(sqm) </span></h4>
+        <input type="range" id="js-size-range" value="1000" min="0" max="4000" step="10" style="width: 65%;"></input>
+        <input type="number" id="js-size-input" value="1000" min="0" max="4000" step="10" style="left: 2%;"></input>
     </div>
     <div class="input-container" style="font-size: 1.5rem; display: inline;">
-        <p style="margin-bottom: 0;">PSF $/sqft:<span id="textpsf"> 2,000</span></p>
-        <input type="range" id="js-psf-range" value="2000" min="500" max="4000" step="50"></input>
-        <input type="number" id="js-psf-input" value="2000" min="500" max="4000" step="50"></input>
+        <h4 style="margin-bottom: 0;">PSF $/sqft:<span id="textpsf"> 2,000</span></h4>
+        <input type="range" id="js-psf-range" value="2000" min="500" max="4000" step="50" style="width: 65%;"></input>
+        <input type="number" id="js-psf-input" value="2000" min="500" max="4000" step="50" style="left: 2%;"></input>
     </div>
     <br>
     <br>
-    <div style="font-size: 1.5rem;"> Budget $ <span id="textbudget"> 2,000,000</span></div>
+    <div style="font-size: 1.5rem;"> <h3>Budget $ <span id="textbudget"> 2,000,000</span></h3></div>
     <br>
     <br>
-    <div id="text20"> <p style="font-size: 9px">(Note: Estimates provided are not development-specific)</div>
+    <div id="text20"> <p style="font-size: 9px">(Note: Estimates provided are not development-specific)</p></div>
+<br>
+<br>
+<button onclick="printPage()">Print Page</button>
 </body>
 </html>
 

@@ -87,3 +87,7 @@ function getType() {
   }
    $("#texttype").html("<strong>" + op_Type + "</strong>");
 }
+
+function printPage() {
+  window.print();
+}
