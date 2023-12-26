@@ -458,7 +458,20 @@ label{
     text-align: left; /* Text alignment is typically left-aligned */
     }
     
-
+input{
+    display: inline-block; /* Inputs are typically displayed as inline-block elements */
+    box-sizing: border-box; /* The box model includes padding and border within the width and height */
+    padding:5px; /* Default padding around the input element */
+    border: 1px solid #ccc; /* Default border with a light gray color */
+    background-color:#cac3c3; /* Default background color is typically white */
+    color: -system-text; /* The text color may vary depending on the user agent's color scheme */
+    font-size: 0.8rem;  /* The font size may vary depending on the user agent's default font settings */
+    font-weight: normal; /* Typically, inputs have normal font weight */
+    margin: 0; /* No margin by default */
+    text-align: left; /* Text alignment is typically left-aligned */
+    cursor: text; /* The cursor style is usually set to a text cursor when hovering over the input */
+    width:100%;
+    }
 textarea{
     display: inline-block; /* Textareas are typically displayed as inline-block elements */
     box-sizing: border-box; /* The box model includes padding and border within the width and height */
