@@ -14,7 +14,7 @@
 <body>
   <div class="input-container" style="font-size: 0.9rem; display: inline;">
     <div style="display: flex; margin-top: 20px;">
-      <h4 style="margin-bottom: 0%; padding: 5px; width: 35%;">Property Price $</h4>
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 40%;">Property Price $</h4>
       <input type="number" id="js-propertyprice-input" value="2000000" min="0" max="10000000" step="10000" style="width:40%">
     </div>
     <input type="range" id="js-propertyprice-range" value="2000000" min="0" max="10000000" step="25000"></input>
@@ -22,7 +22,7 @@
 
   <div class="input-container" style="font-size: 0.9rem; display: inline;">
     <div style="display: flex; margin-top: 20px;">
-      <h4 style="margin-bottom: 0%; padding: 5px; width: 35%;">CPF Usage $</h4>
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 40%;">CPF Usage $</h4>
       <input type="number" id="js-cpf-input" value="250000" min="0" max="1000000" step="10000" style="width:40%">
       <h4 id="js-textcpfpc" style="padding: 5px;">12.5 <span></span></h4>%
     </div>
@@ -31,54 +31,28 @@
 
   <div class="input-container" style="font-size: 0.9rem; display: inline">
     <div style="display: flex; margin-top: 20px;">
-      <h4 style="margin-bottom: 0%; padding: 5px; width: 35%;">LTV %:</h4>
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 40%;">LTV %:</h4>
       <input type="number" id="js-ltv-input" value="75" min="0" max="100" step="1" style="width:40%">
     </div>
   </div>
 
   <div class="input-container" style="font-size: 0.9rem; display: inline;">
-    <h4 style="margin-top: 20px;">Loan Amount: $<span id="js-textloanamount">1500000</span> </h4>
+    <div style="display: flex; margin-top: 20px;">
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 40%;">Loan Amt $</h4>
+      <h4 id="js-textloanamount" style="padding: 5px;">1500000</h4>
+    </div>
   </div>
 
   <div class="input-container" style="font-size: 0.9rem; display: inline;">
     <div style="display: flex; margin-top: 20px;">
-      <h4 style="margin-bottom: 0%; padding: 5px; width: 50%;">Cash: $
-      <span id="js-textcash">250000</span></h4>
-      <h4 id="js-textcashpc" style="padding: 5px;">12.5 <span></span></h4>%
+      <h4 style="margin-bottom: 0%; padding: 5px; width: 40%;">Cash Usage $</h4>
+      <h4 id="js-textcash" style="padding: 5px;">250000</h4>
+      <h4 id="js-textcashpc" style="padding: 5px;">12.5</h4>%
     </div>
   </div>
 
 
     <br>
-
-    <table>
-      <thead>
-          <tr>
-              <th class="tableheader-selector">Event / Date</th>
-              <th class="tableheader-selector">Payment Milestone</th>
-              <th class="tableheader-selector">Duration to Next Event</th>
-              <th class="tableheader-selector">Notes</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>
-                <p style="padding: 0px; margin: 0px; font-weight: bold; text-indent: 0px;">Viewing:</p> 
-                <form action="/action_page.php">
-                  <input type="date" id="campaignstart" name="campaignstart">
-                </form>
-                <p style="padding: 0px; margin: 0px; font-weight: bold; text-indent: 0px;" id="textstartdate"> </p>
-              </td>
-              <td class = "td-ellipsis">
-                  <div class="content">
-                    Another long text that will scroll horizontally if it doesn't fit the cell.
-                  </div>
-                  <a class="read-more">Read more...</a>
-              </td>
-              <td>Short</td>
-          </tr>
-      </tbody>
-    </table>
 
 <br>
 <br>
@@ -98,9 +72,9 @@
           <td>
             <p style="padding: 0px; margin: 0px; font-weight: bold; text-indent: 0px;">Viewing:</p> 
             <form action="/action_page.php">
-              <input type="date" id="campaignstart" name="campaignstart" style="font-size: 1.2rem;">
+              <input type="date" id="campaignstart" name="campaignstart">
             </form>
-            <span id="textstartdate"> </span>
+            <p style="padding: 0px; margin: 0px; font-weight: bold; text-indent: 0px;" id="textstartdate"> </p>
           </td>
           <td>
             -
