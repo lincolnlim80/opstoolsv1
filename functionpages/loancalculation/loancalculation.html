@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h2>Inputs<span class="notesdenote"> (note 1)</span></h2>
+  <h2>Inputs<span class="notesdenote"> (note 1)</span></h2>
     <table>
       <tr>
         <th class="tableheader-selector; tablecol1">Column 1</th>
@@ -22,44 +22,48 @@
         </td>
         <td>
           <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input type="range" id="js-facility-range" value="1" min="1" max="3" step="1" list="steplist"></input>
+            <input type="range" id="js-facility-range" value="1" min="1" max="3" step="1"></input>
           </div>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input style="width: 10%;" type="number" id="js-age-input" value="40" min="21" max="75" step="1"> years old (average)</input>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">Borrower's Age</p>
           </div>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <input type="number" id="js-age-input" value="40" min="21" max="75" step="1" style="width: 40%; left: 0%;"></input>yo, average
             <input type="range" id="js-age-range" value="40" min="21" max="75" step="1"></input>
           </div>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <p style="font-size: 1.5rem;" class="sliderlabel" id="textnumprop"> 1#</p> loans after purchase
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline-block;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">No. of loans after purchase</p>
+            <p style="font-size: 0.5rem; text-indent: 0%; margin: 0%;"> (note 2)</p>
           </div>
-          <span class="notesdenote"> (note 2)</span>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input type="range" id="js-numprop-range" value="1" min="1" max="3" step="1" list="steplist"></input>
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;" id="textnumprop">1#</p>
+            <input type="range" id="js-numprop-range" value="1" min="1" max="3" step="1"></input>
           </div>
         </td>
       </tr>
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <p style="font-size: 1.5rem;" class="sliderlabel" id="textremainlease"> 50</p> years remaining (HDB only)
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline-block;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> Remaining lease (HDB only)</p>
+            <p style="font-size: 0.5rem; text-indent: 0%; margin: 0%;"> (note 2)</p>
           </div>
-          <span class="notesdenote"> (note 2)</span>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;" id="textremainlease">50 </p>
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">years</p>
             <input type="range" id="js-remainlease-range" value="50" min="1" max="100" step="1"></input>
           </div>
         </td>
@@ -68,11 +72,7 @@
 
 
 <br>
-<h2>Loan Structure</h2>
-  
-    <title>User Inputs 1</title>
-
-
+  <h2>Loan Structure</h2>
 
     <table>
       <tr>
@@ -82,13 +82,17 @@
       
       <tr>
         <td>
-          <p>(<input type="checkbox" id="check2" value="0">Refinance)</p>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input style="width: 10%;" type="number" id="js-firstloanyr-input" value="15" min="1" max="35" step="1"> years since first disbursement</input>
+          <div class="input-container" style="display: inline;" >
+            <div style="display: flex;">
+              <p style="font-size: 1rem; text-indent: 0%; margin: 0%; width: 80%;">Refinance</p>
+              <input type="checkbox" id="check2" value="0" style="height: 30px; width: 30px;">
+            </div>
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> (years since 1st disbursement)</p>
           </div>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <input type="number" id="js-firstloanyr-input" value="15" min="1" max="35" step="1" style="width: 40%; left: 0%;"></input>years
             <input type="range" id="js-firstloanyr-range" value="15" min="1" max="35" step="1"></input>
           </div>
         </td>
@@ -96,13 +100,16 @@
 
       <tr>
         <td>
-          <p>Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input style="width: 10%;" type="number" id="js-ltv-input" value="75" min="0" max="100" step="1"> % LTV</input>
+          <div class="input-container" style="display: inline;" >
+            <div style="display: flex;">
+              <p style="font-size: 1rem; text-indent: 0%; margin: 0%; width: 80%;">Max LTV</p>
+              <input type="checkbox" id="check3" value="1" checked style="height: 30px; width: 30px;">
+            </div>
           </div>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <input type="number" id="js-ltv-input" value="75" min="0" max="100" step="1" style="width: 40%; left: 0%;"></input>%
             <input type="range" id="js-ltv-range" value="75" min="0" max="100" step="1"></input>
           </div>
         </td>
@@ -110,12 +117,14 @@
       
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input style="width: 10%;" type="number" id="js-tenure-input" value="25" min="0" max="50" step="1"> loan tenure</input><span class="notesdenote"> (note 4, 5, 6, 7)</span>
+          <div class="input-container" style="display: inline;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> Loan tenure</p>
+            <p style="font-size: 0.5rem; text-indent: 0%; margin: 0%;"> (note 4, 5, 6, 7)</p>
           </div>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <input type="number" id="js-tenure-input" value="25" min="0" max="50" step="1" style="width: 40%; left: 0%;"></input>years
             <input type="range" id="js-tenure-range" value="25" min="0" max="50" step="1"></input>
           </div>
         </td>
@@ -140,15 +149,20 @@
       
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <p>Lower of Transacted Price and Valuation:</p>
-            $<input type="number" id="js-price-input" value="1000000" min="0" max="10000000" step="5000"></input>
-            <p>Loan Amount  [<span id="textltvpc"> 75</span> %]: </p>
-            <p>$ <span id="textloan"> 750,000</span></p></td>
+          <div class="input-container" style="display: inline;" >
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> Loan Amount</p>
+            <div style="display: flex;">
+              <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> [</p>
+              <p style="font-size: 1rem; text-indent: 0%; margin: 0%;" id="textltvpc"> 75</p>
+              <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> %]</p>
+            </div>
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">$ <span id="textloan"> 750,000</span></p></td>
           </div>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <input type="number" id="js-price-input" value="1000000" min="0" max="10000000" step="5000" style="width: 100%; left: 0%;"></input>
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> Lower of Transacted Price and Valuation</p>
             <input type="range" id="js-price-range" value="1000000" min="0" max="10000000" step="10000"></input>
           </div>
         </td>
@@ -156,13 +170,11 @@
       
       <tr>
         <td>
-          <p>Max LTV (<input type="checkbox" id="check3" value="1" checked>)</p>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            <input style="width: 15%;" type="number" id="js-rate-input" value="4" min="0" max="10" step="0.1"> % Interest Rate</input>
-          </div>
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;"> Interest Rate</p>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            <input type="number" id="js-rate-input" value="4" min="0" max="10" step="0.1" style="width: 40%; left: 0%;"></input>%
             <input type="range" id="js-rate-range" value="4" min="0" max="10" step="0.1"></input>
           </div>
         </td>
@@ -178,16 +190,16 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
             Upfront Payment:
-            <p>>> CPF [
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">>> CPF [
               <span id="textcpfpc"> 20</span> %] = $ 
               <span id="textcpf"> 200,000</span>
             </p>
-            <p>>> Minimum Cash [
+            <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">>> Minimum Cash [
               <span id="textcashpc"> 5</span>  %] = $ 
               <span id="textcash"> 50,000 </span> 
-              <span class="notesdenote"> (+ Duties, COV, Lawyer, Agent, Bank Fees)</span>
+              <p style="font-size: 0.5rem; text-indent: 0%; margin: 0%;"> (+ Duties, COV, Lawyer, Agent, Bank Fees)</p>
             </p>
           </div>
         </td>
@@ -214,12 +226,11 @@
       
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            $<input type="number" id="js-totincome-input" value="15000" min="0" max="50000" step="10"></input> Total Income
-          </div>
+          <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">Total Income</p>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            $<input type="number" id="js-totincome-input" value="15000" min="0" max="50000" step="10" style="width: 90%; left: 0%;"></input>
             <input type="range" id="js-totincome-range" value="15000" min="0" max="50000" step="10"></input>
           </div>
         </td>
@@ -227,12 +238,11 @@
 
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            $<input type="number" id="js-totproploan-input" value="3959" min="0" max="30000" step="10"></input>  Total Property Loan Repayment (inc. all properties)
-          </div>
+          <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">Total Property Loan Repayment (inc. all properties)</p>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            $<input type="number" id="js-totproploan-input" value="3959" min="0" max="30000" step="10" style="width: 90%; left: 0%;"></input>
             <input type="range" id="js-totproploan-range" value="3959" min="0" max="30000" step="10"></input>
           </div>
         </td>
@@ -240,12 +250,11 @@
     
       <tr>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
-            $<input type="number" id="js-totliab-input" value="3959" min="0" max="30000" step="10"></input>  Total Debt Repayment (inc. property loan)
-          </div>
+          <p style="font-size: 1rem; text-indent: 0%; margin: 0%;">Total Debt Repayment (inc. property loan)</p>
         </td>
         <td>
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
+            $<input type="number" id="js-totliab-input" value="3959" min="0" max="30000" step="10" style="width: 90%; left: 0%;"></input>
             <input type="range" id="js-totliab-range" value="3959" min="0" max="30000" step="10"></input>
           </div>
         </td>
@@ -253,7 +262,7 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
             MSR Assessment (must be <30%): <span id="textmsr">PASSED </span><span id="textmsrpc"> (26.4%) </span>
           </div>
         </td>
@@ -261,7 +270,7 @@
       
       <tr>
         <td colspan="2">
-          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: flex;" >
+          <div class="input-container" style="font-size: 1rem; text-indent: 0%; display: inline;" >
             TDSR Assessment (must be <55%): <span id="texttdsr">PASSED </span><span id="texttdsrpc"> (26.4%) </span>
           </div>
         </td>
@@ -269,31 +278,34 @@
       
       
     </table>
-  </body>
 
-<!-- to show tick marks on discrete sliders -->
-<datalist id="steplist">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>     
-  <option>4</option>     
-</datalist>
-<br>
-<p class="notes">
-  <br>Note 1: Not for bridging loan, contra or SERS, shell company, etc.
-  <br>Note 2: Applies for private only.
-  <br>Note 3: LTV limit: 1st Property: 75% or 55% (min cash 5% or 10%). 2nd Property: 45% or 25% (min cash 25%). More Property: 35% or 15% (min cash 25%).
-  <br>Note 4: HDB Loan: Capped at whichever is shortest: 25 years; Up till the buyer is 65 years old; and Remaining lease of the flat minus 20 years.
-  <br>Note 5: Bank Loan: Capped at 30 years for HDB and 35 years for Private. If >25 years for HDB or > 30 years for private, or age > 65 yo, then LTV reduces to 'lower value' (see below).
-  <br>Note 6: Note that properties with 36 to 40 years left can attain a maximum LTV capped at 60%.
-  <br>Note 7:Bank Loan - Refinance: HDB flats: 30 years – Years since first loan; Non-HDB properties: 35 years – Years since first loan. Note that banks impose a max age limit of 70 or 75 yo.
-  <br>Note 8: Note that above calculation assumes no limitation on CPF usage. Please confirm CPF usage using below website as it depends on BRS required, age and property balance lease, https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage.
-</p>
-<br>
-<br>
+    <!-- to show tick marks on discrete sliders -->
+    <datalist id="steplist">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>     
+      <option>4</option>     
+    </datalist>
+    <br>
+    <p class="notes">
+      <br>Note 1: Not for bridging loan, contra or SERS, shell company, etc.
+      <br>Note 2: Applies for private only.
+      <br>Note 3: LTV limit: 1st Property: 75% or 55% (min cash 5% or 10%). 2nd Property: 45% or 25% (min cash 25%). More Property: 35% or 15% (min cash 25%).
+      <br>Note 4: HDB Loan: Capped at whichever is shortest: 25 years; Up till the buyer is 65 years old; and Remaining lease of the flat minus 20 years.
+      <br>Note 5: Bank Loan: Capped at 30 years for HDB and 35 years for Private. If >25 years for HDB or > 30 years for private, or age > 65 yo, then LTV reduces to 'lower value' (see below).
+      <br>Note 6: Note that properties with 36 to 40 years left can attain a maximum LTV capped at 60%.
+      <br>Note 7:Bank Loan - Refinance: HDB flats: 30 years – Years since first loan; Non-HDB properties: 35 years – Years since first loan. Note that banks impose a max age limit of 70 or 75 yo.
+      <br>Note 8: Note that above calculation assumes no limitation on CPF usage. Please confirm CPF usage using below website as it depends on BRS required, age and property balance lease, https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage.
+    </p>
+    <br>
+    <br>
+    <button onclick="printPage()">Print Page</button>
+
+    <br>
+    <br>
 </body>
-</html>
 
+</html>
 <script src="./loancalculation.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 

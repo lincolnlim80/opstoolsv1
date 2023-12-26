@@ -22,7 +22,6 @@ var ip_totliab = 3959;
 var op_msrpc = 26.3;
 var op_tdsrpc = 26.3;
 
-
 //define variables to be used in JS that links with HTML objects
 var $facility_rangeslider = $('#js-facility-range');
 var $numprop_rangeslider = $('#js-numprop-range');
@@ -467,4 +466,8 @@ function assessTDSR() {
        $("#texttdsr").html("<strong>" + "FAILED" + "</strong>");
        $("#texttdsrpc").html("<strong>" + "(" + op_tdsrpc + ")" + "</strong>");
 }
+}
+
+function printPage() {
+  window.print();
 }
