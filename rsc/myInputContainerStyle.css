@@ -33,7 +33,7 @@
 }
 
 .input-container input[type="number"] {
-    width: fit-content; /* Set the width of the number input */
+    width: auto; /* Set the width of the number input */
     height: fit-content; /* Set the height of the number input */
     font-size: 1.2rem;
     margin-left: 2%; /* Add some spacing between the range and number inputs */
