@@ -5,7 +5,7 @@
     <!-- Include Normalize.css .. Normalize.css is a CSS file that helps standardize and normalize default styles across different web browsers. It's often used as a starting point in web development to ensure a more consistent rendering of web content. -->
     <link rel="stylesheet" href="../../rsc/Normalize.css"> 
     <link href="../../rsc/myDefaultStyle.css" rel="stylesheet" />
-    <link href="./salesproceeds.css" rel="stylesheet" />
+    <link href="../../rsc/myInputContainerStyle.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
 
@@ -14,51 +14,51 @@
 <br>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>Transacted Value $<span><input type="number" id="js-amount-input" value="1000000" min="0" max="10000000" step="10000"></input></span></p>
+  <h4>Transacted Value $<span><input type="number" id="js-amount-input" value="1000000" min="0" max="10000000" step="10000" style="width: 50%"></input></span></h4>
   <input type="range" id="js-amount-range" value="1000000" min="0" max="10000000" step="100000"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>Outstanding Loan $<span><input type="number" id="js-ol-input" value="200000" min="0" max="1000000" step="1000"></input></span></p>
+  <h4>Outstanding Loan $<span><input type="number" id="js-ol-input" value="200000" min="0" max="1000000" step="1000" style="width: 50%"></input></span></h4>
   <input type="range" id="js-ol-range" value="200000" min="0" max="1000000" step="10000"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>CPF Owing $<span><input type="number" id="js-cpf-input" value="200000" min="0" max="1000000" step="1000"></input></span></p>
+  <h4>CPF Owing $<span><input type="number" id="js-cpf-input" value="200000" min="0" max="1000000" step="1000" style="width: 50%"></input></span></h4>
   <input type="range" id="js-cpf-range" value="200000" min="0" max="1000000" step="10000"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>Resale Levy (if applicable) $<span><input type="number" id="js-rl-input" value="0" min="0" max="100000" step="1000"></input></span></p>
+  <h4>Resale Levy (if applicable) $<span><input type="number" id="js-rl-input" value="0" min="0" max="100000" step="1000" style="width: 50%"></input></span></h4>
   <input type="range" id="js-rl-range" value="0" min="0" max="100000" step="1000"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>Cash Proceeds $ <span id="textcashproceeds"> 0</span></p>
+  <h3>Cash Proceeds $ <span id="textcashproceeds"> 0</span></h3>
 </div>
 
 
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-    <p style="margin-bottom: 0;">Seller Stamp Duty (if applicable) $<span id="textssd"> 0</span></p>
-    <p style="margin-bottom: 0;">Enter No. Years #<span id="textnumyears"> >3</span></p>
-    <input type="range" id="js-numyears-range" value="4" min="1" max="4" step="1"></input>
+    <h4 style="margin-bottom: 0;">Seller Stamp Duty (if applicable) $<span id="textssd"> 0</span></h4>
+    <h4 style="margin-bottom: 0;">Enter No. Years #<span id="textnumyears"> >3</span></h4>
+    <input type="range" id="js-numyears-range" value="4" min="1" max="4" step="1" style="width: 50%"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>Legal and Application Fee $<span><input type="number" id="js-legal-input" value="2000" min="0" max="10000" step="100"></input></span></p>
+  <h4>Legal and Application Fee $<span><input type="number" id="js-legal-input" value="2000" min="0" max="10000" step="100" style="width: 50%"></input></span></h4>
   <input type="range" id="js-legal-range" value="2000" min="0" max="10000" step="100"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p style="margin-bottom: 0;">Agent Fee $<span id="textagentamount"> 20,000</span></p>
-  <p style="margin-bottom: 0;">Agent Fee %<span><input type="number" id="js-agentpercent-input" value="2" min="0" max="5" step="0.1"></input></span></p>
+  <h4 style="margin-bottom: 0;">Agent Fee $<span id="textagentamount"> 20,000</span></h4>
+  <h4 style="margin-bottom: 0;">Agent Fee %<span><input type="number" id="js-agentpercent-input" value="2" min="0" max="5" step="0.1" style="width: 50%"></input></span></h4>
   <input type="range" id="js-agentpercent-range" value="2" min="0" max="5" step="0.1"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;"> 
-  <p> Cash Payment = $ <span id="textcashpayment"> </span></p>
-  <p> Final Cash Position = $ <span id="textfinalcashposition"> </span></p>
+  <h3> Cash Payment = $ <span id="textcashpayment"> </span></h3>
+  <h3> Final Cash Position = $ <span id="textfinalcashposition"> </span></h3>
 </div>
 
 <br>
