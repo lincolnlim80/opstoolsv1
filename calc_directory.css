@@ -14,7 +14,7 @@
     color: #000;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.5rem; 
+    font-size: 1.2rem; 
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -22,11 +22,11 @@
     align-items: center;
     text-decoration: none;
     display:flex;
-    margin: 4px 2px;
+    margin: 2px 2px;
     cursor: pointer;
-    padding: 10px;
-    width: 200px; /* Set your desired width */
-    height: 200px; /* Set your desired height */
+    padding: 5px;
+    width: 150px; /* Set your desired width */
+    height: 150px; /* Set your desired height */
   }
 
   button:hover {
