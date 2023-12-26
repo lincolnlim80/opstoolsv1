@@ -5,7 +5,7 @@
     <!-- Include Normalize.css .. Normalize.css is a CSS file that helps standardize and normalize default styles across different web browsers. It's often used as a starting point in web development to ensure a more consistent rendering of web content. -->
     <link rel="stylesheet" href="../../rsc/Normalize.css"> 
     <link href="../../rsc/myDefaultStyle.css" rel="stylesheet" />
-    <link href="./residentialpropertytax.css" rel="stylesheet" />
+    <link href="../../rsc/myInputContainerStyle.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
 
@@ -13,17 +13,17 @@
 <br>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p>Annual Value $<span><input type="number" id="js-av-input" value="24000" min="0" max="300000" step="100"></input></span></p>
+  <h4>Annual Value $<span><input type="number" id="js-av-input" value="24000" min="0" max="300000" step="100" style="width: 50%;"></input></span></h4>
   <input type="range" id="js-av-range" value="24000" min="0" max="300000" step="100"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;">
-  <p><span id="textoccupancy"> Owner</span></p>
-  <input type="range" id="js-occupancy-range" value="1" min="1" max="2" step="1"></input>
+  <h4><span id="textoccupancy"> Owner</span></h4>
+  <input type="range" id="js-occupancy-range" value="1" min="1" max="2" step="1" style="width: 50%;"></input>
 </div>
 
 <div class="input-container" style="font-size: 1.5rem; display: inline;"> 
-  <p>Property Tax Payable $<span id="textpropertytax"> 580</span></p>
+  <h3>Property Tax Payable $<span id="textpropertytax"> 580</span></h3>
 </div>
 <br>
 <br>
