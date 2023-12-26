@@ -216,3 +216,7 @@ function getFinalCashPosition() {
 $("#textfinalcashposition").html("<strong>" + numberWithCommas(parseFloat(op_CashProceeds - op_CashPayment).toFixed(0)) + "</strong>");    
 }
 
+function printPage() {
+  window.print();
+}
+
