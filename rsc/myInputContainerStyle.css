@@ -33,7 +33,7 @@
 }
 
 .input-container input[type="number"] {
-    max-width: 100%;
+    max-width: 50%;
     width: fit-content; /* Set the width of the number input */
     height: fit-content; /* Set the height of the number input */
     font-size: 1.2rem;
