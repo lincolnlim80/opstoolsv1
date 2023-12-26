@@ -420,3 +420,7 @@ function MonthlyspMortgage(){
     op_sptotalMonthlymortgage = ip_spcurrentMonthlymortgage + op_spaddedMonthlymortgage;
     $("#textsptotalmonthlymortgage").html(numberWithCommas(parseFloat(op_sptotalMonthlymortgage).toFixed(0)));
 }
+
+function printPage() {
+    window.print();
+}
