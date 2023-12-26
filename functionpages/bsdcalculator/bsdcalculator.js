@@ -139,6 +139,9 @@ $("#texttotaldutypc").html("<strong>" + numberWithCommas(parseFloat(op_totalduty
   
 op_TotalDuty = parseFloat(op_BSD) + parseFloat(op_ABSD);
 $("#texttotalduty").html("<strong>" + numberWithCommas(parseFloat(op_TotalDuty).toFixed(0)) + "</strong>");  // got to parse as op_ABSD was not a number
-  
+}
+
+function printPage() {
+  window.print();
 }
 

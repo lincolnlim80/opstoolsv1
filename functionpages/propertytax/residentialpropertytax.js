@@ -87,3 +87,7 @@ function getPropertyTaxNonOwner() {
   } 
   $("#textpropertytax").html("<strong>" + numberWithCommas(parseFloat(op_PropertyTax.toFixed(2)) + "</strong>"));
 }
+
+function printPage() {
+  window.print();
+}

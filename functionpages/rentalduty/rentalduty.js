@@ -43,5 +43,8 @@ function numberWithCommas(x) {
 function getTotalDuty() {
 op_TotalDuty = parseFloat(ip_RentalFee * ip_NumYears * 12 * 0.004);
 $("#texttotalduty").html("<strong>" + numberWithCommas(parseFloat(op_TotalDuty).toFixed(0)) + "</strong>");  // got to parse as op_ABSD was not a number
-  
+}
+
+function printPage() {
+  window.print();
 }
