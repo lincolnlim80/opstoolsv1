@@ -5,10 +5,13 @@ var ip_Age = 40;
 var op_Loan = 750000;
 var op_CPF = 200000;
 var op_Cash = 50000;
+var op_CashOutlay = 250000;
 var ip_check2 = "0";
 var ip_check3 = "1";
 var ip_cpfpc = 20;
 var ip_cashpc = 5;
+var ip_cashoutlaypc = 5;
+
 var op_Repay = 3959;
 var ip_Rate = 4;
 var ip_Tenure = 25;
@@ -361,6 +364,8 @@ function getLoan() {
 op_Loan = parseFloat(ip_Price * ip_LTV/100);
 op_CPF = parseFloat(ip_Price * ip_cpfpc/100);
 op_Cash = parseFloat(ip_Price * ip_cashpc/100);
+op_CashOutlay = parseFloat(op_CPF + op_Cash);
+ip_cashoutlaypc = parseFloat(ip_cpfpc + ip_cashpc);
 
 op_Repay = Math.round(op_Loan * ip_Rate/100/12* (1+ip_Rate/100/12)**(ip_Tenure*12)/((1+ip_Rate/100/12)**(ip_Tenure*12)-1));
   
@@ -381,7 +386,9 @@ $("#textltvpc").html("<strong>" + numberWithCommas(parseFloat(ip_LTV).toFixed(0)
 $("#textcpf").html("<strong>" + numberWithCommas(parseFloat(op_CPF).toFixed(0)) + "</strong>");  
 $("#textcpfpc").html("<strong>" + numberWithCommas(parseFloat(ip_cpfpc).toFixed(0)) + "</strong>");  
 $("#textcash").html("<strong>" + numberWithCommas(parseFloat(op_Cash).toFixed(0)) + "</strong>");  
+$("#textcashoutlay").html("<strong>" + numberWithCommas(parseFloat(op_CashOutlay).toFixed(0)) + "</strong>");  
 $("#textcashpc").html("<strong>" + numberWithCommas(parseFloat(ip_cashpc).toFixed(0)) + "</strong>");  
+$("#textcashoutlaypc").html("<strong>" + numberWithCommas(parseFloat(op_cashoutlaypc).toFixed(0)) + "</strong>"); 
 }
 
 //-- Loan Assessment
