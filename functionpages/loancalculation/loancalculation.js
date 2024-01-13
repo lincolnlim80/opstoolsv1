@@ -10,7 +10,7 @@ var ip_check2 = "0";
 var ip_check3 = "1";
 var ip_cpfpc = 20;
 var ip_cashpc = 5;
-var ip_cashoutlaypc = 5;
+var ip_cashoutlaypc = 25;
 
 var op_Repay = 3959;
 var ip_Rate = 4;
