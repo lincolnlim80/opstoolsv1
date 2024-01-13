@@ -402,7 +402,7 @@ $("#textcpfpc").html("<strong>" + numberWithCommas(parseFloat(ip_cpfpc).toFixed(
 $("#textcash").html("<strong>" + numberWithCommas(parseFloat(op_Cash).toFixed(0)) + "</strong>");  
 $("#textcashoutlay").html("<strong>" + numberWithCommas(parseFloat(op_CashOutlay).toFixed(0)) + "</strong>");  
 $("#textcashpc").html("<strong>" + numberWithCommas(parseFloat(ip_cashpc).toFixed(0)) + "</strong>");  
-$("#textcashoutlaypc").html("<strong>" + numberWithCommas(parseFloat(op_cashoutlaypc).toFixed(0)) + "</strong>"); 
+$("#textcashoutlaypc").html("<strong>" + numberWithCommas(parseFloat(ip_cashoutlaypc).toFixed(0)) + "</strong>"); 
 }
 
 //-- Loan Assessment
