@@ -168,6 +168,7 @@ $LTV_rangeslider.on('input', function() {
   ip_LTV = this.value * 1;
   ip_cashpc = 5;
   ip_cpfpc = 100 - ip_LTV - ip_cashpc;
+  ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
 var ltv = $LTV_amount[0].value = this.value;  
    $("#textltv").html("<strong>" + numberWithCommas(ip_LTV)+ "</strong>");
 getLoan();
@@ -178,6 +179,7 @@ $LTV_amount.on('input', function() {
   ip_LTV = this.value * 1;
   ip_cashpc = 5;
   ip_cpfpc = 100 - ip_LTV - ip_cashpc;
+  ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
    $("#textltv").html("<strong>" + numberWithCommas(ip_LTV)+ "</strong>");
 getLoan();
 });
@@ -224,25 +226,30 @@ if (ip_check3 == "1") {
           var ltvcheck = 75;
           ip_cashpc = 5;
           ip_cpfpc = 20;
+          ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 if (ip_numprop === "1#") {
                 ltvcheck = 75;
                 ip_cashpc = 5;
                 ip_cpfpc = 20;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
                 if (ip_numprop === "2#") {
                 ltvcheck = 45;
                 ip_cashpc = 25;
                 ip_cpfpc = 30;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
                 if (ip_numprop === ">2#") {
                 ltvcheck = 35;
                 ip_cashpc = 25;
                 ip_cpfpc = 40;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
                 if (ltvcheck > 60 && Number(ip_remainlease) <= 40){
                 ltvcheck = 60;
                 ip_cashpc = 5;
                 ip_cpfpc = 35;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
           ip_LTV = ltvcheck;
           $LTV_rangeslider.val(ip_LTV).change();
@@ -258,11 +265,13 @@ if (ip_check3 == "1") {
           var ltvcheck = 75;
           ip_cashpc = 5;
           ip_cpfpc = 20;
+          ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
           if (ip_numprop === "1#") {
                 if (Number(ip_remainlease) <= 40){
                     ltvcheck = 60;
                     ip_cashpc = 5;
                     ip_cpfpc = 35;
+                    ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                     }
             ip_LTV = ltvcheck;
             $LTV_rangeslider.val(ip_LTV).change();
@@ -288,7 +297,8 @@ if (ip_check3 == "1") {
         } else if (ip_facility == "HDB - HDB Loan") {
           ip_LTV = "80";
           ip_cashpc = 5;
-          ip_cpfpc = 15;          
+          ip_cpfpc = 15;
+          ip_cashoutlaypc = ip_cashpc + ip_cpfpc;          
           $LTV_rangeslider.val(ip_LTV).change();
           $LTV_amount[0].value = ip_LTV;
           var tenurecheck = Math.min(25 , 65-ip_Age , ip_remainlease - 20);
@@ -309,20 +319,24 @@ if (ip_check3 == "1") {
           var ltvcheck = 55;
           ip_cashpc = 10;
           ip_cpfpc = 35;
+          ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 if (ip_numprop === "1#") {
                 ltvcheck = 55;
                 ip_cashpc = 10;
                 ip_cpfpc = 35;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
                 if (ip_numprop === "2#") {
                 ltvcheck = 25;
                 ip_cashpc = 25;
                 ip_cpfpc = 50;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
                 if (ip_numprop === ">2#") {
                 ltvcheck = 15;
                 ip_cashpc = 25;
                 ip_cpfpc = 60;
+                ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
                 }
           ip_LTV = ltvcheck;
           $LTV_rangeslider.val(ip_LTV).change();
@@ -338,6 +352,7 @@ if (ip_check3 == "1") {
           var ltvcheck = 55;
           ip_cashpc = 10;
           ip_cpfpc = 35;
+          ip_cashoutlaypc = ip_cashpc + ip_cpfpc;
           ip_LTV = ltvcheck;
           $LTV_rangeslider.val(ip_LTV).change();
           $LTV_amount[0].value = ip_LTV;
@@ -365,7 +380,6 @@ op_Loan = parseFloat(ip_Price * ip_LTV/100);
 op_CPF = parseFloat(ip_Price * ip_cpfpc/100);
 op_Cash = parseFloat(ip_Price * ip_cashpc/100);
 op_CashOutlay = parseFloat(op_CPF + op_Cash);
-ip_cashoutlaypc = parseFloat(ip_cpfpc + ip_cashpc);
 
 op_Repay = Math.round(op_Loan * ip_Rate/100/12* (1+ip_Rate/100/12)**(ip_Tenure*12)/((1+ip_Rate/100/12)**(ip_Tenure*12)-1));
   
